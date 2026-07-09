@@ -92,6 +92,7 @@
 html {
   font-size: 16px;            /* body-md base */
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -101,6 +102,7 @@ body {
   line-height: 1.5;           /* body-md */
   color: var(--body);
   background: var(--canvas);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -110,6 +112,11 @@ body.nav-open { overflow: hidden; }
 a {
   color: var(--link-blue);
   text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 /* ==========================================================
@@ -498,11 +505,18 @@ a {
 .tile-dark .tile-tagline   { color: var(--on-dark-mute); }
 
 /* ── Body copy (body-md: 18px/400/1.6) ── */
+figure {
+  max-width: 100%;
+  margin: var(--sp-lg) 0;
+}
+
 .tile-body {
   font-size: 1.125rem;        /* 18px */
   font-weight: 400;
   line-height: 1.6;
   color: var(--body);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .tile-dark .tile-body { color: var(--on-dark-mute); }
 
@@ -869,6 +883,8 @@ a {
 .page-content {
   flex: 1;
   min-width: 0;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
 }
 
 /* ==========================================================
