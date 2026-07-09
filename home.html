@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UM iGEM 2026 — Home</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== Primary Nav (64px black) ===== -->
+  <nav class="global-nav">
+    <div class="global-nav-inner">
+      <a href="home.html" class="nav-brand">
+        UM iGEM 2026
+      </a>
+      <div class="nav-links">
+        <a href="home.html" class="active">Home</a>
+        <span class="nav-item">
+          <a>Team</a>
+          <div class="nav-dropdown">
+            <a href="Team-Members.html">Members</a>
+            <a href="Team-Attributions.html">Attributions</a>
+          </div>
+        </span>
+        <span class="nav-item">
+          <a>Project</a>
+          <div class="nav-dropdown">
+            <a href="Project-Description.html">Description</a>
+            <a href="Project-Safety.html">Safety</a>
+            <a href="Project-Contribution.html">Contribution</a>
+          </div>
+        </span>
+        <span class="nav-item">
+          <a>Wet Lab</a>
+          <div class="nav-dropdown">
+            <a href="Wet-Experiments.html">Experiments</a>
+            <a href="Wet-Protocol.html">Protocol</a>
+            <a href="Wet-Notebook.html">Notebook</a>
+            <a href="Wet-Parts.html">Parts</a>
+            <a href="Wet-Implementation.html">Implementation</a>
+          </div>
+        </span>
+        <span class="nav-item">
+          <a>Dry Lab</a>
+          <div class="nav-dropdown">
+            <a href="Dry-Model.html">Model</a>
+          </div>
+        </span>
+        <span class="nav-item">
+          <a>Human Practices</a>
+          <div class="nav-dropdown">
+            <a href="HP-Overview.html">Overview</a>
+            <a href="HP-Entrepreneurship.html">Entrepreneurship</a>
+            <a href="HP-SDGs.html">SDGs</a>
+          </div>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Wiki Progress Bar (Listeria) ===== -->
+  <div class="wiki-progress"></div>
+
+  <!-- ===== Hero (hero-card-dark) ===== -->
+  <section class="product-tile tile-dark" id="home-hero">
+    <div class="tile-inner home-hero">
+      <h1 class="home-hero-headline">UM iGEM 2026</h1>
+    </div>
+  </section>
+
+  <!-- ===== Cards Section (soft) ===== -->
+  <section class="product-tile tile-soft">
+    <div class="tile-inner" style="max-width: var(--content-max);">
+      <div class="utility-grid">
+
+        <a href="#" class="utility-card">
+          <span class="corner-square"></span>
+          <h3>Project</h3>
+        </a>
+        <a href="#" class="utility-card">
+          <span class="corner-square"></span>
+          <h3>Wet Lab</h3>
+        </a>
+        <a href="Dry-Model.html" class="utility-card">
+          <span class="corner-square"></span>
+          <h3>Dry Lab</h3>
+        </a>
+        <a href="#" class="utility-card">
+          <span class="corner-square"></span>
+          <h3>Human Practices</h3>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer (black) ===== -->
+  <footer class="site-footer">
+      <div class="footer-legal">
+        <p>Content is available under <a href="#">Creative Commons Attribution-ShareAlike 4.0</a> unless otherwise noted.</p>
+        <p>© 2026 UM iGEM Team · Powered by MediaWiki</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Back to Top ===== -->
+  <button class="back-to-top" id="backToTop" title="Back to Top">↑</button>
+
+  <script>
+    // Back to Top
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  </script>
+</body>
+</html>

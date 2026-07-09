@@ -1,0 +1,33 @@
+<!--
+  ============================================================
+  LISTERIA MARKER — PROGRESS BAR INDICATOR
+  ============================================================
+  Replace this entire file with your own Listeria illustration.
+
+  SPECS:
+    - Format: SVG (recommended) or PNG
+    - Shape: roughly square (e.g. 32×32px or 48×48px)
+    - Background: transparent
+    - The marker rides at the leading edge of the fill bar
+
+  HOW TO REPLACE:
+    1. Draw a single Listeria bacterium in Illustrator / Figma
+    2. Export as SVG → igem-wiki/images/listeria-marker.svg
+    3. In style.css, find .wiki-progress::after and change:
+         background: url('../images/listeria-marker.svg') center/contain no-repeat;
+         border-radius: 0;
+         border: none;
+         background-color: transparent;
+
+  DESIGN TIPS:
+    - Silhouette or simple flat style, reads at ~18px
+    - Accent color #1A4778
+    - Listeria = short rod with rounded ends
+  ============================================================
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <!-- Placeholder: single rod-shaped bacterium in #1A4778 -->
+  <rect x="4" y="10" width="24" height="12" rx="6" fill="#1A4778"/>
+  <!-- Inner highlight -->
+  <rect x="8" y="12" width="16" height="5" rx="2.5" fill="#fff" opacity="0.25"/>
+</svg>

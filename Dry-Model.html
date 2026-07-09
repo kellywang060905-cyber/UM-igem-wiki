@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Predictive Modeling of L. monocytogenes — UM iGEM 2026 Dry Lab</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+
+  <!-- ===== Primary Nav (64px black) ===== -->
+  <nav class="global-nav">
+    <div class="global-nav-inner">
+      <a href="home.html" class="nav-brand">
+        UM iGEM 2026
+      </a>
+      <div class="nav-links">
+        <a href="home.html">Home</a>
+        <span class="nav-item">
+          <a>Team</a>
+          <div class="nav-dropdown">
+            <a href="Team-Members.html">Members</a>
+            <a href="Team-Attributions.html">Attributions</a>
+          </div>
+        </span>
+        <span class="nav-item">
+          <a>Project</a>
+          <div class="nav-dropdown">
+            <a href="Project-Description.html">Description</a>
+            <a href="Project-Safety.html">Safety</a>
+            <a href="Project-Contribution.html">Contribution</a>
+          </div>
+        </span>
+        <span class="nav-item">
+          <a>Wet Lab</a>
+          <div class="nav-dropdown">
+            <a href="Wet-Experiments.html">Experiments</a>
+            <a href="Wet-Protocol.html">Protocol</a>
+            <a href="Wet-Notebook.html">Notebook</a>
+            <a href="Wet-Parts.html">Parts</a>
+            <a href="Wet-Implementation.html">Implementation</a>
+          </div>
+        </span>
+        <span class="nav-item">
+          <a class="active">Dry Lab</a>
+          <div class="nav-dropdown">
+            <a href="Dry-Model.html" class="active">Model</a>
+          </div>
+        </span>
+        <span class="nav-item">
+          <a>Human Practices</a>
+          <div class="nav-dropdown">
+            <a href="HP-Overview.html">Overview</a>
+            <a href="HP-Entrepreneurship.html">Entrepreneurship</a>
+            <a href="HP-SDGs.html">SDGs</a>
+          </div>
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Wiki Progress Bar (Listeria) ===== -->
+  <div class="wiki-progress"></div>
+
+  <!-- ===== Hero (hero-card-dark) ===== -->
+  <section class="product-tile tile-dark" id="sec-hero">
+    <div class="tile-inner article-hero">
+      <p class="tile-tagline">UM iGEM 2026 — Dry Lab</p>
+      <h1 class="tile-hero">Model</h1>
+    </div>
+  </section>
+
+  <!-- ===== Sidebar + Content Layout ===== -->
+  <div class="page-with-sidebar">
+
+    <!-- === Sidebar === -->
+    <aside class="sidebar-nav">
+      <ul class="sidebar-links">
+        <li><a href="#model1" class="sidebar-model active">Predictive Modeling of L. monocytogenes</a></li>
+        <li class="sidebar-section-group">
+          <ul class="sidebar-sections">
+            <li><a href="#sec-background">1. Background</a></li>
+            <li><a href="#sec-framework">2. Framework</a></li>
+            <li><a href="#sec-primary">3. Primary Models</a></li>
+            <li><a href="#sec-secondary">4. Gamma Model</a></li>
+            <li><a href="#sec-params">5. Food Matrix</a></li>
+            <li><a href="#sec-fitting">6. Estimation</a></li>
+            <li><a href="#sec-evaluation">7. Evaluation</a></li>
+            <li><a href="#sec-interpretation">8. Interpretation</a></li>
+            <li><a href="#sec-process">9. Process</a></li>
+          </ul>
+        </li>
+        <li><a href="#model2" class="sidebar-model">Model 2</a></li>
+        <li><a href="#model3" class="sidebar-model">Model 3</a></li>
+      </ul>
+    </aside>
+
+    <!-- === Content === -->
+    <main class="page-content">
+
+  <!-- ===== Model 1 ===== -->
+  <section class="product-tile tile-section-header tile-canvas" id="model1" style="padding: var(--sp-xxl) var(--sp-xl); margin-top: var(--sp-lg)">
+    <div class="tile-inner">
+      <h2 class="tile-headline">Predictive Modeling of L. monocytogenes</h2>
+    </div>
+  </section>
+
+  <!-- ===== 1. Background and Objective (white) ===== -->
+  <section class="product-tile tile-canvas" id="sec-background">
+    <div class="tile-inner">
+      <h2 class="tile-headline">1. Background and Objective</h2>
+      <div class="tile-body">
+        <p><em>Listeria monocytogenes</em> is an important foodborne pathogen that can survive and grow under <strong>refrigerated conditions</strong>. This makes it a major concern in ready-to-eat (RTE) foods, especially meat, poultry, seafood, salads, and other processed food products. Since RTE foods are usually consumed without further heating, the growth of <em>L. monocytogenes</em> during storage may directly increase food safety risks.</p>
+        <p>The objective of this model is to establish a <strong>predictive microbiology framework</strong> for describing and predicting the growth behavior of <em>L. monocytogenes</em> under food-related environmental conditions. The model combines two levels of modeling:</p>
+        <ol>
+          <li>A <strong>primary growth model</strong>, which describes how bacterial concentration changes with time.</li>
+          <li>A <strong>secondary environmental model</strong>, which describes how environmental factors affect the maximum specific growth rate.</li>
+        </ol>
+        <p>In this framework, experimental or literature-based data such as storage temperature, pH, water activity, salt concentration, nitrite concentration, and organic acid concentration are used to predict the growth rate of <em>L. monocytogenes</em>. The predicted growth rate is then inserted into a primary growth model to simulate the bacterial growth curve over time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. Overall Modeling Framework (parchment) ===== -->
+  <section class="product-tile tile-soft" id="sec-framework">
+    <div class="tile-inner">
+      <h2 class="tile-headline">2. Overall Modeling Framework</h2>
+      <div class="tile-body">
+        <p>The complete modeling framework can be summarized as follows:</p>
+        <ol>
+          <li>Collect <strong>food matrix parameters</strong>, including temperature, pH, water activity, salt, nitrite, lactate, acetate, diacetate, and propionate.</li>
+          <li>Convert each environmental factor into a <strong>gamma inhibition factor</strong>.</li>
+          <li>Calculate the predicted maximum specific growth rate, $\mu_{\max}$, using the <strong>Gamma concept model</strong>.</li>
+          <li>Use $\mu_{\max}$ and the lag time parameter in a <strong>primary model</strong> such as the Logistic-with-delay model or the Baranyi model.</li>
+          <li>Generate the <strong>predicted growth curve</strong> of <em>L. monocytogenes</em>, usually expressed as $\log(\text{CFU/g})$ versus time.</li>
+        </ol>
+        <div class="framework-diagram">
+          <div class="flow-step">Food Matrix<br>Parameters</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Gamma Concept<br>Model</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Predicted<br>$\mu_{\max}$</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Primary Model<br>(Logistic / Baranyi)</div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">Growth Curve<br>$\log(\text{CFU/g})$ vs. $t$</div>
+        </div>
+        <p>Therefore, the <strong>secondary model predicts the growth rate</strong>, while the <strong>primary model predicts the time-dependent bacterial population</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3. Primary Growth Models (canvas) ===== -->
+  <section class="product-tile tile-canvas" id="sec-primary">
+    <div class="tile-inner">
+      <h2 class="tile-headline">3. Primary Growth Models</h2>
+      <div class="tile-body">
+
+        <h3>3.1 Purpose of Primary Models</h3>
+        <p>Primary models describe the change in bacterial population over time under a fixed set of environmental conditions. In the case of <em>L. monocytogenes</em>, the bacterial concentration is usually expressed as $\log(\text{CFU/g})$ or $\ln(\text{CFU/g})$. The input data for the primary model are time and colony count, while the main outputs are:</p>
+        <ul>
+          <li>$\mu_{\max}$: maximum specific growth rate</li>
+          <li>$\lambda$ or $t_{\text{lag}}$: lag time</li>
+          <li>$N_0$: initial bacterial concentration</li>
+          <li>$N_{\max}$: maximum population density</li>
+        </ul>
+        <p>A typical bacterial growth curve contains three main phases:</p>
+        <ol>
+          <li><strong>Lag phase</strong>: bacteria adapt to the food environment and show little increase in population.</li>
+          <li><strong>Exponential phase</strong>: bacteria grow rapidly at the maximum growth rate.</li>
+          <li><strong>Stationary phase</strong>: growth slows down and the population approaches the maximum density.</li>
+        </ol>
+
+        <h3>3.2 Logistic-with-Delay Model</h3>
+        <p>The Logistic-with-delay model is used to describe bacterial growth with an explicit lag phase. Before the lag time, the bacterial population remains approximately constant. After the lag phase, the population increases according to a logistic growth pattern.</p>
+
+        <div class="formula-block">
+          <p>$$\log N(t) = \begin{cases}
+          \log N_0, & t < t_{\text{lag}} \\[8pt]
+          \log\left( \dfrac{N_{\max}}{1 + \left(\dfrac{N_{\max}}{N_0} - 1\right) \exp\left[-\mu_{\max} (t - t_{\text{lag}})\right]} \right), & t \geq t_{\text{lag}}
+          \end{cases}$$</p>
+        </div>
+
+        <p>where:</p>
+        <ul>
+          <li>$t$ is storage time;</li>
+          <li>$N(t)$ is the bacterial concentration at time $t$;</li>
+          <li>$N_0$ is the initial bacterial concentration;</li>
+          <li>$N_{\max}$ is the maximum population density;</li>
+          <li>$\mu_{\max}$ is the maximum specific growth rate;</li>
+          <li>$t_{\text{lag}}$ is the lag time.</li>
+        </ul>
+        <p>This model is simple and biologically interpretable. It clearly separates the lag phase from the growth phase. It is useful when the experimental data show an obvious delay before bacterial growth begins.</p>
+
+        <h3>3.3 Baranyi Model</h3>
+        <p>The Baranyi model is another commonly used primary model in predictive microbiology. Compared with the Logistic-with-delay model, the Baranyi model provides a <strong>smoother transition</strong> from the lag phase to the exponential phase. This is important because <em>L. monocytogenes</em> cannot move instantly from physiological adaptation to rapid growth. Instead, there is a gradual transition period.</p>
+
+        <div class="formula-block">
+          <p>$$y(t) = y_0 + \mu_{\max} A(t) - \ln\left(1 + \frac{\exp(\mu_{\max} A(t)) - 1}{\exp(y_{\max} - y_0)}\right)$$</p>
+        </div>
+
+        <p>where the adjustment function $A(t)$ is given by:</p>
+
+        <div class="formula-block">
+          <p>$$A(t) = t + \frac{1}{\mu_{\max}} \ln\left[\exp(-\mu_{\max} t) + \exp(-h_0) - \exp(-\mu_{\max} t - h_0)\right]$$</p>
+        </div>
+
+        <p>In this model:</p>
+        <ul>
+          <li>$y(t)$ is the bacterial concentration at time $t$, usually expressed as $\ln(\text{CFU/g})$;</li>
+          <li>$y_0$ is the initial bacterial concentration;</li>
+          <li>$y_{\max}$ is the maximum bacterial concentration;</li>
+          <li>$\mu_{\max}$ is the maximum specific growth rate;</li>
+          <li>$A(t)$ is the adjustment function;</li>
+          <li>$h_0$ describes the initial physiological state of the bacterial cells.</li>
+        </ul>
+        <p>The function $A(t)$ accounts for the physiological adaptation of bacterial cells during the lag phase. Therefore, the Baranyi model is especially useful when the transition between lag phase and exponential phase needs to be represented more realistically.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. Secondary Model: Gamma Concept (soft) ===== -->
+  <section class="product-tile tile-soft" id="sec-secondary">
+    <div class="tile-inner">
+      <h2 class="tile-headline">4. Secondary Model: Gamma Concept Model</h2>
+      <div class="tile-body">
+
+        <h3>4.1 Purpose of the Secondary Model</h3>
+        <p>While primary models describe growth over time, they do not directly explain how food properties and storage conditions affect bacterial growth. For this reason, a secondary model is used to describe the relationship between environmental parameters and the maximum specific growth rate $\mu_{\max}$.</p>
+        <p>In this study, the <strong>Gamma concept model</strong> is adopted. The basic idea of the Gamma model is that each environmental factor contributes an inhibition factor, denoted as $\gamma$. Each $\gamma$ value ranges from 0 to 1:</p>
+        <ul>
+          <li>$\gamma = 1$ means the condition is optimal or nearly optimal for growth;</li>
+          <li>$0 < \gamma < 1$ means the condition partially inhibits growth;</li>
+          <li>$\gamma = 0$ means growth is completely inhibited.</li>
+        </ul>
+        <p>The predicted maximum specific growth rate is calculated as:</p>
+
+        <div class="formula-block">
+          <p>$$\mu_{\max} = \mu_{\text{opt}} \cdot \gamma(T) \cdot \gamma(\text{pH}) \cdot \gamma(a_w) \cdot \gamma(\text{Nit}) \cdot \gamma(\text{HA}) \cdot \xi(T, \text{pH}, a_w, \text{Nit}, \text{HA})$$</p>
+        </div>
+
+        <p>where:</p>
+        <ul>
+          <li>$\mu_{\text{opt}}$ is the maximum specific growth rate under optimal conditions;</li>
+          <li>$\gamma(T)$ describes the effect of temperature;</li>
+          <li>$\gamma(\text{pH})$ describes the effect of acidity;</li>
+          <li>$\gamma(a_w)$ describes the effect of water activity;</li>
+          <li>$\gamma(\text{Nit})$ describes the inhibitory effect of nitrite;</li>
+          <li>$\gamma(\text{HA})$ describes the inhibitory effect of undissociated organic acids;</li>
+          <li>$\xi$ is a multi-factor interaction term.</li>
+        </ul>
+
+        <h3>4.2 Temperature Effect</h3>
+        <p>Temperature is one of the most important factors controlling the growth of <em>L. monocytogenes</em>. The temperature gamma factor can be written as:</p>
+
+        <div class="formula-block">
+          <p>$$\gamma(T) = \begin{cases}
+          0, & T \leq T_{\min} \\[6pt]
+          \left(\dfrac{T - T_{\min}}{T_{\text{opt}} - T_{\min}}\right)^2, & T_{\min} < T < T_{\text{opt}} \\[6pt]
+          1, & T \geq T_{\text{opt}}
+          \end{cases}$$</p>
+        </div>
+
+        <p>where:</p>
+        <ul>
+          <li>$T_{\min}$ is the minimum temperature for growth;</li>
+          <li>$T_{\text{opt}}$ is the optimal temperature for growth;</li>
+          <li>$T$ is the storage temperature.</li>
+        </ul>
+        <p>For refrigerated foods, such as those stored at 4°C, $\gamma(T)$ is usually much smaller than 1. This means that refrigeration slows down bacterial growth but may not completely stop the growth of <em>L. monocytogenes</em>.</p>
+
+        <h3>4.3 pH Effect</h3>
+        <p>The pH gamma factor describes how acidity or alkalinity affects bacterial growth:</p>
+
+        <div class="formula-block">
+          <p>$$\gamma(\text{pH}) = \begin{cases}
+          0, & \text{pH} \leq \text{pH}_{\min} \\[6pt]
+          \dfrac{(\text{pH} - \text{pH}_{\min})(\text{pH}_{\max} - \text{pH})}{(\text{pH}_{\text{opt}} - \text{pH}_{\min})(\text{pH}_{\max} - \text{pH}_{\text{opt}})}, & \text{pH}_{\min} < \text{pH} < \text{pH}_{\max} \\[6pt]
+          0, & \text{pH} \geq \text{pH}_{\max}
+          \end{cases}$$</p>
+        </div>
+
+        <p>where:</p>
+        <ul>
+          <li>$\text{pH}_{\min}$ is the minimum pH for growth;</li>
+          <li>$\text{pH}_{\text{opt}}$ is the optimal pH for growth;</li>
+          <li>$\text{pH}_{\max}$ is the maximum pH for growth.</li>
+        </ul>
+        <p>For many RTE meat products, the pH is approximately between 5.8 and 6.8. This range usually allows the growth of <em>L. monocytogenes</em>, although growth may be slower than under optimal pH conditions.</p>
+
+        <h3>4.4 Water Activity Effect</h3>
+        <p>Water activity, denoted as $a_w$, measures the amount of water available for microbial growth. The water activity gamma factor can be written as:</p>
+
+        <div class="formula-block">
+          <p>$$\gamma(a_w) = \begin{cases}
+          0, & a_w < a_{w,\min} \\[6pt]
+          \dfrac{a_w - a_{w,\min}}{a_{w,\text{opt}} - a_{w,\min}}, & a_{w,\min} \leq a_w < a_{w,\text{opt}} \\[6pt]
+          1, & a_w \geq a_{w,\text{opt}}
+          \end{cases}$$</p>
+        </div>
+
+        <p>where:</p>
+        <ul>
+          <li>$a_{w,\min}$ is the minimum water activity required for growth;</li>
+          <li>$a_{w,\text{opt}}$ is the optimal water activity;</li>
+          <li>$a_w$ is the water activity of the food product.</li>
+        </ul>
+        <p>Most RTE meat and seafood products have high water activity values, often around 0.95–0.99. Therefore, water activity alone may not strongly inhibit <em>L. monocytogenes</em> unless it is reduced by drying, salting, or other preservation methods.</p>
+
+        <h3>4.5 Nitrite Effect</h3>
+        <p>Nitrite is commonly used in processed meat products as a preservative. Its inhibitory effect can be expressed as:</p>
+
+        <div class="formula-block">
+          <p>$$\gamma(\text{Nit}) = \begin{cases}
+          1 - \dfrac{\text{Nit}}{\text{MIC}_{\text{Nit}}}, & \text{Nit} < \text{MIC}_{\text{Nit}} \\[8pt]
+          0, & \text{Nit} \geq \text{MIC}_{\text{Nit}}
+          \end{cases}$$</p>
+        </div>
+
+        <p>where:</p>
+        <ul>
+          <li>$\text{Nit}$ is the nitrite concentration;</li>
+          <li>$\text{MIC}_{\text{Nit}}$ is the minimum inhibitory concentration of nitrite.</li>
+        </ul>
+        <p>As nitrite concentration increases, $\gamma(\text{Nit})$ decreases. This means that higher nitrite concentration produces stronger inhibition of bacterial growth.</p>
+
+        <h3>4.6 Organic Acid Effect</h3>
+        <p>Organic acids and their salts, such as lactate, acetate, diacetate, and propionate, are often used in RTE meat products to inhibit microbial growth. The total organic acid inhibition factor can be represented as:</p>
+
+        <div class="formula-block">
+          <p>$$\gamma(\text{HA}) = \gamma(\text{HA}_{\text{acetic}}) \cdot \gamma(\text{HA}_{\text{diacetate}}) \cdot \gamma(\text{HA}_{\text{lactic}}) \cdot \gamma(\text{HA}_{\text{propionic}})$$</p>
+        </div>
+
+        <p>For each undissociated organic acid, the inhibition factor can be written generally as:</p>
+
+        <div class="formula-block">
+          <p>$$\gamma(\text{HA}_i) = \begin{cases}
+          1 - \dfrac{[\text{HA}_i]}{\text{MIC}_i}, & [\text{HA}_i] < \text{MIC}_i \\[8pt]
+          0, & [\text{HA}_i] \geq \text{MIC}_i
+          \end{cases}$$</p>
+        </div>
+
+        <p>where:</p>
+        <ul>
+          <li>$[\text{HA}_i]$ is the concentration of the undissociated form of organic acid $i$;</li>
+          <li>$\text{MIC}_i$ is the minimum inhibitory concentration of that acid.</li>
+        </ul>
+        <p>The use of multiple organic acids can produce a combined inhibitory effect. For example, lactate and diacetate are frequently used together in RTE meat products to suppress the growth of <em>L. monocytogenes</em>.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. Use of Food Matrix Parameters (canvas) ===== -->
+  <section class="product-tile tile-canvas" id="sec-params">
+    <div class="tile-inner">
+      <h2 class="tile-headline">5. Use of Food Matrix Parameters</h2>
+      <div class="tile-body">
+
+        <h3>5.1 Role of the Parameter Table</h3>
+        <p>The food matrix parameter table provides the environmental inputs required by the Gamma concept model. These data include: food product type, storage temperature, pH, water activity, salt concentration, acetate concentration, diacetate concentration, lactate concentration, propionate concentration, nitrite concentration, and packaging condition.</p>
+        <p>These parameters are not the final model output. Instead, they are used as <strong>model inputs</strong>. Each parameter is converted into a corresponding $\gamma$ factor. The product of all $\gamma$ factors determines how much the actual growth rate is reduced from the optimal growth rate.</p>
+
+        <h3>5.2 Source and Meaning of Food Matrix Parameters</h3>
+        <p>The food matrix parameter table provides practical environmental conditions for different ready-to-eat (RTE) food products. These parameters include product type, pH, water activity ($a_w$), storage temperature, preservatives, and packaging conditions. These values are not the final prediction results of the model. Instead, they are used as input variables for the secondary Gamma model.</p>
+        <p>The general role of the parameter table is to connect <strong>real food conditions</strong> with <strong>mathematical growth prediction</strong>. For each food product, the measured or literature-reported values of temperature, pH, $a_w$, nitrite, and organic acid preservatives are converted into corresponding inhibition factors. These inhibition factors are then multiplied together to calculate the predicted maximum specific growth rate of <em>Listeria monocytogenes</em>.</p>
+
+        <h3>5.3 Summary of Food Matrix Data</h3>
+        <p>Table 1 summarizes representative food matrix parameters used for predictive modeling of <em>L. monocytogenes</em> in RTE foods. These values are based on reported food product characteristics for meat, poultry, seafood, salad, and processed food systems.</p>
+
+        <div class="table-caption">Table 1: Representative food matrix parameters for <em>Listeria monocytogenes</em> predictive modeling.</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Food Product</th><th>pH Range</th><th>$a_w$ Range</th><th>Storage Temp.</th><th>Main Preservatives / Factors</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Cooked ham</td><td>5.8–6.5</td><td>0.96–0.99</td><td>4°C / 10°C</td><td>Lactate, acetate, nitrite</td></tr>
+              <tr><td>Pork bologna</td><td>5.9–6.4</td><td>0.95–0.98</td><td>4°C / 10°C</td><td>Antimicrobials</td></tr>
+              <tr><td>Turkey products</td><td>6.0–6.5</td><td>0.97–0.99</td><td>4°C / abuse temp.</td><td>Propionate, lactate-diacetate</td></tr>
+              <tr><td>Chicken salad</td><td>5.5–6.8</td><td>0.97–0.99</td><td>4°C–12°C</td><td>Mayonnaise acidity</td></tr>
+              <tr><td>Braised beef</td><td>5.7–6.3</td><td>0.96–0.99</td><td>4°C / dynamic</td><td>Salt and organic acid</td></tr>
+              <tr><td>Roast beef</td><td>5.6–6.4</td><td>0.96–0.98</td><td>4°C / mild abuse</td><td>None or organic acids</td></tr>
+              <tr><td>Mortadella</td><td>6.0–6.6</td><td>0.95–0.98</td><td>4°C–15°C</td><td>Nitrite</td></tr>
+              <tr><td>Mexican pork chorizo</td><td>4.8–6.2</td><td>0.94–0.97</td><td>10°C–25°C</td><td>Salt and spices</td></tr>
+              <tr><td>Chicken nuggets</td><td>6.1–6.8</td><td>0.96–0.99</td><td>4°C–16°C</td><td>Batter ingredients</td></tr>
+              <tr><td>Liver pâté</td><td>5.8–6.5</td><td>0.95–0.98</td><td>4°C</td><td>Fat and salt</td></tr>
+              <tr><td>Seafood products</td><td>6.2–7.0</td><td>0.97–0.99</td><td>0°C–10°C</td><td>Salt</td></tr>
+              <tr><td>Vacuum-packed sausage</td><td>5.5–6.3</td><td>0.95–0.98</td><td>4°C</td><td>2.5% lactate + 0.25% acetate</td></tr>
+              <tr><td>Cooked sliced meat</td><td>5.8–6.5</td><td>0.96–0.99</td><td>4°C–10°C</td><td>Protective cultures</td></tr>
+              <tr><td>General RTE meats</td><td>4.13–9.6</td><td>0.92–0.99</td><td>−1.5°C to 25°C</td><td>Nitrite and organic acids</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>5.4 Example: Cooked Ham</h3>
+        <p>Cooked ham is a typical RTE meat product. According to the parameter table, cooked ham has approximately the following food matrix characteristics: pH = 5.8–6.5, $a_w$ = 0.96–0.99, $T$ = 4°C or 10°C, and may contain lactate, acetate, and nitrite as preservatives.</p>
+        <p>To use these data in the model, a representative condition can be selected. For example:</p>
+        <div class="formula-block">
+          <p>$$T = 4^\circ\text{C},\quad \text{pH} = 6.2,\quad a_w = 0.98$$</p>
+        </div>
+        <p>Assume that the product contains lactate, acetate, and nitrite. These values are then converted into Gamma factors:</p>
+        <div class="formula-block">
+          <p>$$T = 4^\circ\text{C} \rightarrow \gamma(T)$$</p>
+          <p>$$\text{pH} = 6.2 \rightarrow \gamma(\text{pH})$$</p>
+          <p>$$a_w = 0.98 \rightarrow \gamma(a_w)$$</p>
+          <p>$$\text{Nitrite} \rightarrow \gamma(\text{Nit})$$</p>
+          <p>$$\text{Lactate + Acetate} \rightarrow \gamma(\text{HA})$$</p>
+        </div>
+        <p>The final predicted growth rate is:</p>
+        <div class="formula-block">
+          <p>$$\mu_{\max,\text{ham}} = \mu_{\text{opt}} \cdot \gamma(4) \cdot \gamma(6.2) \cdot \gamma(0.98) \cdot \gamma(\text{Nit}) \cdot \gamma(\text{Lactate}) \cdot \gamma(\text{Acetate}) \cdot \xi$$</p>
+        </div>
+        <p>This predicted $\mu_{\max,\text{ham}}$ is then inserted into the primary growth model to simulate the growth curve of <em>L. monocytogenes</em> in cooked ham during refrigerated storage.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. Parameter Estimation and Model Fitting (canvas) ===== -->
+  <section class="product-tile tile-soft" id="sec-fitting">
+    <div class="tile-inner">
+      <h2 class="tile-headline">6. Parameter Estimation and Model Fitting</h2>
+      <div class="tile-body">
+
+        <h3>6.1 Experimental Data</h3>
+        <p>To fit the model, bacterial counts are measured at different time points during storage. The experimental data usually consist of pairs of time and bacterial concentration:</p>
+        <div class="formula-block">
+          <p>$$(t_1, N_1),\ (t_2, N_2),\ \ldots,\ (t_n, N_n)$$</p>
+        </div>
+        <p>where $N_i$ is the measured bacterial concentration at time $t_i$. The bacterial concentration may be expressed as $\log_{10}(\text{CFU/g})$ or $\ln(\text{CFU/g})$, depending on the form of the model.</p>
+
+        <h3>6.2 Primary Model Fitting</h3>
+        <p>The primary model is fitted to the experimental growth curve to estimate:</p>
+        <div class="formula-block">
+          <p>$$\mu_{\max},\quad t_{\text{lag}},\quad N_0,\quad N_{\max}$$</p>
+        </div>
+        <p>The fitting is usually performed by <strong>nonlinear regression</strong>. The objective is to minimize the sum of squared residuals between observed and predicted bacterial counts:</p>
+        <div class="formula-block">
+          <p>$$\text{SSR} = \sum_{i=1}^{n} \left(y_{i,\text{obs}} - y_{i,\text{pred}}\right)^2$$</p>
+        </div>
+        <p>where:</p>
+        <ul>
+          <li>$y_{i,\text{obs}}$ is the observed bacterial concentration;</li>
+          <li>$y_{i,\text{pred}}$ is the predicted bacterial concentration.</li>
+        </ul>
+
+        <h3>6.3 Secondary Model Fitting</h3>
+        <p>After $\mu_{\max}$ values are obtained from multiple growth curves under different environmental conditions, these values are used to fit the secondary model. For each condition, the secondary model predicts:</p>
+        <div class="formula-block">
+          <p>$$\mu_{\max,\text{pred}} = \mu_{\text{opt}} \cdot \gamma(T) \cdot \gamma(\text{pH}) \cdot \gamma(a_w) \cdot \gamma(\text{Nit}) \cdot \gamma(\text{HA}) \cdot \xi$$</p>
+        </div>
+        <p>The predicted values are then compared with the experimentally estimated $\mu_{\max}$ values. Model parameters such as $\mu_{\text{opt}}$, $T_{\min}$, $T_{\text{opt}}$, $\text{pH}_{\min}$, $\text{pH}_{\text{opt}}$, $\text{pH}_{\max}$, $a_{w,\min}$, and MIC values can be estimated or adapted from published studies.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. Model Evaluation (soft) ===== -->
+  <section class="product-tile tile-canvas" id="sec-evaluation">
+    <div class="tile-inner">
+      <h2 class="tile-headline">7. Model Evaluation</h2>
+      <div class="tile-body">
+        <p>The performance of the model can be evaluated using statistical indicators such as the root mean square error, bias factor, and accuracy factor.</p>
+
+        <h3>7.1 Root Mean Square Error (RMSE)</h3>
+        <div class="formula-block">
+          <p>$$\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} \left(y_{i,\text{obs}} - y_{i,\text{pred}}\right)^2}$$</p>
+        </div>
+        <p>A smaller RMSE indicates better agreement between the observed and predicted values.</p>
+
+        <h3>7.2 Bias Factor ($B_f$)</h3>
+        <p>The bias factor evaluates whether the model systematically overpredicts or underpredicts bacterial growth:</p>
+        <div class="formula-block">
+          <p>$$B_f = 10^{\frac{1}{n} \sum_{i=1}^{n} \log_{10}\left(\frac{y_{i,\text{pred}}}{y_{i,\text{obs}}}\right)}$$</p>
+        </div>
+        <p>If $B_f$ is close to 1, the model has little systematic bias. If $B_f > 1$, the model tends to overpredict growth. If $B_f < 1$, the model tends to underpredict growth.</p>
+
+        <h3>7.3 Accuracy Factor ($A_f$)</h3>
+        <p>The accuracy factor describes the average deviation between predicted and observed values:</p>
+        <div class="formula-block">
+          <p>$$A_f = 10^{\frac{1}{n} \sum_{i=1}^{n} \left|\log_{10}\left(\frac{y_{i,\text{pred}}}{y_{i,\text{obs}}}\right)\right|}$$</p>
+        </div>
+        <p>An accuracy factor closer to 1 indicates better prediction accuracy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. Interpretation of Model Outputs (canvas) ===== -->
+  <section class="product-tile tile-soft" id="sec-interpretation">
+    <div class="tile-inner">
+      <h2 class="tile-headline">8. Interpretation of Model Outputs</h2>
+      <div class="tile-body">
+        <p>The main output of the complete model is a <strong>predicted growth curve</strong> of <em>L. monocytogenes</em> under a specific food condition. This curve shows how bacterial concentration changes during storage.</p>
+        <p>The model can be used to answer questions such as:</p>
+        <ul>
+          <li>How fast will <em>L. monocytogenes</em> grow in a specific RTE food?</li>
+          <li>How long is the lag phase under refrigerated storage?</li>
+          <li>How does temperature abuse affect bacterial growth?</li>
+          <li>How strongly do lactate, acetate, diacetate, or nitrite inhibit growth?</li>
+          <li>Which food matrix presents a higher growth risk?</li>
+          <li>How can storage conditions or preservatives be adjusted to reduce risk?</li>
+        </ul>
+        <p>For example, if the predicted $\mu_{\max}$ is high and the lag time is short, the food condition is favorable for <em>L. monocytogenes</em> growth. In contrast, if the predicted $\mu_{\max}$ is low and the lag time is long, the food condition is inhibitory.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9. Complete Calculation Process (soft) ===== -->
+  <section class="product-tile tile-canvas" id="sec-process">
+    <div class="tile-inner">
+      <h2 class="tile-headline">9. Complete Calculation Process</h2>
+      <div class="tile-body">
+        <div class="process-steps">
+          <div class="process-step">
+            <span class="step-num">Step 1</span>
+            <span class="step-text">Select a food product from the parameter table</span>
+          </div>
+          <div class="process-connector">↓</div>
+          <div class="process-step">
+            <span class="step-num">Step 2</span>
+            <span class="step-text">Extract raw parameters: $T$, pH, $a_w$, nitrite, lactate, acetate, diacetate, propionate</span>
+          </div>
+          <div class="process-connector">↓</div>
+          <div class="process-step">
+            <span class="step-num">Step 3</span>
+            <span class="step-text">Convert raw parameters into Gamma factors: $\gamma(T)$, $\gamma(\text{pH})$, $\gamma(a_w)$, $\gamma(\text{Nit})$, $\gamma(\text{HA})$</span>
+          </div>
+          <div class="process-connector">↓</div>
+          <div class="process-step">
+            <span class="step-num">Step 4</span>
+            <span class="step-text">Calculate $\mu_{\max} = \mu_{\text{opt}} \cdot \gamma(T) \cdot \gamma(\text{pH}) \cdot \gamma(a_w) \cdot \gamma(\text{Nit}) \cdot \gamma(\text{HA}) \cdot \xi$</span>
+          </div>
+          <div class="process-connector">↓</div>
+          <div class="process-step">
+            <span class="step-num">Step 5</span>
+            <span class="step-text">Insert $\mu_{\max}$ into Logistic-with-delay or Baranyi model</span>
+          </div>
+          <div class="process-connector">↓</div>
+          <div class="process-step">
+            <span class="step-num">Step 6</span>
+            <span class="step-text">Generate predicted growth curve: $\log(\text{CFU/g})$ versus storage time</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Model 2 ===== -->
+  <section class="product-tile tile-section-header tile-canvas" id="model2" style="padding: var(--sp-xxl) var(--sp-xl)">
+    <div class="tile-inner">
+      <h2 class="tile-headline">Model 2</h2>
+    </div>
+  </section>
+
+  <section class="product-tile tile-canvas">
+    <div class="tile-inner">
+      <h3 class="tile-headline">Background</h3>
+      <div class="tile-body"><p>Content coming soon.</p></div>
+    </div>
+  </section>
+
+  <section class="product-tile tile-soft">
+    <div class="tile-inner">
+      <h3 class="tile-headline">Methods</h3>
+      <div class="tile-body"><p>Content coming soon.</p></div>
+    </div>
+  </section>
+
+  <section class="product-tile tile-canvas">
+    <div class="tile-inner">
+      <h3 class="tile-headline">Results</h3>
+      <div class="tile-body"><p>Content coming soon.</p></div>
+    </div>
+  </section>
+
+  <section class="product-tile tile-soft">
+    <div class="tile-inner">
+      <h3 class="tile-headline">Discussion</h3>
+      <div class="tile-body"><p>Content coming soon.</p></div>
+    </div>
+  </section>
+
+  <!-- ===== Model 3 ===== -->
+  <section class="product-tile tile-section-header tile-canvas" id="model3" style="padding: var(--sp-xxl) var(--sp-xl)">
+    <div class="tile-inner">
+      <h2 class="tile-headline">Model 3</h2>
+    </div>
+  </section>
+
+  <section class="product-tile tile-canvas">
+    <div class="tile-inner">
+      <h3 class="tile-headline">Background</h3>
+      <div class="tile-body"><p>Content coming soon.</p></div>
+    </div>
+  </section>
+
+  <section class="product-tile tile-soft">
+    <div class="tile-inner">
+      <h3 class="tile-headline">Methods</h3>
+      <div class="tile-body"><p>Content coming soon.</p></div>
+    </div>
+  </section>
+
+  <section class="product-tile tile-canvas">
+    <div class="tile-inner">
+      <h3 class="tile-headline">Results</h3>
+      <div class="tile-body"><p>Content coming soon.</p></div>
+    </div>
+  </section>
+
+  <section class="product-tile tile-soft">
+    <div class="tile-inner">
+      <h3 class="tile-headline">Discussion</h3>
+      <div class="tile-body"><p>Content coming soon.</p></div>
+    </div>
+  </section>
+
+    </main>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Disclaimer</a>
+        <a href="#">Code of Conduct</a>
+        <a href="#">Developers</a>
+        <a href="#">Cookie Statement</a>
+      </div>
+      <div class="footer-legal">
+        <p>Content is available under <a href="#">Creative Commons Attribution-ShareAlike 4.0</a> unless otherwise noted.</p>
+        <p>© 2026 UM iGEM Team · Powered by MediaWiki</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Back to Top ===== -->
+  <button class="back-to-top" id="backToTop" title="Back to Top">↑</button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
