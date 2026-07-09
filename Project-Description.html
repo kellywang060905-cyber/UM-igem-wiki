@@ -11,11 +11,14 @@
   <!-- ===== Primary Nav (64px black) ===== -->
   <nav class="global-nav">
     <div class="global-nav-inner">
-      <a href="home.html" class="nav-brand">
+      <a href="index.html" class="nav-brand">
         UM iGEM 2026
       </a>
-      <div class="nav-links">
-        <a href="home.html">Home</a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links">
+        <a href="index.html">Home</a>
         <span class="nav-item">
           <a>Team</a>
           <div class="nav-dropdown">
@@ -89,76 +92,67 @@
     <main class="page-content">
 
   <!-- ===== Abstract ===== -->
-  <section class="product-tile tile-section-header tile-canvas" id="abstract" style="padding: var(--sp-lg) var(--sp-xl); margin-top: var(--sp-lg)">
+  <section class="product-tile tile-section-header tile-canvas" id="abstract">
     <div class="tile-inner">
       <h2 class="tile-headline">Abstract</h2>
-    </div>
-  </section>
-
-  <section class="product-tile tile-canvas">
-    <div class="tile-inner">
       <div class="tile-body">
-        <p><em>Listeria monocytogenes</em> poses a persistent threat to global public health, largely due to its exceptional ability to thrive at refrigeration temperatures <sup>[1]</sup>—a trait that renders many conventional detection methods inadequate for rapid, on-site screening. To address this, we engineered a dual-input "AND-gate" biosensing platform that selectively detects viable <em>L. monocytogenes</em>. The first input is the pore-forming toxin Listeriolysin O (LLO), secreted exclusively by metabolically active bacteria, which disrupts cholesterol-optimized synthetic liposomes or surface-engineered HEK293T-derived exosomes <sup>[2]</sup>. The second input is a blue-light-triggered LOV domain that drives proximity-dependent complementation of split-sfGFP <sup>[3]</sup>, or enables TEV protease-mediated cleavage of a quenched EGFP-REACh reporter for robust signal amplification <sup>[4]</sup>. Our integrated mathematical modeling calibrates multi-channel fluorescence kinetics to enable precise bacterial quantification. Throughout the design process, we engaged with food safety authorities and industry stakeholders to ensure biological containment, user-friendliness, and portability. The resulting modular biosensor distinguishes viable from dead cells without requiring expensive instrumentation or specialized training, and delivers results within a single day—offering a practical, deployable toolkit for enhancing real-time food safety surveillance.</p>
+        <p><em>Listeria monocytogenes</em> poses a persistent threat to global public health, largely due to its exceptional ability to thrive at refrigeration temperatures <sup>[1]</sup>—a trait that renders many conventional detection methods inadequate for rapid, on‑site screening. To address this, we engineered a dual‑input "AND‑gate" biosensing platform that selectively detects viable <em>L. monocytogenes</em>. The first input is the pore‑forming toxin Listeriolysin O (LLO), secreted exclusively by metabolically active bacteria, which disrupts cholesterol‑optimized synthetic liposomes or surface‑engineered HEK293T‑derived exosomes <sup>[2]</sup>. The second input is a blue‑light‑triggered LOV domain that drives proximity‑dependent complementation of split‑sfGFP <sup>[3]</sup>, or enables TEV protease‑mediated cleavage of a quenched EGFP‑REACh reporter for robust signal amplification <sup>[4]</sup>. Our integrated mathematical modeling calibrates multi‑channel fluorescence kinetics to enable precise bacterial quantification. Throughout the design process, we engaged with food safety authorities and industry stakeholders to ensure biological containment, user‑friendliness, and portability. The resulting modular biosensor distinguishes viable from dead cells without requiring expensive instrumentation or specialized training, and delivers results within a single day—offering a practical, deployable toolkit for enhancing real‑time food safety surveillance.</p>
       </div>
     </div>
   </section>
 
   <!-- ===== Inspiration ===== -->
-  <section class="product-tile tile-section-header tile-soft" id="inspiration" style="padding: var(--sp-lg) var(--sp-xl); margin-top: var(--sp-sm)">
+  <section class="product-tile tile-section-header tile-soft" id="inspiration">
     <div class="tile-inner">
       <h2 class="tile-headline">Inspiration</h2>
-    </div>
-  </section>
-
-  <section class="product-tile tile-soft">
-    <div class="tile-inner">
       <div class="tile-body">
-        <p>Inspiration often comes from the most ordinary moments. Our team member Skye's younger brother fell ill after eating raw salmon fillets bought from their local supermarket—a product they had purchased many times before. He developed diarrhea and a fever. They were puzzled, but after some medication his symptoms subsided, and the matter was soon forgotten. Two days later, a news report caught their attention: Italy had issued an emergency recall of smoked salmon due to <em>Listeria monocytogenes</em> contamination. That made Skye pause. Looking into the pathogen, our team learned that <em>L. monocytogenes</em> is capable of active growth at refrigeration temperatures—meaning even cold-stored fresh produce is not free from risk. Yet conventional detection methods are largely confined to laboratories, requiring days to yield results. This realization prompted a question: could we build a simple, rapid biosensor that detects viable <em>Listeria</em> on site, accessible to anyone without specialized training? Our answer is a dual-input "AND-gate" platform that responds to both the bacterial toxin LLO and a light-activated signal, designed as a practical tool for everyday food safety surveillance.</p>
+        <p>Inspiration often comes from the most ordinary moments. Our team member Skye's younger brother fell ill after eating raw salmon fillets bought from their local supermarket—a product they had purchased many times before. He developed diarrhea and a fever. They were puzzled, but after some medication his symptoms subsided, and the matter was soon forgotten. Two days later, a news report caught their attention: A local food safety agency urgently recalled smoked salmon contaminated with <em>Listeria</em>. That made Skye pause. Looking into the pathogen, our team learned that <em>L. monocytogenes</em> is capable of active growth at refrigeration temperatures—meaning even cold-stored fresh produce is not free from risk. Yet conventional detection methods are largely confined to laboratories, requiring days to yield results. This realization prompted a question: could we build a simple, rapid biosensor that detects viable <em>Listeria</em> on site, accessible to anyone without specialized training?</p>
       </div>
     </div>
   </section>
 
   <!-- ===== Background ===== -->
-  <section class="product-tile tile-section-header tile-canvas" id="background" style="padding: var(--sp-lg) var(--sp-xl); margin-top: var(--sp-lg)">
+  <section class="product-tile tile-section-header tile-canvas" id="background">
     <div class="tile-inner">
       <h2 class="tile-headline">Background</h2>
-    </div>
-  </section>
-
-  <section class="product-tile tile-canvas">
-    <div class="tile-inner">
-      <div
-        style="width:100%;min-height:600px;border:1px solid var(--hairline);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;background:var(--surface-soft);color:var(--mute);font-family:var(--font);font-size:0.938rem;">
-        还没有开始填写，先占个位置~=ᗜωᗜ=
+      <div class="tile-body">
+        <p><em>Listeria monocytogenes</em> is a Gram-positive, facultatively anaerobic bacterium widely distributed in nature. Its defining feature is its remarkable cold tolerance: the pathogen grows across a temperature range of 2–42°C, with active multiplication even at standard refrigeration temperatures <sup>[5]</sup>. At 0°C it can still grow slowly, and at −20°C it can survive for up to a year <sup>[6]</sup>. This "refrigerator predator" makes cold storage not only fails to eliminate the risk but can actually allow the bacteria to proliferate to dangerous levels over time.</p>
+        <figure style="margin: var(--sp-lg) 0; text-align: center;">
+          <img src="images/Description_Maximum growth rate.png" alt="Maximum growth rate of L. monocytogenes" style="max-width: 100%; border-radius: var(--r-sm);">
+          <figcaption style="font-size: 0.8125rem; color: var(--mute); margin-top: var(--sp-xs);">Fig. 1 | Maximum growth rate for <em>L. monocytogenes</em> at refrigeration temperatures <sup>[7]</sup></figcaption>
+        </figure>
+        <p>The global demand for fresh and ready-to-eat foods has made this threat increasingly widespread. In just the past two years, there have been multiple news reports around the world about food contaminated with <em>Listeria</em>: Italy urgently recalled smoked salmon from the market <sup>[8]</sup>; the U.S. pulled nearly 368,000 pounds of turkey bacon <sup>[9]</sup>; and in Macau, routine inspections detected unacceptable levels of the pathogen in ready-to-eat octopus salad, leading to immediate sales suspensions <sup>[10]</sup>.</p>
+        <p>While healthy individuals typically experience only mild, self-limiting symptoms, <em>L. monocytogenes</em> poses devastating risks to high-risk populations. In pregnant women, the bacterium can cross the placental barrier and infect the fetus, leading to miscarriage, stillbirth, premature delivery, or severe neonatal infections <sup>[11]</sup>. For the elderly and immunocompromised, infection can progress to bacteremia, meningitis, and death <sup>[12]</sup>. Despite these severe consequences, conventional detection methods leave a critical gap in food safety surveillance that our project seeks to address.</p>
       </div>
     </div>
   </section>
 
   <!-- ===== Current Solution ===== -->
-  <section class="product-tile tile-section-header tile-soft" id="current-solution" style="padding: var(--sp-lg) var(--sp-xl); margin-top: var(--sp-lg)">
+  <section class="product-tile tile-section-header tile-soft" id="current-solution">
     <div class="tile-inner">
       <h2 class="tile-headline">Current Solution</h2>
-    </div>
-  </section>
-
-  <section class="product-tile tile-soft">
-    <div class="tile-inner">
-      <div
-        style="width:100%;min-height:600px;border:1px solid var(--hairline);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;background:var(--canvas);color:var(--mute);font-family:var(--font);font-size:0.938rem;">
-        还没有开始填写，先占个位置~=ᗜωᗜ=
+      <div class="tile-body">
+        <p>Despite severe consequences caused by <em>L. monocytogenes</em>, current detection methods leave a critical gap in food safety surveillance, which is rooted in four major drawbacks.</p>
+        <h4>Time‑consuming</h4>
+        <p>The gold‑standard culture‑based method (ISO 11290‑1) requires 5–7 days to yield a definitive result <sup>[13]</sup>. This prolonged turnaround time renders it impractical for short‑shelf‑life products, as food may have been consumed or expired long before contamination is confirmed.</p>
+        <h4>Poor specificity</h4>
+        <p>For culture-based methods, it is difficult to distinguish <em>L. monocytogenes</em> from other potentially harmless <em>Listeria</em> species that form similar colonies on selective plates <sup>[14]</sup>. Likewise, immunoassays suffer from false positives due to antibody cross-reactivity with non-pathogenic <em>Listeria</em> species such as <em>L. innocua</em> <sup>[15]</sup>.</p>
+        <figure style="margin: var(--sp-lg) 0; text-align: center;">
+          <img src="images/Description_Comparison of L.monocytogenes and L.innocua colonies.png" alt="Comparison of L. monocytogenes and L. innocua colonies" style="max-width: 100%; border-radius: var(--r-sm);">
+          <figcaption style="font-size: 0.8125rem; color: var(--mute); margin-top: var(--sp-xs);">Fig. 2 | Comparison of <em>L. monocytogenes</em> and <em>L. innocua</em> colonies <sup>[16]</sup></figcaption>
+        </figure>
+        <h4>Inability to distinguish viable from dead cells</h4>
+        <p>This is the key drawback of conventional methods. Molecular techniques like PCR amplify DNA indiscriminately from both live and dead cells, generating false‑positive signals that misrepresent actual health risks <sup>[17]</sup>. Conversely, culture methods cannot detect viable but non‑culturable (VBNC) cells, creating blind spots in routine surveillance <sup>[18]</sup>. Although some innovative approaches today can achieve this, they often do so at the expense of other aspects.</p>
+        <h4>High entry barrier</h4>
+        <p>Molecular assays usually require expensive instrumentation, precise temperature control, and well‑trained personnel, making them unsuitable for resource‑limited settings or field deployment <sup>[19]</sup>. This dependency on centralized laboratories severely restricts their accessibility for routine, large‑scale food screening.</p>
       </div>
     </div>
   </section>
 
   <!-- ===== Our Solution ===== -->
-  <section class="product-tile tile-section-header tile-canvas" id="our-solution" style="padding: var(--sp-lg) var(--sp-xl); margin-top: var(--sp-lg)">
+  <section class="product-tile tile-section-header tile-canvas" id="our-solution">
     <div class="tile-inner">
       <h2 class="tile-headline">Our Solution</h2>
-    </div>
-  </section>
-
-  <section class="product-tile tile-canvas">
-    <div class="tile-inner">
       <div
         style="width:100%;min-height:600px;border:1px solid var(--hairline);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;background:var(--surface-soft);color:var(--mute);font-family:var(--font);font-size:0.938rem;">
         还没有开始填写，先占个位置~=ᗜωᗜ=
@@ -167,19 +161,29 @@
   </section>
 
   <!-- ===== References ===== -->
-  <section class="product-tile tile-section-header tile-soft" id="references" style="padding: var(--sp-lg) var(--sp-xl); margin-top: var(--sp-sm)">
+  <section class="product-tile tile-section-header tile-soft" id="references">
     <div class="tile-inner">
       <h2 class="tile-headline">References</h2>
-    </div>
-  </section>
-
-  <section class="product-tile tile-soft">
-    <div class="tile-inner">
       <div class="tile-body" style="font-size: 0.9375rem;">
         <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[1] Angelidis, A. S., et al. "Role of the glycine betaine and carnitine transporters in adaptation of <em>Listeria monocytogenes</em> to chill stress in defined medium." <em>Applied and Environmental Microbiology</em>, vol. 69, no. 12, 2003, pp. 7492–7498. doi:10.1128/AEM.69.12.7492-7498.2003</p>
         <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[2] Zhao, J., et al. "Liposome-doped nanocomposites as artificial-cell-based biosensors: detection of listeriolysin O." <em>Biotechnology Progress</em>, vol. 22, no. 1, 2006, pp. 32–37. doi:10.1021/bp050124e</p>
         <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[3] Guk, K., et al. "PoreGlow: A split green fluorescent protein-based system for rapid detection of <em>Listeria monocytogenes</em>." <em>Food Chemistry</em>, vol. 438, 2024, p. 138043. doi:10.1016/j.foodchem.2023.138043</p>
         <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[4] iGEM Team Aachen 2014. "GFP-REACh fusion protein with TEV protease cleavage site." <em>iGEM 2014 Wiki</em>. <a href="https://2014.igem.org/Team:Aachen/Project/FRET_Reporter" target="_blank" rel="noopener">https://2014.igem.org/Team:Aachen/Project/FRET_Reporter</a></p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[5] Bajard, S., et al. "The particular behaviour of <em>Listeria monocytogenes</em> under sub-optimal conditions." <em>International Journal of Food Microbiology</em>, vol. 29, no. 2–3, 1996, pp. 201–211. doi:10.1016/0168-1605(95)00031-3</p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[6] 国家食品药品监督管理总局. "专家解读单增李斯特菌." <em>中国食品安全报</em>, 2017, A2. <a href="http://paper.cfsn.cn/content/2017-08/29/content_53503.htm" target="_blank" rel="noopener">http://paper.cfsn.cn/content/2017-08/29/content_53503.htm</a></p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[7] Omac, B., et al. "Quantifying growth of cold-adapted <em>Listeria monocytogenes</em> and <em>Listeria innocua</em> on fresh spinach leaves at refrigeration temperatures." <em>Journal of Food Engineering</em>, vol. 224, 2018, pp. 17–26. doi:10.1016/j.jfoodeng.2017.12.022</p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[8] RASFF. "<em>Listeria monocytogenes</em> in smoked salmon from Serbia, notified by Italy." Notification number: 2025.5093. <em>Rapid Alert System for Food and Feed, European Commission</em>, 2025. <a href="https://webgate.ec.europa.eu/rasff-window/screen/notification/646462" target="_blank" rel="noopener">https://webgate.ec.europa.eu/rasff-window/screen/notification/646462</a></p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[9] USDA Food Safety and Inspection Service (FSIS). "Kraft Heinz Foods Company Recalls Turkey Bacon Products Due to Possible <em>Listeria</em> Contamination." 2025. <a href="https://www.fsis.usda.gov/recalls-alerts/kraft-heinz-foods-company-recalls-turkey-bacon-products-due-possible-listeria" target="_blank" rel="noopener">https://www.fsis.usda.gov/recalls-alerts/kraft-heinz-foods-company-recalls-turkey-bacon-products-due-possible-listeria</a></p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[10] 市政署. "市政署检出食肆一沙律样本含李斯特菌已勒令停售." 澳门特别行政区政府新闻局, 2026. <a href="https://www.gcs.gov.mo/news/detail/zh-hans/N26EUfYAfc" target="_blank" rel="noopener">https://www.gcs.gov.mo/news/detail/zh-hans/N26EUfYAfc</a></p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[11] Robbins, J. R., et al. "Placental syncytiotrophoblast constitutes a major barrier to vertical transmission of <em>Listeria monocytogenes</em>." <em>PLoS Pathogens</em>, vol. 6, no. 1, 2010, p. e1000732. doi:10.1371/journal.ppat.1000732</p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[12] National Institutes of Health (NIH). "<em>Listeria monocytogenes</em> Infection (Listeriosis)." <em>StatPearls Publishing</em>, 2026. <a href="https://www.ncbi.nlm.nih.gov/books/NBK534838/" target="_blank" rel="noopener">https://www.ncbi.nlm.nih.gov/books/NBK534838/</a></p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[13] Dalmasso, M., et al. "Comparison of polymerase chain reaction methods and plating for analysis of enriched cultures of <em>Listeria monocytogenes</em> when using the ISO11290-1 method." <em>Journal of Microbiological Methods</em>, vol. 98, 2014, pp. 8–14. doi:10.1016/j.mimet.2013.12.018</p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[14] Osek, J., et al. "<em>Listeria monocytogenes</em> in foods—From culture identification to whole-genome characteristics." <em>Food Science &amp; Nutrition</em>, vol. 10, no. 9, 2022, pp. 2825–2854. doi:10.1002/fsn3.2910</p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[15] Sun, J., et al. "单核细胞增生李斯特菌检测技术研究进展 [Advances in detection technique for <em>Listeria monocytogenes</em>]." <em>微生物学杂志</em>, vol. 37, no. 4, 2017, pp. 120–125. doi:10.3969/j.issn.1005-7021.2017.04.018</p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[16] University of Copenhagen. "Palcam Agar (Palcam)." <em>Department of Veterinary Disease Biology, Faculty of Health and Medical Sciences</em>, 2011. <a href="https://atlas.sund.ku.dk/microatlas/food/plating_media/Palcam/" target="_blank" rel="noopener">https://atlas.sund.ku.dk/microatlas/food/plating_media/Palcam/</a></p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[17] Masters, C. I., et al. "Effect of stress treatments on the detection of <em>Listeria monocytogenes</em> and enterotoxigenic <em>Escherichia coli</em> by the polymerase chain reaction." <em>Journal of Applied Bacteriology</em>, vol. 77, no. 1, 1994, pp. 73–79. doi:10.1111/j.1365-2672.1994.tb03047.x</p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[18] Rossi, F., et al. "Latest developments of research on the viable non-culturable state of <em>L. monocytogenes</em> and implications for food safety." <em>Applied Sciences</em>, vol. 15, no. 3, 2025, p. 1454. doi:10.3390/app15031454</p>
+        <p style="padding-left: 1.5em; text-indent: -1.5em; margin-bottom: var(--sp-sm);">[19] Costa, A. M., et al. "A brief approach to <em>Listeria monocytogenes</em> and the importance of its detection in food." <em>Food Science and Technology</em>, vol. 42, 2022, p. e08322. doi:10.1590/fst.08322</p>
       </div>
     </div>
   </section>
@@ -191,20 +195,6 @@
 
   <!-- ===== Footer (black) ===== -->
   <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-links">
-        <a href="#">About</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Disclaimer</a>
-        <a href="#">Code of Conduct</a>
-        <a href="#">Developers</a>
-        <a href="#">Cookie Statement</a>
-      </div>
-      <div class="footer-legal">
-        <p>Content is available under <a href="#">Creative Commons Attribution-ShareAlike 4.0</a> unless otherwise noted.</p>
-        <p>© 2026 UM iGEM Team · Powered by MediaWiki</p>
-      </div>
-    </div>
   </footer>
 
   <button class="back-to-top" id="backToTop" title="Back to Top">↑</button>

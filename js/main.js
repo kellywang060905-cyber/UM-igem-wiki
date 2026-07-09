@@ -1,6 +1,40 @@
 (function () {
   'use strict';
 
+  // ==================== Mobile Nav ====================
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks  = document.querySelector('.nav-links');
+  const isMobile  = () => window.innerWidth <= 768;
+
+  function closeNav() {
+    if (!navToggle || !navLinks) return;
+    navToggle.classList.remove('open');
+    navLinks.classList.remove('open');
+    document.body.classList.remove('nav-open');
+  }
+
+  if (navToggle && navLinks) {
+    // ── Hamburger toggle ──
+    navToggle.addEventListener('click', function () {
+      navToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      document.body.classList.toggle('nav-open');
+    });
+
+    // ── Click a link → close nav ──
+    navLinks.addEventListener('click', function (e) {
+      var link = e.target.closest('a');
+      if (link && link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
+        setTimeout(closeNav, 100);
+      }
+    });
+  }
+
+  // ── Close on resize to desktop ──
+  window.addEventListener('resize', function () {
+    if (!isMobile()) closeNav();
+  });
+
   // ==================== Scroll Progress Bar ====================
   const progressBar = document.querySelector('.wiki-progress');
   if (progressBar) {
