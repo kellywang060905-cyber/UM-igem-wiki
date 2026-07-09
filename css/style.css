@@ -92,7 +92,6 @@
 html {
   font-size: 16px;            /* body-md base */
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 body {
@@ -102,7 +101,6 @@ body {
   line-height: 1.5;           /* body-md */
   color: var(--body);
   background: var(--canvas);
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
