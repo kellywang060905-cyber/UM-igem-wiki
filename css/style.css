@@ -193,6 +193,7 @@ img {
   min-width: 320px;
   height: 105%;
   perspective: 1200px;
+  transform-style: preserve-3d;
   opacity: 1;
   transform: scale(1.08);
 }
@@ -201,6 +202,7 @@ img {
   position: relative;
   width: 100%;
   height: 100%;
+  transform-style: preserve-3d;
 }
 
 /* ── Cabinet body ── */
@@ -1028,6 +1030,7 @@ figure {
   position: relative;
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
 }
 .home-panel-bg {
