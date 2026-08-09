@@ -8,6 +8,23 @@
 /* === Font (Inter = open-source NVIDIA-EMEA substitute) === */
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,700&display=swap');
 
+/* === Custom Font: Comica BD Regular === */
+@font-face {
+  font-family: 'Comica BD';
+  src: url('../fonts/ComicaBD-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+/* Comica BD Bold */
+@font-face {
+  font-family: 'Comica BD';
+  src: url('../fonts/ComicaBD-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ==========================================================
    DESIGN TOKENS (from DESIGN.md YAML)
    ========================================================== */
@@ -118,6 +135,190 @@ img {
 }
 
 /* ==========================================================
+   FRIDGE DOOR OVERLAY — kitchen scene + 3D fridge reveal
+   ========================================================== */
+
+/* ── Kitchen overlay ── */
+.fridge-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  background: url('../images/kitchen-bg.PNG') center/cover no-repeat;
+  overflow: hidden;
+  transition: opacity 0.4s 0.3s, transform 1.2s cubic-bezier(0.25, 0.0, 0.1, 1);
+}
+.fridge-overlay.dismissed {
+  pointer-events: none;
+  opacity: 0;
+}
+.fridge-overlay.zoom {
+  transform: scale(1.6);
+}
+.fridge-overlay.zoom-more {
+  transform: scale(3.5);
+  transition: transform 2s cubic-bezier(0.25, 0.0, 0.1, 1);
+}
+.fridge-overlay.clear-bg {
+  background: transparent;
+  transition: background 0.15s;
+}
+
+/* ── Whiteout (fades in after door opens) ── */
+.fridge-whiteout {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease-in;
+}
+.fridge-whiteout.show {
+  opacity: 1;
+}
+.fridge-whiteout.fade-out {
+  transition: opacity 0.5s ease-out;
+}
+
+/* ── Fridge scene ── */
+.fridge-scene {
+  position: relative;
+  z-index: 1;
+  width: 105%;
+  max-width: 2400px;
+  min-width: 320px;
+  height: 105%;
+  perspective: 1200px;
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.fridge-unit {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Cabinet body ── */
+.fridge-body {
+  position: absolute;
+  inset: 0;
+  background: url('../images/fridge-body.PNG') center/contain no-repeat;
+  transition: opacity 1.5s;
+}
+.fridge-body.fading {
+  opacity: 0;
+}
+
+/* ── Door ── */
+.fridge-door {
+  position: absolute;
+  inset: 0;
+  transform-origin: left center;
+  transform: rotateY(0deg);
+  transition: transform 2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
+  z-index: 2;
+  cursor: pointer;
+}
+.fridge-door.open {
+  transform: rotateY(-125deg);
+}
+
+.fridge-door-face {
+  position: absolute;
+  inset: 0;
+  background: url('../images/fridge-door.png') center/contain no-repeat;
+  backface-visibility: hidden;
+}
+
+/* ── Title (appears after zoom) ── */
+.fridge-title {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-family: 'Comica BD', cursive, sans-serif;
+  font-weight: bold;
+  color: #CAE9FC;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5), 0 0 40px rgba(4,98,194,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease-out, transform 0.3s ease-out, text-shadow 0.3s ease-out;
+  cursor: pointer;
+  user-select: none;
+}
+.fridge-title.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Hover: scale up + glow */
+.fridge-title.show:hover {
+  transform: translate(-50%, -50%) scale(1.06);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.8), 0 0 60px rgba(142,206,252,0.5), 0 0 100px rgba(142,206,252,0.25);
+}
+.fridge-title.show:active {
+  transform: translate(-50%, -50%) scale(0.98);
+  transition: transform 0.1s ease-out;
+}
+
+/* "Click to Start" subtle pulse */
+.fridge-title.show .fridge-title-line2 {
+  animation: titlePulse 2s ease-in-out infinite;
+}
+@keyframes titlePulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+
+.fridge-title-line1 {
+  font-size: 2.6rem;
+  margin: 0 0 0.3em;
+  letter-spacing: 0.04em;
+}
+.fridge-title-line2 {
+  font-size: 4rem;
+  margin: 0 0 0.25em;
+  letter-spacing: 0.06em;
+  color: #8ECEFC;
+}
+.fridge-title-line3 {
+  font-size: 1.6rem;
+  margin: 0;
+  letter-spacing: 0.08em;
+  opacity: 0.8;
+}
+
+/* Title responsive */
+@media (max-width: 768px) {
+  .fridge-title-line1 { font-size: 1.5rem; }
+  .fridge-title-line2 { font-size: 2.4rem; }
+  .fridge-title-line3 { font-size: 1.05rem; }
+}
+@media (max-width: 480px) {
+  .fridge-title-line1 { font-size: 1.2rem; }
+  .fridge-title-line2 { font-size: 1.8rem; }
+  .fridge-title-line3 { font-size: 0.9rem; }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .fridge-scene { width: 90%; height: 86%; }
+}
+
+@media (max-width: 480px) {
+  .fridge-scene { width: 94%; height: 78%; min-width: 280px; }
+}
+
+/* ==========================================================
    UTILITY BAR — 32px black (topmost bar)
    ========================================================== */
 .utility-bar {
@@ -141,7 +342,7 @@ img {
   top: 0;
   z-index: 100;
   height: var(--nav-h);
-  background: var(--surface-dark);
+  background: #88B9DA;
   display: flex;
   align-items: center;
 }
@@ -174,7 +375,7 @@ img {
   z-index: 101;  /* above global-nav (100) so the marker isn't clipped */
   height: 10px;
   width: 100%;
-  background-color: #1a1a1a;   /* dark track = unread */
+  background-color: #8ECEFC;   /* track = unread */
   box-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
@@ -222,20 +423,19 @@ img {
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: var(--sp-sm);
-  color: var(--on-dark);
-  font-family: var(--font);
-  font-size: 1.125rem;        /* 18px/700 */
+  gap: 14px;
+  color: #000;
+  font-family: 'Comica BD', cursive, sans-serif;
+  font-size: 1.875rem;        /* 30px/700 */
   font-weight: 700;
   text-decoration: none;
   flex-shrink: 0;
 }
-.nav-brand:hover { text-decoration: none; color: var(--on-dark); }
+.nav-brand:hover { text-decoration: none; color: #000; }
 
 .nav-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--r-sm);
+  width: auto;
+  height: 52px;
 }
 
 .nav-links {
@@ -246,17 +446,17 @@ img {
 }
 
 .nav-links a {
-  font-family: var(--font);
-  font-size: 1.125rem;        /* 18px */
-  font-weight: 500;
+  font-family: 'Comica BD', cursive, sans-serif;
+  font-size: 1.625rem;        /* 26px */
+  font-weight: bold;
   line-height: 1;
-  color: var(--on-dark-mute);
+  color: #000;
   text-decoration: none;
   transition: color 0.15s;
 }
 .nav-links a:hover,
 .nav-links a.active {
-  color: var(--on-dark);
+  color: #000;
   text-decoration: none;
 }
 
@@ -269,11 +469,11 @@ img {
 }
 
 .nav-item > a {
-  font-family: var(--font);
-  font-size: 1.125rem;        /* 18px — matches .nav-links a */
-  font-weight: 500;
+  font-family: 'Comica BD', cursive, sans-serif;
+  font-size: 1.625rem;        /* 26px — matches .nav-links a */
+  font-weight: bold;
   line-height: 1;
-  color: var(--on-dark-mute);
+  color: #000;
   text-decoration: none;
   transition: color 0.15s;
   cursor: pointer;
@@ -287,7 +487,7 @@ img {
   transition: transform 0.15s;
 }
 .nav-item:hover > a {
-  color: var(--on-dark);
+  color: #000;
 }
 .nav-item:hover > a::after {
   transform: rotate(180deg);
@@ -298,8 +498,8 @@ img {
   top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(-4px);
-  background: var(--surface-elevated);
-  border: 1px solid var(--hairline-strong);
+  background: #fff;
+  border: 1px solid var(--hairline);
   border-radius: var(--r-sm);
   padding: var(--sp-xs) 0;
   min-width: 160px;
@@ -320,18 +520,18 @@ img {
 .nav-dropdown a {
   display: block;
   padding: var(--sp-sm) var(--sp-lg);
-  font-family: var(--font);
-  font-size: 1.0625rem;       /* 17px */
-  font-weight: 400;
+  font-family: 'Comica BD', cursive, sans-serif;
+  font-size: 1.5625rem;       /* 25px */
+  font-weight: bold;
   line-height: 1;
-  color: var(--on-dark-mute);
+  color: #000;
   text-decoration: none;
   white-space: nowrap;
   transition: color 0.15s, background 0.15s;
 }
 .nav-dropdown a:hover {
-  color: var(--on-dark);
-  background: rgba(255,255,255,0.06);
+  color: #000;
+  background: rgba(0,0,0,0.06);
   text-decoration: none;
 }
 
@@ -463,6 +663,7 @@ img {
   padding-left: 14px;
   margin-top: var(--sp-xl);
   margin-bottom: var(--sp-xxl);
+  white-space: nowrap;
 }
 
 /* Tighten gap between section header and its body tile */
@@ -552,6 +753,117 @@ figure {
   color: var(--ink);
 }
 .tile-dark .tile-body h4 { color: var(--on-dark); }
+
+/* ---- Activities: image + text split layout ---- */
+.activity-split {
+  display: flex;
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-md);
+  align-items: center;
+}
+
+.activity-gallery {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.activity-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.activity-text p {
+  margin-bottom: var(--sp-sm);
+}
+
+.activity-img-slot .img-placeholder {
+  min-height: 200px;
+}
+
+.activity-img-row {
+  display: flex;
+  gap: var(--sp-sm);
+}
+
+.activity-img-small {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.activity-img-small .img-placeholder {
+  min-height: 120px;
+}
+
+.activity-img-slot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.img-caption {
+  margin-top: var(--sp-xs);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--ink-mute);
+  text-align: center;
+}
+
+/* ---- Float image for text wrap ---- */
+.activity-float-img {
+  float: right;
+  width: 320px;
+  margin-left: var(--sp-lg);
+  margin-bottom: var(--sp-sm);
+}
+
+.activity-float-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .activity-float-img {
+    float: none;
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: var(--sp-md);
+  }
+}
+
+.img-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  background: var(--surface-mute);
+  border: 2px dashed var(--border);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-mute);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .activity-split {
+    flex-direction: column;
+  }
+  .activity-gallery {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .activity-img-slot .img-placeholder {
+    min-height: 160px;
+  }
+  .activity-img-row {
+    flex-direction: column;
+  }
+}
 
 /* ==========================================================
    BUTTONS (all 2px radius — no pills)
@@ -707,6 +1019,29 @@ figure {
   font-weight: 400;
   line-height: 1.67;
   color: var(--mute);
+}
+
+/* ==========================================================
+   HOME SCROLL PANELS — full-width image strips with reveal
+   ========================================================== */
+.home-panel {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.home-panel-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Reveal state: hidden until scrolled into view */
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+.home-panel-bg.revealed {
+  opacity: 1;
 }
 
 /* ==========================================================
@@ -1289,7 +1624,7 @@ figure {
   display: block;
   width: 24px;
   height: 2px;
-  background: var(--on-dark);
+  background: #000;
   border-radius: 1px;
   transition: transform 0.3s, opacity 0.2s;
   transform-origin: center;
@@ -1324,7 +1659,7 @@ figure {
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--surface-dark);
+    background: #88B9DA;
     padding: 0;
     overflow-y: auto;
     z-index: 99;
@@ -1351,12 +1686,12 @@ figure {
 
   /* ── Home link ── */
   .nav-links > a {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     font-weight: 600;
     padding: 14px var(--sp-xl);
-    color: var(--on-dark);
+    color: #000;
     background: transparent;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
   }
 
   /* ── Parent category wrapper ── */
@@ -1369,14 +1704,14 @@ figure {
 
   /* ── Parent category label (not clickable) ── */
   .nav-item > a {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     font-weight: 600;
     padding: 14px var(--sp-xl);
-    color: var(--on-dark);
-    background: rgba(255,255,255,0.06);
+    color: #000;
+    background: rgba(0,0,0,0.06);
     cursor: default;
     pointer-events: none;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
   }
   .nav-item > a::after {
     display: none;             /* no chevron */
@@ -1403,20 +1738,20 @@ figure {
     transform: none;
   }
   .nav-dropdown a {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     font-weight: 500;
     padding: 14px var(--sp-xl);
-    color: var(--on-dark-mute);
+    color: #000;
     background: transparent;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
   }
   .nav-dropdown a:hover,
   .nav-dropdown a:active {
-    color: var(--on-dark);
-    background: rgba(255,255,255,0.03);
+    color: #000;
+    background: rgba(0,0,0,0.04);
   }
   .nav-dropdown a.active {
-    background: rgba(255,255,255,0.03);
+    background: rgba(0,0,0,0.04);
   }
 
   .sub-nav-links { display: none; }
@@ -1486,6 +1821,7 @@ figure {
   .tile-section-header .tile-headline {
     margin-top: 0;
     margin-bottom: var(--sp-lg);
+    white-space: normal;
   }
 
   .home-hero { padding: 48px var(--sp-lg) var(--sp-xxl); }
@@ -1504,15 +1840,15 @@ figure {
 /* windowed-desktop — 600px */
 @media (max-width: 600px) {
   .nav-links > a {
-    font-size: 1.125rem;
+    font-size: 1.625rem;
     padding: 12px var(--sp-lg);
   }
   .nav-item > a {
-    font-size: 1.125rem;
+    font-size: 1.625rem;
     padding: 12px var(--sp-lg);
   }
   .nav-dropdown a {
-    font-size: 1.125rem;
+    font-size: 1.625rem;
     padding: 12px var(--sp-lg);
   }
 }
@@ -1533,6 +1869,7 @@ figure {
 
   .tile-section-header .tile-headline {
     margin-bottom: var(--sp-md);
+    white-space: normal;
   }
 
   .utility-grid {
@@ -1547,19 +1884,20 @@ figure {
     grid-template-columns: 1fr;
   }
 
-  .nav-brand { font-size: 1rem; }
+  .nav-brand { font-size: 1.75rem; }
+  .nav-logo { height: 44px; }
 
   /* ── Mobile nav adjustments ── */
   .nav-links > a {
-    font-size: 1.0625rem;
+    font-size: 1.5625rem;
     padding: 11px var(--sp-md);
   }
   .nav-item > a {
-    font-size: 1.0625rem;
+    font-size: 1.5625rem;
     padding: 11px var(--sp-md);
   }
   .nav-dropdown a {
-    font-size: 1.0625rem;
+    font-size: 1.5625rem;
     padding: 11px var(--sp-md);
   }
 
@@ -1602,15 +1940,15 @@ figure {
   .home-hero-headline { font-size: 1.75rem; }   /* 28px */
 
   .nav-links > a {
-    font-size: 0.9375rem;
+    font-size: 1.4375rem;
     padding: 10px var(--sp-sm);
   }
   .nav-item > a {
-    font-size: 0.9375rem;
+    font-size: 1.4375rem;
     padding: 10px var(--sp-sm);
   }
   .nav-dropdown a {
-    font-size: 0.9375rem;
+    font-size: 1.4375rem;
     padding: 10px var(--sp-sm);
   }
   .sub-nav-title { font-size: 0.875rem; }

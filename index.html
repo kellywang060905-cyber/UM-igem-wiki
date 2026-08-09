@@ -8,10 +8,39 @@
 </head>
 <body>
 
+  <!-- ===== Fridge Door Overlay ===== -->
+  <div class="fridge-overlay" id="fridgeOverlay">
+
+    <!-- Whiteout (fades in after door opens) -->
+    <div class="fridge-whiteout" id="fridgeWhiteout"></div>
+
+    <div class="fridge-scene" id="fridgeScene">
+      <div class="fridge-unit">
+
+        <!-- Cabinet body (image includes interior + shelves) -->
+        <div class="fridge-body"></div>
+
+        <!-- Door (opens) -->
+        <div class="fridge-door" id="fridgeDoor">
+          <div class="fridge-door-face"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Title (appears after zoom) -->
+    <div class="fridge-title" id="fridgeTitle">
+      <p class="fridge-title-line1">AND-Gate Listeria Detector</p>
+      <p class="fridge-title-line2">Click to Start</p>
+      <p class="fridge-title-line3">UM-iGEM 2026</p>
+    </div>
+  </div>
+
   <!-- ===== Primary Nav (64px black) ===== -->
   <nav class="global-nav">
     <div class="global-nav-inner">
       <a href="index.html" class="nav-brand">
+        <img class="nav-logo" src="images/um-igem%20logo.PNG" alt="UM iGEM Logo">
         UM iGEM 2026
       </a>
         <button class="nav-toggle" aria-label="Toggle navigation">
@@ -53,9 +82,7 @@
         <span class="nav-item">
           <a>Human Practices</a>
           <div class="nav-dropdown">
-            <a href="HP-Overview.html">Overview</a>
-            <a href="HP-Entrepreneurship.html">Entrepreneurship</a>
-            <a href="HP-SDGs.html">SDGs</a>
+            <a href="HP-Overview.html">Overview</a><a href="HP-Activities.html">Activities</a><a href="HP-Entrepreneurship.html">Entrepreneurship</a><a href="HP-SDGs.html">SDGs</a>
           </div>
         </span>
       </div>
@@ -65,41 +92,18 @@
   <!-- ===== Wiki Progress Bar (Listeria) ===== -->
   <div class="wiki-progress"></div>
 
-  <!-- ===== Hero (hero-card-dark) ===== -->
-  <section class="product-tile tile-dark" id="home-hero">
-    <div class="tile-inner home-hero">
-      <h1 class="home-hero-headline">UM iGEM 2026</h1>
-    </div>
+  <!-- ===== Home Scroll Panels ===== -->
+  <section class="home-panel" id="homePanel1">
+    <div class="home-panel-bg" style="background-image: url('images/home_bg1.png');"></div>
   </section>
 
-  <!-- ===== Cards Section (soft) ===== -->
-  <section class="product-tile tile-soft">
-    <div class="tile-inner" style="max-width: var(--content-max);">
-      <div class="utility-grid">
-
-        <a href="#" class="utility-card">
-          <span class="corner-square"></span>
-          <h3>Project</h3>
-        </a>
-        <a href="#" class="utility-card">
-          <span class="corner-square"></span>
-          <h3>Wet Lab</h3>
-        </a>
-        <a href="Dry-Model.html" class="utility-card">
-          <span class="corner-square"></span>
-          <h3>Dry Lab</h3>
-        </a>
-        <a href="#" class="utility-card">
-          <span class="corner-square"></span>
-          <h3>Human Practices</h3>
-        </a>
-      </div>
-    </div>
+  <section class="home-panel" id="homePanel2">
+    <div class="home-panel-bg" style="background-image: url('images/home_bg1.png');"></div>
   </section>
 
-  <!-- ===== Footer (black) ===== -->
-  <footer class="site-footer">
-  </footer>
+  <section class="home-panel" id="homePanel3">
+    <div class="home-panel-bg" style="background-image: url('images/home_bg1.png');"></div>
+  </section>
 
   <!-- ===== Back to Top ===== -->
   <button class="back-to-top" id="backToTop" title="Back to Top">↑</button>

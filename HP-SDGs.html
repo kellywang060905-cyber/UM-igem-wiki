@@ -11,6 +11,7 @@
   <nav class="global-nav">
     <div class="global-nav-inner">
       <a href="index.html" class="nav-brand">
+        <img class="nav-logo" src="images/um-igem%20logo.PNG" alt="UM iGEM Logo">
         UM iGEM 2026
       </a>
         <button class="nav-toggle" aria-label="Toggle navigation">
@@ -38,7 +39,7 @@
         </span>
         <span class="nav-item">
           <a class="active">Human Practices</a>
-          <div class="nav-dropdown"><a href="HP-Overview.html">Overview</a><a href="HP-Entrepreneurship.html">Entrepreneurship</a><a href="HP-SDGs.html" class="active">SDGs</a></div>
+          <div class="nav-dropdown"><a href="HP-Overview.html">Overview</a><a href="HP-Activities.html">Activities</a><a href="HP-Entrepreneurship.html">Entrepreneurship</a><a href="HP-SDGs.html" class="active">SDGs</a></div>
         </span>
       </div>
     </div>
@@ -53,12 +54,104 @@
     </div>
   </section>
 
-  <section class="product-tile tile-canvas">
-    <div class="tile-inner" style="max-width: var(--content-max);">
-      <h2 class="tile-headline">SDGs</h2>
-      <div class="tile-body"><p>还没有开始填写，先占个位置~=ᗜωᗜ=</p></div>
-    </div>
-  </section>
+  <!-- ===== Sidebar + Content Layout ===== -->
+  <div class="page-with-sidebar">
+
+    <!-- === Sidebar === -->
+    <aside class="sidebar-nav">
+      <ul class="sidebar-links">
+        <li><a href="#sec-sdg-overview" class="sidebar-model active">Overview</a></li>
+        <li><a href="#sec-sdg2" class="sidebar-model">SDG 2 — Zero Hunger</a></li>
+        <li><a href="#sec-sdg3" class="sidebar-model">SDG 3 — Good Health and Well-Being</a></li>
+        <li><a href="#sec-sdg9" class="sidebar-model">SDG 9 — Industry, Innovation and Infrastructure</a></li>
+        <li><a href="#sec-sdg12" class="sidebar-model">SDG 12 — Responsible Consumption and Production</a></li>
+        <li><a href="#sec-sdg-ref" class="sidebar-model">References</a></li>
+      </ul>
+    </aside>
+
+    <!-- === Content === -->
+    <main class="page-content">
+
+      <!-- ===== 1. Overview ===== -->
+      <section class="product-tile tile-section-header tile-canvas" id="sec-sdg-overview">
+        <div class="tile-inner">
+          <h2 class="tile-headline">Overview</h2>
+          <div class="tile-body">
+            <p>The risk of <em>Listeria monocytogenes</em> is not limited by borders, income levels, or infrastructure—it exploits the globalized food system itself. Refrigerated supply chains stretch across continents; smoked salmon caught in one ocean is packaged in another country and consumed in a third. When contamination occurs, it triggers product recalls that disrupt markets, waste tons of food, and expose vulnerable populations thousands of miles away to the same pathogen. Tackling this threat is therefore not merely a technical challenge—it is a shared global responsibility that cuts across multiple dimensions of sustainable development.</p>
+
+            <figure style="margin: var(--sp-lg) 0; text-align: center;">
+              <img src="images/Sustainable_Development_Goals.svg" alt="Sustainable Development Goals" style="max-width: 100%; border-radius: var(--r-sm);">
+            </figure>
+
+            <p>Our project is rooted in the One Health concept to take on this shared responsibility. It protects human health (SDG 3) by equipping food safety inspectors with a field-deployable detection tool, enabling earlier identification of contaminated products before they reach consumers—thereby reducing the burden of foodborne illness. It preserves food security (SDG 2) by enabling rapid, targeted screening that minimizes unnecessary waste and economic loss along the supply chain. It advances technological innovation (SDG 9) through a novel synthetic biology design that brings lab-grade functionality to non-specialists in normal testing settings. It supports responsible consumption and production (SDG 12) by embedding food safety directly into production workflows, allowing manufacturers to self-monitor quality without relying on external labs. This shifts food safety from a reactive, compliance-driven obligation to a proactive practice of operational accountability. At the same time, strengthen consumer trust in the food system and protect consumers' rights. In doing so, our project embodies the One Health principle that human well-being, food system resilience, and sustainable innovation are inseparable pillars of global health security.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 2. SDG 2: Zero Hunger ===== -->
+      <section class="product-tile tile-section-header tile-soft" id="sec-sdg2">
+        <div class="tile-inner">
+          <h2 class="tile-headline">SDG 2 — Zero Hunger</h2>
+          <div class="tile-body">
+            <img src="images/SDG2.png" alt="SDG 2 — Zero Hunger" style="float: right; width: 180px; margin-left: var(--sp-lg); margin-bottom: var(--sp-sm);">
+            <p>According to the latest UN report, about 673 million people worldwide are still facing hunger in 2024, and by 2026, up to 318 million people are expected to be in severe food insecurity [1]. Against this backdrop, both food safety and food availability are equally important. Current lab-based detection methods take days to produce results, forcing suppliers to hold or destroy entire batches while awaiting clearance—a practice that contributes significantly to post-harvest food waste. Our rapid biosensor allows for real-time, selective screening of contaminated products, minimizing unnecessary discards and reducing economic losses for producers. In doing so, we support a more resilient food supply chain that preserves safe, edible food for consumption while preventing unsafe products from reaching the table.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 3. SDG 3: Good Health and Well-Being ===== -->
+      <section class="product-tile tile-section-header tile-canvas" id="sec-sdg3">
+        <div class="tile-inner">
+          <h2 class="tile-headline">SDG 3 — Good Health and Well-Being</h2>
+          <div class="tile-body">
+            <img src="images/SDG3.png" alt="SDG 3 — Good Health and Well-Being" style="float: right; width: 180px; margin-left: var(--sp-lg); margin-bottom: var(--sp-sm);">
+            <p><em>L. monocytogenes</em> poses a disproportionate threat to pregnant women, the elderly, and immunocompromised individuals, with mortality rates as high as 20–30% in severe cases [2]. Our AND-gate biosensor directly targets this health inequity by providing a rapid, on-site viability test for the pathogen. By shifting detection from centralized laboratories to the point of need—storerooms, back kitchens, and food production lines—we enable earlier intervention, reduce exposure risks for high-risk populations, and contribute to the global target of ending preventable deaths from foodborne illnesses by ensuring food safety.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 4. SDG 9: Industry, Innovation and Infrastructure ===== -->
+      <section class="product-tile tile-section-header tile-soft" id="sec-sdg9">
+        <div class="tile-inner">
+          <h2 class="tile-headline">SDG 9 — Industry, Innovation and Infrastructure</h2>
+          <div class="tile-body">
+            <img src="images/SDG9.png" alt="SDG 9 — Industry, Innovation and Infrastructure" style="float: right; width: 180px; margin-left: var(--sp-lg); margin-bottom: var(--sp-sm);">
+            <p>The dual-input "AND-gate" design—requiring both the bacterial toxin LLO and a light-activated signal—represents a novel application of synthetic biology in food safety. Our solution moves beyond traditional lab-bound assays by creating a simple, user-friendly platform that does not require specialized training or equipment. This innovation bridges the gap between cutting-edge biotechnology and everyday food safety surveillance.</p>
+
+            <p>The cold chain serves as the fundamental infrastructure for fresh food distribution. But it has a weak point in the testing stage because <em>L. monocytogenes</em> can survive at refrigeration temperatures. Our biosensor transforms this traditional infrastructure into an integrated biosecurity defense framework by giving the cold chain "real-time sensing" capabilities. Contamination is intercepted before it spreads to other items within the same refrigerated environment, ultimately protecting the safety of the entire cold chain. And then protects the food industry as a whole—enabling producers to maintain consumer trust while building a more resilient and responsible food supply system. Besides, our sensor is low-cost, which lowers the testing barrier so that can reduce medical expenses and social losses caused by food contamination. In this way, innovation strengthens infrastructure, and resilient infrastructure sustains both industry and society.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 5. SDG 12: Responsible Consumption and Production ===== -->
+      <section class="product-tile tile-section-header tile-canvas" id="sec-sdg12">
+        <div class="tile-inner">
+          <h2 class="tile-headline">SDG 12 — Responsible Consumption and Production</h2>
+          <div class="tile-body">
+            <img src="images/SDG12.png" alt="SDG 12 — Responsible Consumption and Production" style="float: right; width: 180px; margin-left: var(--sp-lg); margin-bottom: var(--sp-sm);">
+            <p>Traditional pathogen detection methods require expensive laboratory equipment, trained personnel, and 24–48 hours to yield results, which creates a prohibitive barrier to comprehensive quality screening [3]. For many food producers, they rely on periodic batch sampling, effectively gambling on probability. The practical consequence is that when contamination slips through, the result is often a massive, costly product recall.</p>
+
+            <p>Our field-deployable solution lowers their "responsibility" threshold. This ensures production quality, cutting down on waste and environmental costs. It helps maintain the sustainability of the entire production process. Ultimately, it protects consumer rights, allowing high-risk groups to safely enjoy fresh food. At the same time, it boosts consumer trust in producers, and this trust improves business income. With stronger economic returns, producers are incentivized to further upgrade their supply chain infrastructure, creating a virtuous cycle in which responsible production drives better outcomes for public health, business resilience, and environmental sustainability alike.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 6. References ===== -->
+      <section class="product-tile tile-section-header tile-soft" id="sec-sdg-ref">
+        <div class="tile-inner">
+          <h2 class="tile-headline">References</h2>
+          <div class="tile-body">
+            <ol>
+              <li>FAO, IFAD, UNICEF, WFP, &amp; WHO. (2025). <em>The State of Food Security and Nutrition in the World 2025 – Addressing high food price inflation for food security and nutrition</em>. Rome, FAO. <a href="https://www.who.int/news/item/28-07-2025-global-hunger-declines-but-rises-in-africa-and-western-asia-un-report" target="_blank" rel="noopener">https://www.who.int/news/item/28-07-2025-global-hunger-declines-but-rises-in-africa-and-western-asia-un-report</a></li>
+              <li>U.S. Food and Drug Administration. (2024, October 31). <em>Get the Facts about Listeria</em>. <a href="https://www.fda.gov/animal-veterinary/animal-health-literacy/get-the-facts-about-listeria" target="_blank" rel="noopener">https://www.fda.gov/animal-veterinary/animal-health-literacy/get-the-facts-about-listeria</a></li>
+              <li>Tassou, C., Gousia, P., &amp; Nychas, G. J. (2023). Molecular targets for foodborne pathogenic bacteria detection. <em>Pathogens</em>, <em>12</em>(1), 104. <a href="https://doi.org/10.3390/pathogens12010104" target="_blank" rel="noopener">https://doi.org/10.3390/pathogens12010104</a></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <footer class="site-footer">
   </footer>

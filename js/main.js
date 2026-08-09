@@ -1,6 +1,77 @@
 (function () {
   'use strict';
 
+  // ==================== Fridge Door ====================
+  const fridgeOverlay = document.getElementById('fridgeOverlay');
+  const fridgeScene   = document.getElementById('fridgeScene');
+  const fridgeDoor    = document.getElementById('fridgeDoor');
+  const fridgeTitle   = document.getElementById('fridgeTitle');
+
+  const FRIDGE_KEY = 'um-igem-fridge-seen';
+  var   readyToOpen = false;
+
+  function openFridge() {
+    if (!readyToOpen) return;
+    if (!fridgeDoor || !fridgeOverlay) return;
+    if (fridgeDoor.classList.contains('open')) return;
+    if (fridgeOverlay.classList.contains('zoom-more')) return;
+
+    // Zoom + door + whiteout + body fade — all start together
+    fridgeOverlay.classList.add('zoom-more');
+    fridgeDoor.classList.add('open');
+
+    // Hide title
+    if (fridgeTitle) fridgeTitle.classList.remove('show');
+
+    // Body fade + whiteout appear (start immediately with zoom)
+    var fridgeBody = document.querySelector('.fridge-body');
+    if (fridgeBody) fridgeBody.classList.add('fading');
+    var whiteout = document.getElementById('fridgeWhiteout');
+    if (whiteout) whiteout.classList.add('show');
+
+    // Whiteout fades out + background cleared → reveals homepage
+    setTimeout(function () {
+      var whiteout = document.getElementById('fridgeWhiteout');
+      if (whiteout) {
+        whiteout.classList.add('fade-out');
+        whiteout.classList.remove('show');
+      }
+      fridgeOverlay.classList.add('clear-bg');
+    }, 1500);
+
+    // Hide overlay entirely
+    setTimeout(function () {
+      fridgeOverlay.style.display = 'none';
+    }, 2100);
+
+    try { sessionStorage.setItem(FRIDGE_KEY, '1'); } catch (e) { /* ignore */ }
+  }
+
+  if (fridgeOverlay && fridgeDoor && fridgeScene) {
+    var alreadySeen = false;
+    try { alreadySeen = sessionStorage.getItem(FRIDGE_KEY) === '1'; } catch (e) { /* ignore */ }
+
+    if (alreadySeen) {
+      fridgeOverlay.style.display = 'none';
+    } else {
+      // Intro animation sequence
+      // Stage 1: zoom entire scene (background + fridge together)
+      setTimeout(function () {
+        fridgeOverlay.classList.add('zoom');
+      }, 1600);
+
+      // Stage 2: title appears after zoom completes
+      setTimeout(function () {
+        readyToOpen = true;
+        if (fridgeTitle) fridgeTitle.classList.add('show');
+      }, 2900);
+
+      // Click to open: door or title
+      fridgeDoor.addEventListener('click', openFridge);
+      if (fridgeTitle) fridgeTitle.addEventListener('click', openFridge);
+    }
+  }
+
   // ==================== Mobile Nav ====================
   const navToggle = document.querySelector('.nav-toggle');
   const navLinks  = document.querySelector('.nav-links');
@@ -129,6 +200,23 @@
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
+
+  // ==================== Home Panel Scroll Reveal ====================
+  var homePanels = document.querySelectorAll('.home-panel-bg');
+  if (homePanels.length > 0) {
+    var panelObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          panelObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    homePanels.forEach(function (panel) {
+      panelObserver.observe(panel);
+    });
+  }
 
   console.log('UM iGEM 2026 — Wiki ready');
 })();

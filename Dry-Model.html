@@ -22,6 +22,7 @@
   <nav class="global-nav">
     <div class="global-nav-inner">
       <a href="index.html" class="nav-brand">
+        <img class="nav-logo" src="images/um-igem%20logo.PNG" alt="UM iGEM Logo">
         UM iGEM 2026
       </a>
         <button class="nav-toggle" aria-label="Toggle navigation">
@@ -63,9 +64,7 @@
         <span class="nav-item">
           <a>Human Practices</a>
           <div class="nav-dropdown">
-            <a href="HP-Overview.html">Overview</a>
-            <a href="HP-Entrepreneurship.html">Entrepreneurship</a>
-            <a href="HP-SDGs.html">SDGs</a>
+            <a href="HP-Overview.html">Overview</a><a href="HP-Activities.html">Activities</a><a href="HP-Entrepreneurship.html">Entrepreneurship</a><a href="HP-SDGs.html">SDGs</a>
           </div>
         </span>
       </div>
@@ -89,18 +88,18 @@
     <!-- === Sidebar === -->
     <aside class="sidebar-nav">
       <ul class="sidebar-links">
-        <li><a href="#model1" class="sidebar-model active">Predictive Modeling of L. monocytogenes</a></li>
+        <li><a href="#model1" class="sidebar-model active">Poreglow LLO Binding Model</a></li>
         <li class="sidebar-section-group">
           <ul class="sidebar-sections">
-            <li><a href="#sec-background">1. Background</a></li>
-            <li><a href="#sec-framework">2. Framework</a></li>
-            <li><a href="#sec-primary">3. Primary Models</a></li>
-            <li><a href="#sec-secondary">4. Gamma Model</a></li>
-            <li><a href="#sec-params">5. Food Matrix</a></li>
-            <li><a href="#sec-fitting">6. Estimation</a></li>
-            <li><a href="#sec-evaluation">7. Evaluation</a></li>
-            <li><a href="#sec-interpretation">8. Interpretation</a></li>
-            <li><a href="#sec-process">9. Process</a></li>
+            <li><a href="#sec-pl-intro">Introduction</a></li>
+            <li><a href="#sec-pl-binding">1. Membrane-Binding Model</a></li>
+            <li><a href="#sec-pl-cholesterol">2. Cholesterol</a></li>
+            <li><a href="#sec-pl-ph">3. pH Effects</a></li>
+            <li><a href="#sec-pl-curves">4. Binding Curves</a></li>
+            <li><a href="#sec-pl-sensitivity">5. Sensitivity Analysis</a></li>
+            <li><a href="#sec-pl-interaction">6. Cholesterol-pH</a></li>
+            <li><a href="#sec-pl-llo-response">7. LLO Response</a></li>
+            <li><a href="#sec-pl-fluorescence">8. Fluorescence</a></li>
           </ul>
         </li>
         <li><a href="#model2" class="sidebar-model">Model 2</a></li>
@@ -111,451 +110,426 @@
     <!-- === Content === -->
     <main class="page-content">
 
-  <!-- ===== Model 1 ===== -->
+  <!-- ===== Model 1: Poreglow LLO Binding ===== -->
   <section class="product-tile tile-section-header tile-canvas" id="model1" style="padding: var(--sp-xxl) var(--sp-xl); margin-top: var(--sp-lg)">
     <div class="tile-inner">
-      <h2 class="tile-headline">Predictive Modeling of L. monocytogenes</h2>
+      <h2 class="tile-headline">Poreglow LLO Binding Model</h2>
     </div>
   </section>
 
-  <!-- ===== 1. Background and Objective (white) ===== -->
-  <section class="product-tile tile-canvas" id="sec-background">
+  <!-- ===== Introduction ===== -->
+  <section class="product-tile tile-canvas" id="sec-pl-intro">
     <div class="tile-inner">
-      <h2 class="tile-headline">1. Background and Objective</h2>
+      <h2 class="tile-headline">Introduction</h2>
       <div class="tile-body">
-        <p><em>Listeria monocytogenes</em> is an important foodborne pathogen that can survive and grow under <strong>refrigerated conditions</strong>. This makes it a major concern in ready-to-eat (RTE) foods, especially meat, poultry, seafood, salads, and other processed food products. Since RTE foods are usually consumed without further heating, the growth of <em>L. monocytogenes</em> during storage may directly increase food safety risks.</p>
-        <p>The objective of this model is to establish a <strong>predictive microbiology framework</strong> for describing and predicting the growth behavior of <em>L. monocytogenes</em> under food-related environmental conditions. The model combines two levels of modeling:</p>
-        <ol>
-          <li>A <strong>primary growth model</strong>, which describes how bacterial concentration changes with time.</li>
-          <li>A <strong>secondary environmental model</strong>, which describes how environmental factors affect the maximum specific growth rate.</li>
-        </ol>
-        <p>In this framework, experimental or literature-based data such as storage temperature, pH, water activity, salt concentration, nitrite concentration, and organic acid concentration are used to predict the growth rate of <em>L. monocytogenes</em>. The predicted growth rate is then inserted into a primary growth model to simulate the bacterial growth curve over time.</p>
+        <p>This summary reorganizes the mechanistic and analytical core of the Poreglow dry-lab analysis: the simplified membrane-binding model; the experimental and modelled roles of cholesterol and pH; interpretation of the theoretical binding curves; local sensitivity analysis; cholesterol–pH interaction; LLO concentration-dependent cholesterol responses; and baseline normalization of fluorescence data.</p>
+        <p>The revised order follows the model's causal logic. It first defines the apparent binding variable, then explains why cholesterol and pH enter the model, and only afterward interprets the resulting curves and sensitivity outputs. This prevents provisional parameter mappings from being mistaken for direct experimental measurements.</p>
+        <p>The framework distinguishes among:</p>
+        <ul>
+          <li>findings supported directly by published experiments;</li>
+          <li>assumptions and operational definitions introduced for model construction;</li>
+          <li>exploratory outputs generated by the current implementation.</li>
+        </ul>
+        <p>The model is intended to organize mechanistic hypotheses, describe qualitative trends, and guide experimental design. It should not yet be presented as an externally validated quantitative predictor. In particular, apparent membrane binding, oligomerization, functional pore formation, GFP passage, and structural membrane rupture remain distinct processes and should not be inferred from one another without appropriate measurements.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== 2. Overall Modeling Framework (parchment) ===== -->
-  <section class="product-tile tile-soft" id="sec-framework">
+  <!-- ===== 1. Simplified Membrane-Binding Model ===== -->
+  <section class="product-tile tile-soft" id="sec-pl-binding">
     <div class="tile-inner">
-      <h2 class="tile-headline">2. Overall Modeling Framework</h2>
-      <div class="tile-body">
-        <p>The complete modeling framework can be summarized as follows:</p>
-        <ol>
-          <li>Collect <strong>food matrix parameters</strong>, including temperature, pH, water activity, salt, nitrite, lactate, acetate, diacetate, and propionate.</li>
-          <li>Convert each environmental factor into a <strong>gamma inhibition factor</strong>.</li>
-          <li>Calculate the predicted maximum specific growth rate, $\mu_{\max}$, using the <strong>Gamma concept model</strong>.</li>
-          <li>Use $\mu_{\max}$ and the lag time parameter in a <strong>primary model</strong> such as the Logistic-with-delay model or the Baranyi model.</li>
-          <li>Generate the <strong>predicted growth curve</strong> of <em>L. monocytogenes</em>, usually expressed as $\log(\text{CFU/g})$ versus time.</li>
-        </ol>
-        <div class="framework-diagram">
-          <div class="flow-step">Food Matrix<br>Parameters</div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-step">Gamma Concept<br>Model</div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-step">Predicted<br>$\mu_{\max}$</div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-step">Primary Model<br>(Logistic / Baranyi)</div>
-          <div class="flow-arrow">→</div>
-          <div class="flow-step">Growth Curve<br>$\log(\text{CFU/g})$ vs. $t$</div>
-        </div>
-        <p>Therefore, the <strong>secondary model predicts the growth rate</strong>, while the <strong>primary model predicts the time-dependent bacterial population</strong>.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 3. Primary Growth Models (canvas) ===== -->
-  <section class="product-tile tile-canvas" id="sec-primary">
-    <div class="tile-inner">
-      <h2 class="tile-headline">3. Primary Growth Models</h2>
+      <h2 class="tile-headline">1. Simplified Membrane-Binding Model</h2>
       <div class="tile-body">
 
-        <h3>3.1 Purpose of Primary Models</h3>
-        <p>Primary models describe the change in bacterial population over time under a fixed set of environmental conditions. In the case of <em>L. monocytogenes</em>, the bacterial concentration is usually expressed as $\log(\text{CFU/g})$ or $\ln(\text{CFU/g})$. The input data for the primary model are time and colony count, while the main outputs are:</p>
+        <h3>1.1 State Variables</h3>
+        <p>The binding component uses the following variables:</p>
         <ul>
-          <li>$\mu_{\max}$: maximum specific growth rate</li>
-          <li>$\lambda$ or $t_{\text{lag}}$: lag time</li>
-          <li>$N_0$: initial bacterial concentration</li>
-          <li>$N_{\max}$: maximum population density</li>
+          <li>$B(t)$: apparent fraction of available membrane-binding sites occupied by LLO;</li>
+          <li>$[\text{LLO}]$: effective concentration of soluble LLO;</li>
+          <li>$G_{\text{chol}}$: cholesterol-related gain factor;</li>
+          <li>$G_{\text{pH}}$: pH-related gain factor;</li>
+          <li>$k_{\text{on}}$: apparent association rate constant;</li>
+          <li>$k_{\text{off}}$: apparent dissociation rate constant.</li>
         </ul>
-        <p>A typical bacterial growth curve contains three main phases:</p>
-        <ol>
-          <li><strong>Lag phase</strong>: bacteria adapt to the food environment and show little increase in population.</li>
-          <li><strong>Exponential phase</strong>: bacteria grow rapidly at the maximum growth rate.</li>
-          <li><strong>Stationary phase</strong>: growth slows down and the population approaches the maximum density.</li>
-        </ol>
-
-        <h3>3.2 Logistic-with-Delay Model</h3>
-        <p>The Logistic-with-delay model is used to describe bacterial growth with an explicit lag phase. Before the lag time, the bacterial population remains approximately constant. After the lag phase, the population increases according to a logistic growth pattern.</p>
+        <p>Under a single-state occupancy approximation, binding is represented as:</p>
 
         <div class="formula-block">
-          <p>$$\log N(t) = \begin{cases}
-          \log N_0, & t < t_{\text{lag}} \\[8pt]
-          \log\left( \dfrac{N_{\max}}{1 + \left(\dfrac{N_{\max}}{N_0} - 1\right) \exp\left[-\mu_{\max} (t - t_{\text{lag}})\right]} \right), & t \geq t_{\text{lag}}
-          \end{cases}$$</p>
+          <p>$$\frac{dB}{dt} = k_{\text{on}} \, G_{\text{chol}} \, G_{\text{pH}} \, [\text{LLO}] \, (1 - B) - k_{\text{off}} \, B$$</p>
         </div>
 
-        <p>where:</p>
-        <ul>
-          <li>$t$ is storage time;</li>
-          <li>$N(t)$ is the bacterial concentration at time $t$;</li>
-          <li>$N_0$ is the initial bacterial concentration;</li>
-          <li>$N_{\max}$ is the maximum population density;</li>
-          <li>$\mu_{\max}$ is the maximum specific growth rate;</li>
-          <li>$t_{\text{lag}}$ is the lag time.</li>
-        </ul>
-        <p>This model is simple and biologically interpretable. It clearly separates the lag phase from the growth phase. It is useful when the experimental data show an obvious delay before bacterial growth begins.</p>
+        <p>The association term is proportional to the unoccupied fraction, $1 - B$, whereas the dissociation term is proportional to the occupied fraction, $B$.</p>
 
-        <h3>3.3 Baranyi Model</h3>
-        <p>The Baranyi model is another commonly used primary model in predictive microbiology. Compared with the Logistic-with-delay model, the Baranyi model provides a <strong>smoother transition</strong> from the lag phase to the exponential phase. This is important because <em>L. monocytogenes</em> cannot move instantly from physiological adaptation to rapid growth. Instead, there is a gradual transition period.</p>
+        <h3>1.2 Quasi-Steady-State Approximation</h3>
+        <p>If membrane binding is sufficiently rapid relative to downstream oligomerization and permeabilization, the binding state may be approximated as quasi-steady:</p>
 
         <div class="formula-block">
-          <p>$$y(t) = y_0 + \mu_{\max} A(t) - \ln\left(1 + \frac{\exp(\mu_{\max} A(t)) - 1}{\exp(y_{\max} - y_0)}\right)$$</p>
+          <p>$$\frac{dB}{dt} \approx 0$$</p>
         </div>
 
-        <p>where the adjustment function $A(t)$ is given by:</p>
+        <p>Defining the dissociation constant as:</p>
 
         <div class="formula-block">
-          <p>$$A(t) = t + \frac{1}{\mu_{\max}} \ln\left[\exp(-\mu_{\max} t) + \exp(-h_0) - \exp(-\mu_{\max} t - h_0)\right]$$</p>
+          <p>$$K_d = \frac{k_{\text{off}}}{k_{\text{on}}}$$</p>
         </div>
 
-        <p>In this model:</p>
+        <p>gives:</p>
+
+        <div class="formula-block">
+          <p>$$B_{\text{eq}} = \frac{G_{\text{chol}} \, G_{\text{pH}} \, [\text{LLO}]}{K_d + G_{\text{chol}} \, G_{\text{pH}} \, [\text{LLO}]}$$</p>
+        </div>
+
+        <p>$K_d$ has units of concentration. If an association constant is used instead, it should be defined as $K_a = 1/K_d$, with units of inverse concentration.</p>
+
+        <h3>1.3 Interpretation and Limitations</h3>
+        <p>The model is a single-state Langmuir-type approximation. It does <strong>not</strong> explicitly distinguish:</p>
         <ul>
-          <li>$y(t)$ is the bacterial concentration at time $t$, usually expressed as $\ln(\text{CFU/g})$;</li>
-          <li>$y_0$ is the initial bacterial concentration;</li>
-          <li>$y_{\max}$ is the maximum bacterial concentration;</li>
-          <li>$\mu_{\max}$ is the maximum specific growth rate;</li>
-          <li>$A(t)$ is the adjustment function;</li>
-          <li>$h_0$ describes the initial physiological state of the bacterial cells.</li>
+          <li>initial monomer binding;</li>
+          <li>membrane-associated oligomerization;</li>
+          <li>prepore and inserted states;</li>
+          <li>complete ring pores and incomplete arc-shaped assemblies;</li>
+          <li>GFP-permeable lesions and structural membrane rupture.</li>
         </ul>
-        <p>The function $A(t)$ accounts for the physiological adaptation of bacterial cells during the lag phase. Therefore, the Baranyi model is especially useful when the transition between lag phase and exponential phase needs to be represented more realistically.</p>
+        <p>The published SPR analysis used a two-step binding model, and its second step may reflect lateral association or oligomerization of membrane-bound LLO. Those fitted parameters nevertheless require cautious interpretation.<sup>[1]</sup></p>
+        <p>Accordingly, $B$ should be described as a <strong>simplified apparent membrane-binding fraction</strong>, not as the fraction of complete pores, GFP-releasing liposomes, or structurally ruptured membranes.</p>
 
       </div>
     </div>
   </section>
 
-  <!-- ===== 4. Secondary Model: Gamma Concept (soft) ===== -->
-  <section class="product-tile tile-soft" id="sec-secondary">
+  <!-- ===== 2. Cholesterol: Experimental Evidence and Model Representation ===== -->
+  <section class="product-tile tile-canvas" id="sec-pl-cholesterol">
     <div class="tile-inner">
-      <h2 class="tile-headline">4. Secondary Model: Gamma Concept Model</h2>
+      <h2 class="tile-headline">2. Cholesterol: Experimental Evidence and Model Representation</h2>
       <div class="tile-body">
 
-        <h3>4.1 Purpose of the Secondary Model</h3>
-        <p>While primary models describe growth over time, they do not directly explain how food properties and storage conditions affect bacterial growth. For this reason, a secondary model is used to describe the relationship between environmental parameters and the maximum specific growth rate $\mu_{\max}$.</p>
-        <p>In this study, the <strong>Gamma concept model</strong> is adopted. The basic idea of the Gamma model is that each environmental factor contributes an inhibition factor, denoted as $\gamma$. Each $\gamma$ value ranges from 0 to 1:</p>
+        <h3>2.1 Main Observations Supported by the Literature</h3>
+        <p>The 2007 study supports several conclusions relevant to the Poreglow model:<sup>[1]</sup></p>
         <ul>
-          <li>$\gamma = 1$ means the condition is optimal or nearly optimal for growth;</li>
-          <li>$0 < \gamma < 1$ means the condition partially inhibits growth;</li>
-          <li>$\gamma = 0$ means growth is completely inhibited.</li>
+          <li>LLO binding to pure DOPC membranes is weak;</li>
+          <li>membrane cholesterol substantially enhances LLO binding;</li>
+          <li>at pH 8.5, stable binding rises markedly when cholesterol reaches approximately 35 mol% or more;</li>
+          <li>binding, membrane insertion, and calcein release all show a relatively narrow cholesterol transition range;</li>
+          <li>sufficiently cholesterol-rich membranes can support LLO binding and permeabilizing structures even at higher pH.</li>
         </ul>
-        <p>The predicted maximum specific growth rate is calculated as:</p>
+        <p>These observations support the language of a cholesterol threshold or gate-like response. They do not, however, establish that the particular gain function, interpolation rule, or threshold shape used in the current implementation is uniquely correct.</p>
+
+        <h3>2.2 Cholesterol Affects More Than Initial Attachment</h3>
+        <p>The M344 antibody inhibits LLO oligomerization and membrane permeabilization while still allowing LLO to bind liposomes containing 35 mol% cholesterol. In the presence of M344, the monomer-associated dissociation rate was approximately:<sup>[1]</sup></p>
 
         <div class="formula-block">
-          <p>$$\mu_{\max} = \mu_{\text{opt}} \cdot \gamma(T) \cdot \gamma(\text{pH}) \cdot \gamma(a_w) \cdot \gamma(\text{Nit}) \cdot \gamma(\text{HA}) \cdot \xi(T, \text{pH}, a_w, \text{Nit}, \text{HA})$$</p>
+          <p>$$k_{\text{off,mono}} \approx 10.9 \times 10^{-3} \ \text{s}^{-1}$$</p>
         </div>
 
-        <p>where:</p>
-        <ul>
-          <li>$\mu_{\text{opt}}$ is the maximum specific growth rate under optimal conditions;</li>
-          <li>$\gamma(T)$ describes the effect of temperature;</li>
-          <li>$\gamma(\text{pH})$ describes the effect of acidity;</li>
-          <li>$\gamma(a_w)$ describes the effect of water activity;</li>
-          <li>$\gamma(\text{Nit})$ describes the inhibitory effect of nitrite;</li>
-          <li>$\gamma(\text{HA})$ describes the inhibitory effect of undissociated organic acids;</li>
-          <li>$\xi$ is a multi-factor interaction term.</li>
-        </ul>
-
-        <h3>4.2 Temperature Effect</h3>
-        <p>Temperature is one of the most important factors controlling the growth of <em>L. monocytogenes</em>. The temperature gamma factor can be written as:</p>
+        <p>Without M344, the apparent slow dissociation rate was approximately:<sup>[1]</sup></p>
 
         <div class="formula-block">
-          <p>$$\gamma(T) = \begin{cases}
-          0, & T \leq T_{\min} \\[6pt]
-          \left(\dfrac{T - T_{\min}}{T_{\text{opt}} - T_{\min}}\right)^2, & T_{\min} < T < T_{\text{opt}} \\[6pt]
-          1, & T \geq T_{\text{opt}}
-          \end{cases}$$</p>
+          <p>$$k_{\text{off,oligo}} \approx 1.4 \times 10^{-3} \ \text{s}^{-1}$$</p>
         </div>
 
-        <p>where:</p>
-        <ul>
-          <li>$T_{\min}$ is the minimum temperature for growth;</li>
-          <li>$T_{\text{opt}}$ is the optimal temperature for growth;</li>
-          <li>$T$ is the storage temperature.</li>
-        </ul>
-        <p>For refrigerated foods, such as those stored at 4°C, $\gamma(T)$ is usually much smaller than 1. This means that refrigeration slows down bacterial growth but may not completely stop the growth of <em>L. monocytogenes</em>.</p>
-
-        <h3>4.3 pH Effect</h3>
-        <p>The pH gamma factor describes how acidity or alkalinity affects bacterial growth:</p>
+        <p>Their ratio is:</p>
 
         <div class="formula-block">
-          <p>$$\gamma(\text{pH}) = \begin{cases}
-          0, & \text{pH} \leq \text{pH}_{\min} \\[6pt]
-          \dfrac{(\text{pH} - \text{pH}_{\min})(\text{pH}_{\max} - \text{pH})}{(\text{pH}_{\text{opt}} - \text{pH}_{\min})(\text{pH}_{\max} - \text{pH}_{\text{opt}})}, & \text{pH}_{\min} < \text{pH} < \text{pH}_{\max} \\[6pt]
-          0, & \text{pH} \geq \text{pH}_{\max}
-          \end{cases}$$</p>
+          <p>$$\frac{k_{\text{off,oligo}}}{k_{\text{off,mono}}} \approx 0.128$$</p>
         </div>
 
-        <p>where:</p>
-        <ul>
-          <li>$\text{pH}_{\min}$ is the minimum pH for growth;</li>
-          <li>$\text{pH}_{\text{opt}}$ is the optimal pH for growth;</li>
-          <li>$\text{pH}_{\max}$ is the maximum pH for growth.</li>
-        </ul>
-        <p>For many RTE meat products, the pH is approximately between 5.8 and 6.8. This range usually allows the growth of <em>L. monocytogenes</em>, although growth may be slower than under optimal pH conditions.</p>
+        <p>Thus, membrane-associated oligomerization is linked to an apparent dissociation process that is about <strong>7.8-fold slower</strong>. The non-antibody trace was not well represented by a simple single-exponential fit, so the slow phase should not be interpreted as the intrinsic dissociation constant of one homogeneous oligomeric species.<sup>[1]</sup></p>
 
-        <h3>4.4 Water Activity Effect</h3>
-        <p>Water activity, denoted as $a_w$, measures the amount of water available for microbial growth. The water activity gamma factor can be written as:</p>
+        <h3>2.3 Provisional Cholesterol Calibration</h3>
+        <p>The current program retains the following exploratory points to reproduce the team's earlier analysis:</p>
 
-        <div class="formula-block">
-          <p>$$\gamma(a_w) = \begin{cases}
-          0, & a_w < a_{w,\min} \\[6pt]
-          \dfrac{a_w - a_{w,\min}}{a_{w,\text{opt}} - a_{w,\min}}, & a_{w,\min} \leq a_w < a_{w,\text{opt}} \\[6pt]
-          1, & a_w \geq a_{w,\text{opt}}
-          \end{cases}$$</p>
-        </div>
-
-        <p>where:</p>
-        <ul>
-          <li>$a_{w,\min}$ is the minimum water activity required for growth;</li>
-          <li>$a_{w,\text{opt}}$ is the optimal water activity;</li>
-          <li>$a_w$ is the water activity of the food product.</li>
-        </ul>
-        <p>Most RTE meat and seafood products have high water activity values, often around 0.95–0.99. Therefore, water activity alone may not strongly inhibit <em>L. monocytogenes</em> unless it is reduced by drying, salting, or other preservation methods.</p>
-
-        <h3>4.5 Nitrite Effect</h3>
-        <p>Nitrite is commonly used in processed meat products as a preservative. Its inhibitory effect can be expressed as:</p>
-
-        <div class="formula-block">
-          <p>$$\gamma(\text{Nit}) = \begin{cases}
-          1 - \dfrac{\text{Nit}}{\text{MIC}_{\text{Nit}}}, & \text{Nit} < \text{MIC}_{\text{Nit}} \\[8pt]
-          0, & \text{Nit} \geq \text{MIC}_{\text{Nit}}
-          \end{cases}$$</p>
-        </div>
-
-        <p>where:</p>
-        <ul>
-          <li>$\text{Nit}$ is the nitrite concentration;</li>
-          <li>$\text{MIC}_{\text{Nit}}$ is the minimum inhibitory concentration of nitrite.</li>
-        </ul>
-        <p>As nitrite concentration increases, $\gamma(\text{Nit})$ decreases. This means that higher nitrite concentration produces stronger inhibition of bacterial growth.</p>
-
-        <h3>4.6 Organic Acid Effect</h3>
-        <p>Organic acids and their salts, such as lactate, acetate, diacetate, and propionate, are often used in RTE meat products to inhibit microbial growth. The total organic acid inhibition factor can be represented as:</p>
-
-        <div class="formula-block">
-          <p>$$\gamma(\text{HA}) = \gamma(\text{HA}_{\text{acetic}}) \cdot \gamma(\text{HA}_{\text{diacetate}}) \cdot \gamma(\text{HA}_{\text{lactic}}) \cdot \gamma(\text{HA}_{\text{propionic}})$$</p>
-        </div>
-
-        <p>For each undissociated organic acid, the inhibition factor can be written generally as:</p>
-
-        <div class="formula-block">
-          <p>$$\gamma(\text{HA}_i) = \begin{cases}
-          1 - \dfrac{[\text{HA}_i]}{\text{MIC}_i}, & [\text{HA}_i] < \text{MIC}_i \\[8pt]
-          0, & [\text{HA}_i] \geq \text{MIC}_i
-          \end{cases}$$</p>
-        </div>
-
-        <p>where:</p>
-        <ul>
-          <li>$[\text{HA}_i]$ is the concentration of the undissociated form of organic acid $i$;</li>
-          <li>$\text{MIC}_i$ is the minimum inhibitory concentration of that acid.</li>
-        </ul>
-        <p>The use of multiple organic acids can produce a combined inhibitory effect. For example, lactate and diacetate are frequently used together in RTE meat products to suppress the growth of <em>L. monocytogenes</em>.</p>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 5. Use of Food Matrix Parameters (canvas) ===== -->
-  <section class="product-tile tile-canvas" id="sec-params">
-    <div class="tile-inner">
-      <h2 class="tile-headline">5. Use of Food Matrix Parameters</h2>
-      <div class="tile-body">
-
-        <h3>5.1 Role of the Parameter Table</h3>
-        <p>The food matrix parameter table provides the environmental inputs required by the Gamma concept model. These data include: food product type, storage temperature, pH, water activity, salt concentration, acetate concentration, diacetate concentration, lactate concentration, propionate concentration, nitrite concentration, and packaging condition.</p>
-        <p>These parameters are not the final model output. Instead, they are used as <strong>model inputs</strong>. Each parameter is converted into a corresponding $\gamma$ factor. The product of all $\gamma$ factors determines how much the actual growth rate is reduced from the optimal growth rate.</p>
-
-        <h3>5.2 Source and Meaning of Food Matrix Parameters</h3>
-        <p>The food matrix parameter table provides practical environmental conditions for different ready-to-eat (RTE) food products. These parameters include product type, pH, water activity ($a_w$), storage temperature, preservatives, and packaging conditions. These values are not the final prediction results of the model. Instead, they are used as input variables for the secondary Gamma model.</p>
-        <p>The general role of the parameter table is to connect <strong>real food conditions</strong> with <strong>mathematical growth prediction</strong>. For each food product, the measured or literature-reported values of temperature, pH, $a_w$, nitrite, and organic acid preservatives are converted into corresponding inhibition factors. These inhibition factors are then multiplied together to calculate the predicted maximum specific growth rate of <em>Listeria monocytogenes</em>.</p>
-
-        <h3>5.3 Summary of Food Matrix Data</h3>
-        <p>Table 1 summarizes representative food matrix parameters used for predictive modeling of <em>L. monocytogenes</em> in RTE foods. These values are based on reported food product characteristics for meat, poultry, seafood, salad, and processed food systems.</p>
-
-        <div class="table-caption">Table 1: Representative food matrix parameters for <em>Listeria monocytogenes</em> predictive modeling.</div>
+        <div class="table-caption">Table 1: Provisional cholesterol calibration values.</div>
         <div class="data-table-wrap">
           <table class="data-table">
             <thead>
-              <tr><th>Food Product</th><th>pH Range</th><th>$a_w$ Range</th><th>Storage Temp.</th><th>Main Preservatives / Factors</th></tr>
+              <tr><th>Cholesterol</th><th>Provisional Gain</th><th>Provisional $K_d$ Used</th></tr>
             </thead>
             <tbody>
-              <tr><td>Cooked ham</td><td>5.8–6.5</td><td>0.96–0.99</td><td>4°C / 10°C</td><td>Lactate, acetate, nitrite</td></tr>
-              <tr><td>Pork bologna</td><td>5.9–6.4</td><td>0.95–0.98</td><td>4°C / 10°C</td><td>Antimicrobials</td></tr>
-              <tr><td>Turkey products</td><td>6.0–6.5</td><td>0.97–0.99</td><td>4°C / abuse temp.</td><td>Propionate, lactate-diacetate</td></tr>
-              <tr><td>Chicken salad</td><td>5.5–6.8</td><td>0.97–0.99</td><td>4°C–12°C</td><td>Mayonnaise acidity</td></tr>
-              <tr><td>Braised beef</td><td>5.7–6.3</td><td>0.96–0.99</td><td>4°C / dynamic</td><td>Salt and organic acid</td></tr>
-              <tr><td>Roast beef</td><td>5.6–6.4</td><td>0.96–0.98</td><td>4°C / mild abuse</td><td>None or organic acids</td></tr>
-              <tr><td>Mortadella</td><td>6.0–6.6</td><td>0.95–0.98</td><td>4°C–15°C</td><td>Nitrite</td></tr>
-              <tr><td>Mexican pork chorizo</td><td>4.8–6.2</td><td>0.94–0.97</td><td>10°C–25°C</td><td>Salt and spices</td></tr>
-              <tr><td>Chicken nuggets</td><td>6.1–6.8</td><td>0.96–0.99</td><td>4°C–16°C</td><td>Batter ingredients</td></tr>
-              <tr><td>Liver pâté</td><td>5.8–6.5</td><td>0.95–0.98</td><td>4°C</td><td>Fat and salt</td></tr>
-              <tr><td>Seafood products</td><td>6.2–7.0</td><td>0.97–0.99</td><td>0°C–10°C</td><td>Salt</td></tr>
-              <tr><td>Vacuum-packed sausage</td><td>5.5–6.3</td><td>0.95–0.98</td><td>4°C</td><td>2.5% lactate + 0.25% acetate</td></tr>
-              <tr><td>Cooked sliced meat</td><td>5.8–6.5</td><td>0.96–0.99</td><td>4°C–10°C</td><td>Protective cultures</td></tr>
-              <tr><td>General RTE meats</td><td>4.13–9.6</td><td>0.92–0.99</td><td>−1.5°C to 25°C</td><td>Nitrite and organic acids</td></tr>
+              <tr><td>20 mol%</td><td>0.800</td><td>2540 nM</td></tr>
+              <tr><td>35 mol%</td><td>0.875</td><td>20 nM</td></tr>
+              <tr><td>40 mol%</td><td>0.900</td><td>5.5 nM</td></tr>
+              <tr><td>66 mol%</td><td>1.000</td><td>1 nM</td></tr>
             </tbody>
           </table>
         </div>
 
-        <h3>5.4 Example: Cooked Ham</h3>
-        <p>Cooked ham is a typical RTE meat product. According to the parameter table, cooked ham has approximately the following food matrix characteristics: pH = 5.8–6.5, $a_w$ = 0.96–0.99, $T$ = 4°C or 10°C, and may contain lactate, acetate, and nitrite as preservatives.</p>
-        <p>To use these data in the model, a representative condition can be selected. For example:</p>
-        <div class="formula-block">
-          <p>$$T = 4^\circ\text{C},\quad \text{pH} = 6.2,\quad a_w = 0.98$$</p>
-        </div>
-        <p>Assume that the product contains lactate, acetate, and nitrite. These values are then converted into Gamma factors:</p>
-        <div class="formula-block">
-          <p>$$T = 4^\circ\text{C} \rightarrow \gamma(T)$$</p>
-          <p>$$\text{pH} = 6.2 \rightarrow \gamma(\text{pH})$$</p>
-          <p>$$a_w = 0.98 \rightarrow \gamma(a_w)$$</p>
-          <p>$$\text{Nitrite} \rightarrow \gamma(\text{Nit})$$</p>
-          <p>$$\text{Lactate + Acetate} \rightarrow \gamma(\text{HA})$$</p>
-        </div>
-        <p>The final predicted growth rate is:</p>
-        <div class="formula-block">
-          <p>$$\mu_{\max,\text{ham}} = \mu_{\text{opt}} \cdot \gamma(4) \cdot \gamma(6.2) \cdot \gamma(0.98) \cdot \gamma(\text{Nit}) \cdot \gamma(\text{Lactate}) \cdot \gamma(\text{Acetate}) \cdot \xi$$</p>
-        </div>
-        <p>This predicted $\mu_{\max,\text{ham}}$ is then inserted into the primary growth model to simulate the growth curve of <em>L. monocytogenes</em> in cooked ham during refrigerated storage.</p>
+        <p>These values should not all be treated as intrinsic $K_d$ measurements obtained under one experiment, one membrane-coverage regime, and one kinetic model. In particular, the 66 mol% value is not taken from the 2007 SPR calibration table cited here. They therefore remain <strong>provisional calibration values</strong> pending re-examination of the original sensorgrams and parameter definitions.</p>
+        <p><strong>Cholesterol dependence in the current model is partly evidence-based and partly imposed by calibration.</strong> Predicted thresholds and curve shifts must be interpreted in that context.</p>
 
       </div>
     </div>
   </section>
 
-  <!-- ===== 6. Parameter Estimation and Model Fitting (canvas) ===== -->
-  <section class="product-tile tile-soft" id="sec-fitting">
+  <!-- ===== 3. pH: Separating Binding Effects from Temperature-Dependent Inactivation ===== -->
+  <section class="product-tile tile-soft" id="sec-pl-ph">
     <div class="tile-inner">
-      <h2 class="tile-headline">6. Parameter Estimation and Model Fitting</h2>
+      <h2 class="tile-headline">3. pH: Separating Binding Effects from Temperature-Dependent Inactivation</h2>
       <div class="tile-body">
 
-        <h3>6.1 Experimental Data</h3>
-        <p>To fit the model, bacterial counts are measured at different time points during storage. The experimental data usually consist of pairs of time and bacterial concentration:</p>
-        <div class="formula-block">
-          <p>$$(t_1, N_1),\ (t_2, N_2),\ \ldots,\ (t_n, N_n)$$</p>
-        </div>
-        <p>where $N_i$ is the measured bacterial concentration at time $t_i$. The bacterial concentration may be expressed as $\log_{10}(\text{CFU/g})$ or $\ln(\text{CFU/g})$, depending on the form of the model.</p>
-
-        <h3>6.2 Primary Model Fitting</h3>
-        <p>The primary model is fitted to the experimental growth curve to estimate:</p>
-        <div class="formula-block">
-          <p>$$\mu_{\max},\quad t_{\text{lag}},\quad N_0,\quad N_{\max}$$</p>
-        </div>
-        <p>The fitting is usually performed by <strong>nonlinear regression</strong>. The objective is to minimize the sum of squared residuals between observed and predicted bacterial counts:</p>
-        <div class="formula-block">
-          <p>$$\text{SSR} = \sum_{i=1}^{n} \left(y_{i,\text{obs}} - y_{i,\text{pred}}\right)^2$$</p>
-        </div>
-        <p>where:</p>
+        <h3>3.1 Approximately 20–25 °C: pH Changes Activity and Event Frequency</h3>
+        <p>At approximately 20–25 °C, where rapid aggregation is limited, LLO did not show a major detectable difference in overall structure between pH 5.5 and 7.5, yet haemolytic and membrane-permeabilizing activities were higher at lower pH. The authors attributed much of this difference to altered membrane binding rather than to the formation of fundamentally different pore types.<sup>[2]</sup></p>
+        <p>Planar lipid-membrane experiments further indicated that:<sup>[2]</sup></p>
         <ul>
-          <li>$y_{i,\text{obs}}$ is the observed bacterial concentration;</li>
-          <li>$y_{i,\text{pred}}$ is the predicted bacterial concentration.</li>
+          <li>more pore-forming events occurred at pH 5.5 than at pH 7.5;</li>
+          <li>pore conductance had a broad distribution at both pH values;</li>
+          <li>no clear pH-dependent difference in pore size was detected;</li>
+          <li>changing cholesterol from 20% to 35% altered LLO activity without establishing a distinct pore-size shift.</li>
+        </ul>
+        <p>Accordingly, the model should not assume that neutral pH always improves binding while acidic pH acts only on downstream pore formation. Under the 20 mol% cholesterol SPR conditions reported in 2007, lower pH was associated with greater and more stable binding.<sup>[1]</sup></p>
+
+        <h3>3.2 At 37 °C: Neutral or Alkaline pH Promotes Inactivating Aggregation</h3>
+        <p>At pH 7.5 and 37 °C, LLO rapidly forms amorphous aggregates. Aggregated LLO binds liposomes poorly and loses pore-forming activity. At pH 5.5, self-association or dimer-related states may help protect LLO from premature inactivation.<sup>[2]</sup></p>
+        <p>The model should therefore separate at least three processes:</p>
+        <ol>
+          <li>reversible membrane binding over short times or at lower temperature;</li>
+          <li>membrane-associated oligomerization and pore formation;</li>
+          <li>irreversible solution-phase aggregation governed jointly by temperature and pH.</li>
+        </ol>
+        <p>A single pH gain factor cannot fully represent all three mechanisms. In the current simplified model, $G_{\text{pH}}$ should be understood as a <strong>provisional effective factor</strong> whose meaning depends on the experimental temperature and observation window.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. Interpretation of the Theoretical Binding Curves ===== -->
+  <section class="product-tile tile-canvas" id="sec-pl-curves">
+    <div class="tile-inner">
+      <h2 class="tile-headline">4. Interpretation of the Theoretical Binding Curves</h2>
+      <div class="tile-body">
+
+        <figure style="text-align: center; margin: var(--sp-lg) 0;">
+        <img src="images/Dry_Theoretical%20Binding%20Curves.png" alt="Theoretical Binding Curves — Left: Cholesterol effect at pH 6.5; Right: pH effect at 40 mol% cholesterol" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+        <figcaption style="margin-top: var(--sp-sm); color: var(--on-canvas-mute); font-size: 0.9rem;">Figure 1: Theoretical binding curves. Left: Cholesterol effect at fixed pH (pH 6.5, cholesterol 20–66 mol%). Right: pH effect at fixed cholesterol (40 mol%, pH 5.5, 6.5, 7.5).</figcaption>
+        </figure>
+
+        <h3>4.1 Cholesterol Effect at Fixed pH</h3>
+        <p>The left panel fixes pH at 6.5 and compares membranes containing 20, 35, 40, 45, 50, and 66 mol% cholesterol. Under the current provisional calibration:</p>
+        <ul>
+          <li>low-cholesterol conditions require a higher LLO concentration to reach substantial apparent occupancy;</li>
+          <li>the response curves shift markedly toward lower LLO concentrations around 35–40 mol% cholesterol;</li>
+          <li>at higher cholesterol levels, the predicted binding fraction approaches saturation over a broader concentration range.</li>
+        </ul>
+        <p><strong>These curves are outputs of the provisional cholesterol-dependent $K_d$ mapping.</strong> They are not independent experimental observations and should not be used as proof that the selected interpolation or threshold structure is mechanistically correct.</p>
+
+        <h3>4.2 pH Effect at Fixed Cholesterol</h3>
+        <p>The right panel fixes cholesterol at 40 mol% and compares pH 5.5, 6.5, and 7.5. The current pH gain values remain exploratory and require refitting against original experimental data. The panel should therefore be described as an <strong>illustrative model response under provisional pH scaling</strong>, rather than evidence that neutral pH necessarily increases LLO membrane affinity.<sup>[1]</sup></p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. Local Sensitivity Analysis ===== -->
+  <section class="product-tile tile-soft" id="sec-pl-sensitivity">
+    <div class="tile-inner">
+      <h2 class="tile-headline">5. Local Sensitivity Analysis</h2>
+      <div class="tile-body">
+
+        <h3>5.1 Reference Condition</h3>
+        <p>The current reference condition is: $C_{\text{chol}} = 40\ \text{mol\%}$, pH = 6.5, $[\text{LLO}] = 10\ \text{nM}$.</p>
+        <p>At this point, the model predicts:</p>
+
+        <div class="formula-block">
+          <p>$$B_{\text{eq}} \approx 0.551$$</p>
+        </div>
+
+        <h3>5.2 Local Sensitivity to Cholesterol</h3>
+        <p>The normalized local sensitivity of $B$ to cholesterol is defined as:</p>
+
+        <div class="formula-block">
+          <p>$$S_{B,C} = \frac{C}{B} \cdot \frac{\partial B}{\partial C}$$</p>
+        </div>
+
+        <p>Under the current provisional calibration:</p>
+
+        <div class="formula-block">
+          <p>$$S_{B,C} \approx 2.43$$</p>
+        </div>
+
+        <p>Near the reference point, a 1% relative increase in cholesterol mol% is therefore associated with an approximately <strong>2.43% relative increase</strong> in the predicted value of $B$, with all other inputs fixed.</p>
+        <p>This is a <strong>local, model-dependent quantity</strong>. It depends on the reference point, the cholesterol-to-$K_d$ mapping, the interpolation procedure, and the assumed model structure. It must not be interpreted as a constant biological effect across the full cholesterol range.</p>
+
+        <h3>5.3 Local Sensitivity to LLO Concentration</h3>
+        <p>The normalized local sensitivity to LLO concentration is:</p>
+
+        <div class="formula-block">
+          <p>$$S_{B,\text{LLO}} = \frac{[\text{LLO}]}{B} \cdot \frac{\partial B}{\partial [\text{LLO}]}$$</p>
+        </div>
+
+        <p>At the reference point:</p>
+
+        <div class="formula-block">
+          <p>$$S_{B,\text{LLO}} \approx 0.449$$</p>
+        </div>
+
+        <p>Thus, a 1% relative increase in LLO concentration produces an approximately <strong>0.449% relative increase</strong> in predicted $B$ near this condition. The sensitivity decreases as the binding response approaches saturation.</p>
+
+        <h3>5.4 Reporting Sensitivity to pH</h3>
+        <p>A percentage sensitivity is inappropriate for pH because pH is the negative logarithm of hydrogen-ion activity. The model should instead report either:</p>
+
+        <div class="formula-block">
+          <p>$$\frac{\partial B}{\partial \text{pH}}$$</p>
+        </div>
+
+        <p>or the predicted $B$ for a clearly stated absolute pH increment, such as 0.1 pH unit. Because $G_{\text{pH}}$ has not yet been robustly fitted, current pH-sensitivity values should be treated as <strong>demonstrations of model behavior</strong> rather than established biological estimates.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. Cholesterol–pH Interaction ===== -->
+  <section class="product-tile tile-canvas" id="sec-pl-interaction">
+    <div class="tile-inner">
+      <h2 class="tile-headline">6. Cholesterol–pH Interaction</h2>
+      <div class="tile-body">
+
+        <figure style="text-align: center; margin: var(--sp-lg) 0;">
+        <img src="images/Dry_Cholesterol%E2%80%93pH%20Interaction.png" alt="Cholesterol–pH Interaction Heatmap" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+        <figcaption style="margin-top: var(--sp-sm); color: var(--on-canvas-mute); font-size: 0.9rem;">Figure 2: Cholesterol–pH interaction heatmap. Fixed $[\text{LLO}] = 10\ \text{nM}$. Color represents predicted apparent binding fraction $B$.</figcaption>
+        </figure>
+
+        <p>The interaction plot fixes $[\text{LLO}] = 10\ \text{nM}$ and uses color to represent the predicted apparent binding fraction $B$. The dominant gradient is strongly influenced by the provisional cholesterol-dependent $K_d$ mapping.</p>
+        <p><strong>Under the current parameterization, the model output changes more strongly across the cholesterol axis than across the provisional pH mapping.</strong></p>
+        <p>This statement is deliberately model-specific. The heat map alone does not establish that cholesterol is biologically more important than pH under all conditions, that high cholesterol fully compensates for every pH effect, or that pH cannot shift the apparent cholesterol threshold. Published results support interdependence between cholesterol and pH, but any claim of compensation requires a defined response variable and matched comparison conditions.<sup>[1]</sup></p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 7. Cholesterol Response at Different LLO Concentrations ===== -->
+  <section class="product-tile tile-soft" id="sec-pl-llo-response">
+    <div class="tile-inner">
+      <h2 class="tile-headline">7. Cholesterol Response at Different LLO Concentrations</h2>
+      <div class="tile-body">
+
+        <figure style="text-align: center; margin: var(--sp-lg) 0;">
+        <img src="images/Dry_Cholesterol%20Response%20at%20Different%20LLO%20Concentrations.png" alt="Cholesterol Response at Different LLO Concentrations" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+        <figcaption style="margin-top: var(--sp-sm); color: var(--on-canvas-mute); font-size: 0.9rem;">Figure 3: Cholesterol response at different LLO concentrations. Comparison at $[\text{LLO}] = 0.1$, 10, and 1000 nM.</figcaption>
+        </figure>
+
+        <p>The comparison uses representative LLO concentrations of 0.1, 10, and 1000 nM. In the Langmuir-type expression, increasing LLO raises the effective concentration term:</p>
+
+        <div class="formula-block">
+          <p>$$G_{\text{chol}} \, G_{\text{pH}} \, [\text{LLO}]$$</p>
+        </div>
+
+        <p>Consequently:</p>
+        <ul>
+          <li>high LLO concentrations drive $B$ toward saturation across a broader cholesterol range;</li>
+          <li>lower LLO concentrations leave the predicted response more sensitive to the assumed $K_d$ and cholesterol mapping;</li>
+          <li>an apparent shift in the cholesterol response can arise from mass action combined with the imposed parameter mapping, rather than from a newly demonstrated molecular threshold.</li>
+        </ul>
+        <p>The concentrations 0.1, 10, and 1000 nM are illustrative values selected to compare model behavior. Without direct evidence from the target biological setting, they should not be labelled as subtoxic, physiologically infectious, or saturating concentrations.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 8. Fluorescence Calibration Using Baseline Normalization ===== -->
+  <section class="product-tile tile-canvas" id="sec-pl-fluorescence">
+    <div class="tile-inner">
+      <h2 class="tile-headline">8. Fluorescence Calibration Using Baseline Normalization</h2>
+      <div class="tile-body">
+
+        <h3>8.1 Selected Normalization Method</h3>
+        <p>The revised workflow uses <strong>ROI-wise baseline normalization</strong> instead of making an experimentally measured $F_{\max}$ the default denominator. The method is intended for single-liposome or ROI time series and does not require a separate maximum-release measurement for every trace.<sup>[3,4]</sup></p>
+        <p>First, subtract non-target background:</p>
+
+        <div class="formula-block">
+          <p>$$F_{\text{corr},i}(t) = F_{\text{raw},i}(t) - B_i(t)$$</p>
+        </div>
+
+        <p>$B_i(t)$ may be estimated from a matched liposome-free region, a dark/reference acquisition, or a validated local-background model.</p>
+        <p>Next, estimate the baseline over a predefined pre-treatment interval $T_0$:</p>
+
+        <div class="formula-block">
+          <p>$$F_{0,i} = \underset{t \in T_0}{\text{median}}\ F_{\text{corr},i}(t)$$</p>
+        </div>
+
+        <p>Finally, calculate:</p>
+
+        <div class="formula-block">
+          <p>$$R_i(t) = \frac{F_{\text{corr},i}(t) - F_{0,i}}{F_{0,i}}$$</p>
+        </div>
+
+        <p>The median is preferred when the baseline may contain occasional transients or outliers. A mean may be used if the baseline is stable and free of such events. The same background and baseline-window rules should be applied across the dataset, while each liposome or ROI retains its own $F_{0,i}$.<sup>[3,4]</sup></p>
+
+        <h3>8.2 Defining a Positive Release-Associated Response</h3>
+        <p>If the analysis tracks intraliposomal GFP, cargo loss normally appears as decreasing fluorescence. To make greater putative release correspond to a positive value, define normalized intraliposomal fluorescence loss as:</p>
+
+        <div class="formula-block">
+          <p>$$D_i(t) = \frac{F_{0,i} - F_{\text{corr},i}(t)}{F_{0,i}} = -R_i(t)$$</p>
+        </div>
+
+        <p>Interpretation:</p>
+        <ul>
+          <li>$D_i = 0$: no change from the corrected pre-treatment baseline;</li>
+          <li>$D_i > 0$: intraliposomal fluorescence has decreased relative to baseline;</li>
+          <li>$D_i = 0.8$: corrected intraliposomal fluorescence is 80% below its initial baseline.</li>
+        </ul>
+        <p>If the experiment instead measures increasing fluorescence in the external medium, the positive $R(t) = \Delta F / F_0$ convention may be used directly. The method must state the ROI location, signal direction, and background definition.</p>
+
+        <h3>8.3 Advantages Relative to $F_{\max}$ Normalization</h3>
+        <p>Baseline normalization offers several practical advantages:</p>
+        <ul>
+          <li>it avoids a separate detergent or maximum-response calibration for every trace;</li>
+          <li>it avoids relying on an $F_{\max}$ that may be distorted by detector saturation, detergent-dependent optical effects, endpoint drift, or failure to reach a true maximum;</li>
+          <li>it scales each trajectory to its own initial brightness, reducing differences associated with loading, illumination, focus, and collection efficiency;</li>
+          <li>it is well suited to time-resolved microscopy, repeated measurements, and large numbers of ROIs;</li>
+          <li>a baseline median is less sensitive to noise than a single initial frame.<sup>[3,4]</sup></li>
         </ul>
 
-        <h3>6.3 Secondary Model Fitting</h3>
-        <p>After $\mu_{\max}$ values are obtained from multiple growth curves under different environmental conditions, these values are used to fit the secondary model. For each condition, the secondary model predicts:</p>
-        <div class="formula-block">
-          <p>$$\mu_{\max,\text{pred}} = \mu_{\text{opt}} \cdot \gamma(T) \cdot \gamma(\text{pH}) \cdot \gamma(a_w) \cdot \gamma(\text{Nit}) \cdot \gamma(\text{HA}) \cdot \xi$$</p>
-        </div>
-        <p>The predicted values are then compared with the experimentally estimated $\mu_{\max}$ values. Model parameters such as $\mu_{\text{opt}}$, $T_{\min}$, $T_{\text{opt}}$, $\text{pH}_{\min}$, $\text{pH}_{\text{opt}}$, $\text{pH}_{\max}$, $a_{w,\min}$, and MIC values can be estimated or adapted from published studies.</p>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 7. Model Evaluation (soft) ===== -->
-  <section class="product-tile tile-canvas" id="sec-evaluation">
-    <div class="tile-inner">
-      <h2 class="tile-headline">7. Model Evaluation</h2>
-      <div class="tile-body">
-        <p>The performance of the model can be evaluated using statistical indicators such as the root mean square error, bias factor, and accuracy factor.</p>
-
-        <h3>7.1 Root Mean Square Error (RMSE)</h3>
-        <div class="formula-block">
-          <p>$$\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} \left(y_{i,\text{obs}} - y_{i,\text{pred}}\right)^2}$$</p>
-        </div>
-        <p>A smaller RMSE indicates better agreement between the observed and predicted values.</p>
-
-        <h3>7.2 Bias Factor ($B_f$)</h3>
-        <p>The bias factor evaluates whether the model systematically overpredicts or underpredicts bacterial growth:</p>
-        <div class="formula-block">
-          <p>$$B_f = 10^{\frac{1}{n} \sum_{i=1}^{n} \log_{10}\left(\frac{y_{i,\text{pred}}}{y_{i,\text{obs}}}\right)}$$</p>
-        </div>
-        <p>If $B_f$ is close to 1, the model has little systematic bias. If $B_f > 1$, the model tends to overpredict growth. If $B_f < 1$, the model tends to underpredict growth.</p>
-
-        <h3>7.3 Accuracy Factor ($A_f$)</h3>
-        <p>The accuracy factor describes the average deviation between predicted and observed values:</p>
-        <div class="formula-block">
-          <p>$$A_f = 10^{\frac{1}{n} \sum_{i=1}^{n} \left|\log_{10}\left(\frac{y_{i,\text{pred}}}{y_{i,\text{obs}}}\right)\right|}$$</p>
-        </div>
-        <p>An accuracy factor closer to 1 indicates better prediction accuracy.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== 8. Interpretation of Model Outputs (canvas) ===== -->
-  <section class="product-tile tile-soft" id="sec-interpretation">
-    <div class="tile-inner">
-      <h2 class="tile-headline">8. Interpretation of Model Outputs</h2>
-      <div class="tile-body">
-        <p>The main output of the complete model is a <strong>predicted growth curve</strong> of <em>L. monocytogenes</em> under a specific food condition. This curve shows how bacterial concentration changes during storage.</p>
-        <p>The model can be used to answer questions such as:</p>
+        <h3>8.4 Limitations and Trade-offs</h3>
+        <p>The method also imposes important limitations:</p>
         <ul>
-          <li>How fast will <em>L. monocytogenes</em> grow in a specific RTE food?</li>
-          <li>How long is the lag phase under refrigerated storage?</li>
-          <li>How does temperature abuse affect bacterial growth?</li>
-          <li>How strongly do lactate, acetate, diacetate, or nitrite inhibit growth?</li>
-          <li>Which food matrix presents a higher growth risk?</li>
-          <li>How can storage conditions or preservatives be adjusted to reduce risk?</li>
+          <li>$\Delta F / F_0$ is a relative change from baseline, not an absolute fraction of total releasable GFP;</li>
+          <li>the same value of $D$ need not correspond to the same physical endpoint across samples;</li>
+          <li>background-subtraction errors can produce $D > 1$ or anomalous negative values;</li>
+          <li>a small $F_0$ amplifies modest background errors;</li>
+          <li>photobleaching, focus drift, and liposome movement can mimic intraliposomal fluorescence loss;</li>
+          <li>if no stable pre-treatment interval exists, estimating $F_0$ requires a percentile, rolling baseline, or model-based procedure that adds assumptions;</li>
+          <li>without $F_{\max}$, $D$ alone cannot establish complete release or make measurements from different indicators and instruments directly equivalent.<sup>[3,4]</sup></li>
         </ul>
-        <p>For example, if the predicted $\mu_{\max}$ is high and the lag time is short, the food condition is favorable for <em>L. monocytogenes</em> growth. In contrast, if the predicted $\mu_{\max}$ is low and the lag time is long, the food condition is inhibitory.</p>
+        <p>Accordingly, baseline normalization exchanges an absolute maximum-referenced scale for a simpler ROI-specific relative-response measure. If the goal is to estimate the fraction of all releasable cargo, detergent-defined $F_{\max}$ remains informative and may be retained for representative validation samples rather than used as the default denominator for every trajectory.</p>
+
+        <h3>8.5 Minimum Quality-Control Requirements</h3>
+        <p>A defensible analysis should specify in advance:</p>
+        <ul>
+          <li>the pre-treatment baseline interval $T_0$;</li>
+          <li>how background ROIs are selected and whether background is time varying;</li>
+          <li>exclusion rules for saturated traces, near-zero $F_0$, unstable baselines, excessive drift, and poor signal-to-noise ratio;</li>
+          <li>photobleaching correction, supported by no-LLO controls;</li>
+          <li>liposome tracking and focal-drift correction;</li>
+          <li>any threshold used to define near-complete fluorescence loss and the minimum duration for which it must persist.</li>
+        </ul>
+        <p>A rolling baseline may help correct slow drift, but its window must be substantially longer than the biological response of interest. Otherwise, genuine slow release may be absorbed into the estimated baseline.</p>
+
       </div>
     </div>
   </section>
 
-  <!-- ===== 9. Complete Calculation Process (soft) ===== -->
-  <section class="product-tile tile-canvas" id="sec-process">
+  <!-- ===== Conclusion ===== -->
+  <section class="product-tile tile-soft">
     <div class="tile-inner">
-      <h2 class="tile-headline">9. Complete Calculation Process</h2>
+      <h2 class="tile-headline">Conclusion</h2>
       <div class="tile-body">
-        <div class="process-steps">
-          <div class="process-step">
-            <span class="step-num">Step 1</span>
-            <span class="step-text">Select a food product from the parameter table</span>
-          </div>
-          <div class="process-connector">↓</div>
-          <div class="process-step">
-            <span class="step-num">Step 2</span>
-            <span class="step-text">Extract raw parameters: $T$, pH, $a_w$, nitrite, lactate, acetate, diacetate, propionate</span>
-          </div>
-          <div class="process-connector">↓</div>
-          <div class="process-step">
-            <span class="step-num">Step 3</span>
-            <span class="step-text">Convert raw parameters into Gamma factors: $\gamma(T)$, $\gamma(\text{pH})$, $\gamma(a_w)$, $\gamma(\text{Nit})$, $\gamma(\text{HA})$</span>
-          </div>
-          <div class="process-connector">↓</div>
-          <div class="process-step">
-            <span class="step-num">Step 4</span>
-            <span class="step-text">Calculate $\mu_{\max} = \mu_{\text{opt}} \cdot \gamma(T) \cdot \gamma(\text{pH}) \cdot \gamma(a_w) \cdot \gamma(\text{Nit}) \cdot \gamma(\text{HA}) \cdot \xi$</span>
-          </div>
-          <div class="process-connector">↓</div>
-          <div class="process-step">
-            <span class="step-num">Step 5</span>
-            <span class="step-text">Insert $\mu_{\max}$ into Logistic-with-delay or Baranyi model</span>
-          </div>
-          <div class="process-connector">↓</div>
-          <div class="process-step">
-            <span class="step-num">Step 6</span>
-            <span class="step-text">Generate predicted growth curve: $\log(\text{CFU/g})$ versus storage time</span>
-          </div>
-        </div>
+        <p>The selected Poreglow framework provides a coherent but deliberately simplified connection between cholesterol, pH, temperature-dependent LLO availability, apparent membrane binding, and fluorescence-based readouts. Published evidence supports strong cholesterol dependence and a context-dependent pH effect, but neither variable acts through a single isolated step. Cholesterol influences binding and membrane-associated assembly, whereas pH affects binding as well as temperature-dependent solution-phase aggregation and inactivation.</p>
+        <p>The binding variable $B$ represents apparent occupancy under a Langmuir-type approximation; it is <strong>not</strong> a direct measure of oligomer number, inserted pores, GFP release, or membrane rupture. Consequently, the theoretical cholesterol and pH responses remain conditional on provisional parameter mappings. The reported sensitivities are local properties of the present model rather than universal biological constants, and the single factor $G_{\text{pH}}$ cannot yet distinguish reversible binding effects from irreversible thermal inactivation.</p>
+        <p>The fluorescence workflow should likewise be interpreted operationally. ROI-wise baseline normalization provides a practical way to compare time-dependent responses without measuring $F_{\max}$ for every trace. For intraliposomal GFP, the derived variable $D_i(t)$ quantifies fluorescence loss relative to the corrected pre-treatment baseline. It does not, by itself, quantify the absolute fraction of cargo released or prove structural membrane rupture.</p>
+        <p>The most defensible use of the model is therefore to generate testable trends and organize experimental comparisons while preserving strict separation among published evidence, modelling assumptions, and exploratory predictions. Future validation should refit the cholesterol and pH mappings using original data, retain raw and normalized fluorescence traces, include controls for bleaching and motion, use representative $F_{\max}$ measurements where absolute release matters, and compare predicted responses against experimental conditions not used for calibration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== References ===== -->
+  <section class="product-tile tile-canvas">
+    <div class="tile-inner">
+      <h2 class="tile-headline">References</h2>
+      <div class="tile-body">
+        <ol>
+          <li>Bavdek, A., Gekara, N. O., Priselac, D., Gutiérrez Aguirre, I., Darji, A., Chakraborty, T., Macek, P., Lakey, J. H., Weiss, S., & Anderluh, G. (2007). Sterol and pH interdependence in the binding, oligomerization, and pore formation of listeriolysin O. <em>Biochemistry</em>, 46(14), 4425–4437. <a href="https://doi.org/10.1021/bi602497g" target="_blank" rel="noopener">https://doi.org/10.1021/bi602497g</a></li>
+          <li>Bavdek, A., Kostanjšek, R., Antonini, V., Lakey, J. H., Dalla Serra, M., Gilbert, R. J. C., & Anderluh, G. (2012). pH dependence of listeriolysin O aggregation and pore-forming ability. <em>The FEBS Journal</em>, 279(1), 126–141. <a href="https://doi.org/10.1111/j.1742-4658.2011.08405.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1742-4658.2011.08405.x</a></li>
+          <li>Dombeck, D. A., Khabbaz, A. N., Collman, F., Adelman, T. L., & Tank, D. W. (2007). Imaging large-scale neural activity with cellular resolution in awake, mobile mice. <em>Neuron</em>, 56(1), 43–57. <a href="https://doi.org/10.1016/j.neuron.2007.08.003" target="_blank" rel="noopener">https://doi.org/10.1016/j.neuron.2007.08.003</a></li>
+          <li>Chen, T.-W., Wardill, T. J., Sun, Y., Pulver, S. R., Renninger, S. L., Baohan, A., Schreiter, E. R., Kerr, R. A., Orger, M. B., Jayaraman, V., Looger, L. L., Svoboda, K., & Kim, D. S. (2013). Ultrasensitive fluorescent proteins for imaging neuronal activity. <em>Nature</em>, 499, 295–300. <a href="https://doi.org/10.1038/nature12354" target="_blank" rel="noopener">https://doi.org/10.1038/nature12354</a></li>
+        </ol>
       </div>
     </div>
   </section>
