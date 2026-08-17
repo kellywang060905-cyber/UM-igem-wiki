@@ -69,14 +69,86 @@
     </div>
   </section>
 
-  <section class="product-tile tile-canvas">
-    <div class="tile-inner" style="max-width: var(--content-max);">
-      <h2 class="tile-headline">Experiments</h2>
-      <div class="tile-body">
-        <p>还没有开始填写，先占个位置~=ᗜωᗜ=</p>
-      </div>
-    </div>
-  </section>
+  <!-- ===== Sidebar + Content Layout ===== -->
+  <div class="page-with-sidebar">
+
+    <!-- === Sidebar === -->
+    <aside class="sidebar-nav">
+      <ul class="sidebar-links">
+        <li><a href="#sec-exp-abstract" class="sidebar-model active">Abstract</a></li>
+        <li><a href="#sec-exp-design" class="sidebar-model">Experimental Design</a></li>
+        <li><a href="#sec-exp-ref" class="sidebar-model">References</a></li>
+      </ul>
+    </aside>
+
+    <!-- === Content === -->
+    <main class="page-content">
+
+      <!-- ===== 1. Abstract ===== -->
+      <section class="product-tile tile-section-header tile-canvas" id="sec-exp-abstract">
+        <div class="tile-inner">
+          <h2 class="tile-headline">Abstract</h2>
+          <div class="tile-body">
+            <p><em>Listeria monocytogenes</em> is a Gram-positive foodborne pathogen responsible for listeriosis, a severe infection with a mortality rate as high as 20–30% in high-risk populations including pregnant women, neonates, and the elderly. The bacterium's pathogenicity is largely attributed to listeriolysin O (LLO), a cholesterol-dependent pore-forming toxin that serves as a reliable virulence marker. Current detection methods for <em>L. monocytogenes</em>—such as plate culture, PCR, and immunoassays—are time-consuming, labor-intensive, and require specialized laboratory equipment, limiting their utility for rapid on-site screening in food supply chains. We aim to present a comprehensive biosensing framework comprising four modular detection strategies that exploit LLO-induced membrane disruption to generate rapid fluorescence signals.</p>
+
+            <p><em>L. monocytogenes</em> is a facultative intracellular pathogen and the causative agent of listeriosis, a foodborne illness associated with severe clinical manifestations including septicemia, meningitis, and fetal infection. The bacterium is ubiquitous in the environment and can contaminate a wide range of food products, particularly ready-to-eat meats and dairy products. Unlike many other foodborne pathogens, <em>L. monocytogenes</em> can grow at refrigeration temperatures, which makes it a persistent threat in cold-chain food storage. Pregnant women, immunocompromised individuals, newborns, and the elderly are disproportionately susceptible, with case fatality rates reaching 20–30% in vulnerable groups.</p>
+
+            <p>One of the virulence factors of <em>L. monocytogenes</em> is listeriolysin O (LLO), which belongs to the cholesterol-dependent cytolysin (CDC) family. LLO is a thiol-activated pore-forming toxin that plays an essential role in the bacterium's intracellular lifecycle. It mediates escape from host phagosomes into the cytosol by forming pores in cholesterol-containing membranes at acidic pH. The pore-forming activity of LLO is both pH- and temperature-dependent, which distinguishes it from other CDCs and enables the bacterium to survive within the hostile intracellular environment. Importantly, LLO is uniquely associated with <em>L. monocytogenes</em> among <em>Listeria</em> species, making it an ideal target for specific detection.</p>
+
+            <p>Conventional detection methods for <em>L. monocytogenes</em> face significant challenges. Culture-based methods require 24–72 hours for enrichment and isolation. Molecular methods such as PCR offer improved sensitivity but demand nucleic acid extraction, thermocycling equipment, and trained personnel. Immunoassays provide moderate speed but often suffer from cross-reactivity and limited sensitivity. These limitations highlight the urgent need for rapid, sensitive, and portable detection systems that can be deployed at critical control points in the food supply chain.</p>
+
+            <p>Our project addresses this need by developing a modular biosensing toolkit that utilizes LLO's pore-forming activity to generate fluorescence signals through multiple orthogonal mechanisms. The framework integrates four complementary strategies: the PoreGlow method, which uses split GFP complementation following LLO-induced liposome disruption; LOV-mediated optical enhancement, which relies on blue-light-inducible dimerization to enhance split GFP reassembly; TEV protease-based quenching relief, which enables FRET-based fluorescence restoration upon protease cleavage; and exosome packaging, which is a biocompatible delivery platform using engineered exosomes. These modules constitute a comprehensive, rapid, and portable detection platform for viable <em>L. monocytogenes</em>.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 2. Experimental Design ===== -->
+      <section class="product-tile tile-section-header tile-soft" id="sec-exp-design">
+        <div class="tile-inner">
+          <h2 class="tile-headline">Experimental Design</h2>
+          <div class="tile-body">
+            <h3>1. PoreGlow Method</h3>
+            <p>The PoreGlow system is based on split superfolder GFP (sfGFP) technology, wherein the GFP protein is divided into two non-fluorescent fragments (sfGFPa and sfGFPb) that can spontaneously reassociate to form a functional fluorescent protein when brought into proximity. In our design, one fragment is encapsulated within liposomes, with the other fragment provided in the external solution.</p>
+
+            <p>In the absence of <em>L. monocytogenes</em>, liposomes remain intact and the encapsulated sfGFP fragments are physically separated from the externally supplied complementary fragment, resulting in no fluorescence signal. When LLO is present, the toxin binds to cholesterol in the liposomal membrane and forms pores. These pores allow the encapsulated sfGFP fragments to leak into the external environment, where they encounter and complement with the externally added sfGFP fragment, reconstituting the native GFP structure and emitting green fluorescence. The assay requires no sample pre-treatment and can be completed within a time frame substantially shorter than conventional culture-based methods.</p>
+
+            <h3>2. Light-Oxygen-Voltage (LOV) Method</h3>
+            <p>Light-Oxygen-Voltage (LOV) domains are small photosensory modules found in plants, fungi, and bacteria that bind flavin mononucleotide (FMN) or flavin adenine dinucleotide (FAD) as chromophores. Upon absorption of blue light, a covalent flavin–cysteinyl photoadduct forms and triggers conformational changes that modulate protein–protein interactions. The LOV domain from <em>Vaucheria frigida</em> aureochrome 1 (VfAU1) is particularly useful for optogenetic applications. In the dark, VfAU1-LOV is predominantly monomeric, whereas blue-light illumination induces homodimerization.</p>
+
+            <p>In the LOV method, LOV domains are fused to the N-termini of both sfGFP fragments (sfGFPa and sfGFPb). Upon blue-light irradiation at 450 nm, the LOV domains undergo dimerization and bring the fused sfGFP fragments into close physical proximity. This forced proximity facilitates split GFP complementation and enhances fluorescence recovery beyond the spontaneous reassociation observed in the PoreGlow system alone.</p>
+
+            <p>The incorporation of optical control provides distinct advantages. First, fluorescence signal generation can be triggered at defined time points and in specific locations by controlling light exposure. Moreover, light-induced dimerization increases the local concentration of sfGFP fragments and promotes more efficient complementation and stronger fluorescence signals.</p>
+
+            <h3>3. TEV Protease Method</h3>
+            <p>The TEV protease method is designed around a fluorescence quenching and restoration mechanism that employs two distinct reporter constructs. Tobacco Etch Virus (TEV) protease is a highly specific cysteine protease that recognizes a seven-amino-acid cleavage sequence (ENLYFQS). In our design, we construct fusion proteins consisting of a fluorescent protein (EGFP or EYFP) linked to a quencher (QP or REACh) via a TEV protease-cleavable peptide linker. These fusion proteins are encapsulated within liposomes, while TEV protease is supplied in the external solution.</p>
+
+            <p>In the absence of LLO, liposomes remain intact, and the EYFP-TEV-REACh and EGFP-TEV-QP fusion proteins are maintained in proximity, allowing the quencher to suppress EGFP and EYFP fluorescence. When LLO forms pores in the liposomal membrane, TEV protease from the external solution cleaves the TEV recognition site within the linker. This cleavage physically separates EGFP and EYFP from QP and REACh, allowing them to emit fluorescence.</p>
+
+            <h3>4. Exosome Method</h3>
+            <p>While liposomes provide a convenient model membrane system for proof-of-concept studies, their translational potential is limited by stability, scalability, and biocompatibility concerns. Exosomes—naturally occurring extracellular vesicles secreted by most cell types—offer several advantages as a packaging platform. For instance, exosomes are naturally derived and exhibit low immunogenicity. Furthermore, exosomal membranes are enriched in cholesterol and sphingomyelin, providing enhanced stability.</p>
+
+            <p>We plan to utilize exosomes derived from HEK293T cells engineered to express LAMP2b fusion proteins on the exosomal surface. LAMP2b is a well-characterized exosomal membrane protein that has been successfully used for surface display of functional peptides and proteins. Two reporter constructs will be expressed in HEK293T cells: LAMP2b fused to EYFP linked to REACh via a TEV-cleavable linker, and LAMP2b fused to EGFP linked to a QP via a TEV-cleavable linker. Both constructs are designed such that the fluorescent protein–quencher fusion is displayed within the exosomal lumen. Upon LLO-mediated pore formation, TEV protease enters the exosome and cleaves the linker, separating the fluorescent protein from its quencher and restoring fluorescence.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 3. References ===== -->
+      <section class="product-tile tile-section-header tile-canvas" id="sec-exp-ref">
+        <div class="tile-inner">
+          <h2 class="tile-headline">References</h2>
+          <div class="tile-body">
+            <ol>
+              <li>Ganesan, S., Ameer-Beg, S. M., Ng, T. T., Vojnovic, B., &amp; Wouters, F. S. (2006). A dark yellow fluorescent protein (YFP)-based Resonance Energy-Accepting Chromoprotein (REACh) for FRET with GFP. <em>Proceedings of the National Academy of Sciences of the United States of America</em>, <em>103</em>(11), 4809–4904.</li>
+              <li>Guk, K., Yi, S., Kim, H., Kim, S., Lim, E. K., Kang, T., &amp; Jung, J. (2024). PoreGlow: A split green fluorescent protein-based system for rapid detection of <em>Listeria monocytogenes</em>. <em>Food Chemistry</em>, <em>458</em>, 138043.</li>
+              <li>Pudasaini, A., El-Arab, K. K., &amp; Zoltowski, B. D. (2015). LOV-based optogenetic devices: light-driven modules to impart photoregulated control of cellular signaling [Review]. <em>Frontiers in Molecular Biosciences</em>, <em>2</em>.</li>
+              <li>Radoshevich, L., &amp; Cossart, P. (2018). <em>Listeria monocytogenes</em>: towards a complete picture of its physiology and pathogenesis. <em>Nature Reviews Microbiology</em>, <em>16</em>(1), 32–46.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <footer class="site-footer">
   </footer>

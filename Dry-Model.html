@@ -102,7 +102,19 @@
             <li><a href="#sec-pl-fluorescence">8. Fluorescence</a></li>
           </ul>
         </li>
-        <li><a href="#model2" class="sidebar-model">Model 2</a></li>
+        <li><a href="#model2" class="sidebar-model">Recommended Cholesterol Concentrations</a></li>
+        <li class="sidebar-section-group">
+          <ul class="sidebar-sections">
+            <li><a href="#sec-rc-summary">Executive Summary</a></li>
+            <li><a href="#sec-rc-scope">1. Scope and Interpretation</a></li>
+            <li><a href="#sec-rc-data">2. Data from the Three Core References</a></li>
+            <li><a href="#sec-rc-charts">3. Three Key Charts</a></li>
+            <li><a href="#sec-rc-rec">4. Recommended Concentrations</a></li>
+            <li><a href="#sec-rc-review">5. Review of the Binding Model</a></li>
+            <li><a href="#sec-rc-final">6. Final Recommendations</a></li>
+            <li><a href="#sec-rc-refs">References</a></li>
+          </ul>
+        </li>
         <li><a href="#model3" class="sidebar-model">Model 3</a></li>
       </ul>
     </aside>
@@ -534,38 +546,358 @@
     </div>
   </section>
 
-  <!-- ===== Model 2 ===== -->
+  <!-- ===== Model 2: Recommended Cholesterol Concentrations ===== -->
   <section class="product-tile tile-section-header tile-canvas" id="model2" style="padding: var(--sp-xxl) var(--sp-xl)">
     <div class="tile-inner">
-      <h2 class="tile-headline">Model 2</h2>
+      <h2 class="tile-headline">Recommended Cholesterol Concentrations</h2>
     </div>
   </section>
 
-  <section class="product-tile tile-canvas">
+  <!-- ===== Executive Summary ===== -->
+  <section class="product-tile tile-canvas" id="sec-rc-summary">
     <div class="tile-inner">
-      <h3 class="tile-headline">Background</h3>
-      <div class="tile-body"><p>Content coming soon.</p></div>
+      <h2 class="tile-headline">Executive Summary</h2>
+      <div class="tile-body">
+        <p>This report converts the cholesterol-dependent observations in three core LLO studies into practical concentration ranges for the Poreglow model and related wet-lab experiments. The central conclusion is that cholesterol should not be treated as a simple linear multiplier. Instead, the literature supports a progression from negligible productive interaction at very low cholesterol, through a condition-dependent intermediate region, into a relatively narrow transition around 30–35 mol%, followed by a high-response regime at approximately 35–50 mol%.<sup>[1–3]</sup></p>
+
+        <p>For communication and experimental planning, the recommended interpretation is:</p>
+
+        <div class="table-caption">Table 2: Recommended interpretation of cholesterol ranges.</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Cholesterol concentration</th><th>Predicted Bind State</th><th>Recommended use</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0–10 mol%</td><td>Very low</td><td>Negative or membrane-insensitive control</td></tr>
+              <tr><td>10–20 mol%</td><td>Low</td><td>Weak-binding or edge-interaction condition</td></tr>
+              <tr><td>20–30 mol%</td><td>Low to moderate</td><td>Condition-dependent binding and early activity</td></tr>
+              <tr><td>30–35 mol%</td><td>Transition</td><td>Best range for resolving the cholesterol-dependent switch</td></tr>
+              <tr><td>35–40 mol%</td><td>High</td><td>Robust productive association, oligomerization, and insertion</td></tr>
+              <tr><td>40–50 mol%</td><td>Very high</td><td>Strong-response or positive-control condition</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The term Bind state is used here as an operational, normalized description of productive membrane association. It is not claimed to be a direct molecular occupancy or the fraction of complete pores.</p>
+      </div>
     </div>
   </section>
 
-  <section class="product-tile tile-soft">
+  <!-- ===== 1. Scope and Interpretation ===== -->
+  <section class="product-tile tile-soft" id="sec-rc-scope">
     <div class="tile-inner">
-      <h3 class="tile-headline">Methods</h3>
-      <div class="tile-body"><p>Content coming soon.</p></div>
+      <h2 class="tile-headline">1. Scope and Interpretation</h2>
+      <div class="tile-body">
+        <p>LLO action involves several separable stages: soluble toxin availability, initial membrane attachment, retention at the membrane, lateral oligomerization, prepore formation, membrane insertion, pore formation, and larger-scale membrane damage. Consequently, SPR response, monolayer insertion pressure, calcein release, pore-event frequency, and membrane-area destruction are not interchangeable measurements.<sup>[1–3]</sup></p>
+        <p>The present analysis therefore uses the studies in a layered way:</p>
+        <ol>
+          <li>Bavdek et al. 2007 provides the primary cholesterol concentration series and the closest experimental evidence for a cholesterol-dependent Bind state.<sup>[1]</sup></li>
+          <li>Bavdek et al. 2012 clarifies how pH and temperature alter active LLO availability and pore-event frequency, preventing cholesterol effects from being interpreted without environmental context.<sup>[2]</sup></li>
+          <li>Ruan et al. 2016 visualizes oligomerization, insertion, arc formation, and membrane destruction, providing downstream mechanistic validation for the Bind-state interpretation.<sup>[3]</sup></li>
+        </ol>
+        <p>No Hill equation is imposed. Shape-preserving interpolation is used only to connect literature-informed points and display the observed trends without introducing a specific mechanistic curve shape.</p>
+      </div>
     </div>
   </section>
 
-  <section class="product-tile tile-canvas">
+  <!-- ===== 2. Data from the Three Core References ===== -->
+  <section class="product-tile tile-canvas" id="sec-rc-data">
     <div class="tile-inner">
-      <h3 class="tile-headline">Results</h3>
-      <div class="tile-body"><p>Content coming soon.</p></div>
+      <h2 class="tile-headline">2. Data from the Three Core References</h2>
+      <div class="tile-body">
+        <p>The three references measure different stages of LLO activity. Bavdek 2007 provides the main cholesterol-dependent series used to construct the operational Bind-state curve. Bavdek 2012 provides environmental and mechanistic constraints. Ruan 2016 provides downstream validation through direct visualization of oligomerization, insertion, and membrane destruction.</p>
+
+        <h3>2.1 Bavdek et al. 2007</h3>
+        <div class="table-caption">Table 3: Experimental cholesterol concentrations in Bavdek et al. 2007.</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Experimental endpoint</th><th>Cholesterol concentrations tested</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>SPR binding series</td><td>0, 10, 20, 25, 30, 35, 40, and 45 mol%</td></tr>
+              <tr><td>Monolayer insertion series</td><td>0, 10, 20, 25, 30, 35, 40, and 45 mol%</td></tr>
+              <tr><td>Calcein-release series</td><td>0, 10, 20, 30, 35, 40, and 50 mol%</td></tr>
+              <tr><td>Two-step SPR kinetic comparison</td><td>20 and 35 mol%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-caption">Table 4: Normalized endpoint values used to construct the charts.</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Cholesterol</th><th>Stable SPR binding</th><th>Membrane insertion</th><th>Calcein release</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0 mol%</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+              <tr><td>10 mol%</td><td>0.02</td><td>0.06</td><td>0.01</td></tr>
+              <tr><td>20 mol%</td><td>0.05</td><td>0.22</td><td>0.05</td></tr>
+              <tr><td>25 mol%</td><td>0.10</td><td>0.30</td><td>Not available</td></tr>
+              <tr><td>30 mol%</td><td>0.22</td><td>0.47</td><td>0.18</td></tr>
+              <tr><td>35 mol%</td><td>0.62</td><td>0.66</td><td>0.45</td></tr>
+              <tr><td>40 mol%</td><td>0.88</td><td>0.84</td><td>0.77</td></tr>
+              <tr><td>45 mol%</td><td>1.00</td><td>1.00</td><td>Not available</td></tr>
+              <tr><td>50 mol%</td><td>Not available</td><td>Not available</td><td>1.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>These values are approximate normalized readings derived from the published multi-assay cholesterol trends. Each endpoint was normalized independently because SPR response, critical insertion pressure, and calcein release have different physical units. The values are used for interpolation and visual comparison, not as original raw measurements supplied by the authors.<sup>[1]</sup></p>
+
+        <p>The two-step SPR kinetic comparison at 20 and 35 mol% cholesterol shows that the first-step association rates were similar at both cholesterol levels (no clear large cholesterol-dependent increase), whereas the first-step dissociation rate was approximately <strong>5.8-fold slower</strong> at 35 mol%. The overall apparent $K_D$ decreased from about <strong>345 nM</strong> at 20 mol% to <strong>5.5 nM</strong> at 35 mol%, indicating much greater apparent affinity. The kinetic results explain why the stable SPR signal rises with cholesterol: higher cholesterol mainly increases membrane retention by reducing apparent dissociation, thereby allowing more time for membrane-associated LLO to oligomerize.<sup>[1]</sup></p>
+
+        <h3>2.2 Bavdek et al. 2012</h3>
+        <div class="table-caption">Table 5: Environmental and mechanistic constraints from Bavdek et al. 2012.</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Experimental condition or result</th><th>Reported value</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Cholesterol concentrations in planar membranes</td><td>20 and 35 mol%</td></tr>
+              <tr><td>LLO concentration in planar-membrane experiments</td><td>10–20 nM</td></tr>
+              <tr><td>Experimental temperature</td><td>Approximately 24–25 °C</td></tr>
+              <tr><td>Pore events at pH 5.5</td><td>125</td></tr>
+              <tr><td>Pore events at pH 7.5</td><td>48</td></tr>
+              <tr><td>Small-pore fraction at pH 5.5</td><td>59%</td></tr>
+              <tr><td>Small-pore fraction at pH 7.5</td><td>49%</td></tr>
+              <tr><td>Large-pore fraction at pH 5.5</td><td>11%</td></tr>
+              <tr><td>Large-pore fraction at pH 7.5</td><td>10%</td></tr>
+              <tr><td>Detectable pore-size difference between 20 and 35 mol%</td><td>No clear difference</td></tr>
+              <tr><td>Effect of pH 7.5 and 37 °C</td><td>Rapid aggregation and loss of activity</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>This study is not used to generate additional direct Bind-state points. Instead, the 20 and 35 mol% conditions are used as mechanistic checkpoints. The results show that cholesterol changes LLO activity and event frequency, while pH and temperature determine how much soluble LLO remains active. They also show that increased activity does not necessarily mean that individual pores become larger.<sup>[2]</sup></p>
+
+        <h3>2.3 Ruan et al. 2016</h3>
+        <div class="table-caption">Table 6: Cholesterol-dependent membrane destruction observed by HS-AFM.</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Cholesterol</th><th>Main HS-AFM observation</th><th>Approx. destruction rate</th><th>Normalized rate used in comparison</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>0 mol%</td><td>No productive membrane disruption</td><td>0 nm²/s</td><td>0.00</td></tr>
+              <tr><td>10 mol%</td><td>Edge-mediated disruption without typical arc formation</td><td>300 nm²/s</td><td>0.25</td></tr>
+              <tr><td>20 mol%</td><td>Arc formation, insertion, and membrane disruption</td><td>600 nm²/s</td><td>0.50</td></tr>
+              <tr><td>40 mol%</td><td>Rapid oligomerization, insertion, and extensive destruction</td><td>1,200 nm²/s</td><td>1.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-caption">Table 7: Structural and kinetic observations from Ruan et al. 2016.</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Parameter</th><th>Reported value</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Prepore height</td><td>11.1 ± 0.5 nm</td></tr>
+              <tr><td>Inserted-pore height</td><td>7.3 ± 0.2 nm</td></tr>
+              <tr><td>Average arc length</td><td>51 ± 6 nm</td></tr>
+              <tr><td>Arc curvature radius</td><td>31 ± 3 nm</td></tr>
+              <tr><td>Approximate number of LLO subunits per arc</td><td>About 20</td></tr>
+              <tr><td>Approximate oligomerization rate</td><td>5 nm/s, or about 2 subunits/s</td></tr>
+              <tr><td>Approximate time to form a mature arc</td><td>About 10 s</td></tr>
+              <tr><td>Typical prepore residence period</td><td>Up to minutes</td></tr>
+              <tr><td>Approximate insertion rate</td><td>2 nm/s, or about 1 subunit/s</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Ruan's destruction rates are normalized only for comparison with the operational Bind-state curve. They are not treated as direct measurements of binding. The data show how increasing cholesterol converts initial membrane interaction into oligomerization, insertion, and large-scale membrane damage.<sup>[3]</sup></p>
+
+        <h3>2.4 How the Data Are Used</h3>
+        <div class="table-caption">Table 8: Role of each dataset in the analysis.</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Dataset</th><th>Role in the analysis</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Bavdek 2007 stable SPR binding</td><td>Primary evidence for cholesterol-dependent stable membrane association</td></tr>
+              <tr><td>Bavdek 2007 monolayer insertion</td><td>Independent evidence for cholesterol-dependent insertion competence</td></tr>
+              <tr><td>Bavdek 2007 calcein release</td><td>Functional evidence for cholesterol-dependent permeabilization</td></tr>
+              <tr><td>Bavdek 2007 kinetic parameters</td><td>Explanation of why higher cholesterol produces more stable binding</td></tr>
+              <tr><td>Bavdek 2012 planar-membrane results</td><td>Environmental and mechanistic constraints on the interpretation</td></tr>
+              <tr><td>Bavdek 2012 aggregation results</td><td>Evidence that pH and temperature control active soluble LLO</td></tr>
+              <tr><td>Ruan 2016 HS-AFM observations</td><td>Direct visualization of oligomerization, insertion, and membrane destruction</td></tr>
+              <tr><td>Ruan 2016 destruction rates</td><td>Downstream comparison with the interpolated Bind-state trend</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The three Bavdek 2007 endpoint series are interpolated separately using shape-preserving PCHIP interpolation. Their median is used as an operational Bind-state summary, while their minimum-to-maximum range is retained as an endpoint envelope. Bavdek 2012 and Ruan 2016 are used to interpret and validate the biological meaning of the concentration ranges, but their measurements are not pooled into the direct Bind-state interpolation.</p>
+      </div>
     </div>
   </section>
 
-  <section class="product-tile tile-soft">
+  <!-- ===== 3. Construction and Interpretation of the Three Key Charts ===== -->
+  <section class="product-tile tile-soft" id="sec-rc-charts">
     <div class="tile-inner">
-      <h3 class="tile-headline">Discussion</h3>
-      <div class="tile-body"><p>Content coming soon.</p></div>
+      <h2 class="tile-headline">3. Construction and Interpretation of the Three Key Charts</h2>
+      <div class="tile-body">
+        <h3>3.1 Cholesterol–Bind Relationship</h3>
+        <p>How the chart was created:</p>
+        <ol>
+          <li>The usable Bavdek 2007 cholesterol conditions were organized separately for stable SPR binding, monolayer insertion, and calcein release.</li>
+          <li>Each endpoint was normalized independently to a 0–1 scale. This prevents incomparable physical units, such as resonance units, pressure, and percentage release, from being combined directly.</li>
+          <li>A shape-preserving PCHIP interpolator was applied to each endpoint series. PCHIP was selected because it connects the literature-informed points smoothly while limiting artificial overshoot and avoiding the mechanistic assumptions of a Hill fit.</li>
+          <li>At every cholesterol concentration, the median of the available endpoint curves was calculated as the operational Bind-state trend.</li>
+          <li>The lowest and highest endpoint values were retained as a shaded envelope. This envelope shows that initial association, insertion, and release do not respond identically to cholesterol.</li>
+        </ol>
+
+        <figure style="text-align: center; margin: var(--sp-lg) 0;">
+          <img src="images/Dry_Cholesterol%E2%80%93Bind%20State%20Curve.png" alt="Cholesterol–Bind State Curve" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+          <figcaption style="margin-top: var(--sp-sm); color: var(--on-canvas-mute); font-size: 0.9rem;">Figure 4: Operational cholesterol–Bind-state curve. Solid line: PCHIP median of the three normalized Bavdek 2007 endpoints; shaded band: minimum-to-maximum endpoint envelope.</figcaption>
+        </figure>
+
+        <p>What the chart represents: The solid curve represents the consensus progression from weak or nonproductive membrane interaction to stable and productive membrane association. The curve is shallow below approximately 20 mol%, begins to rise between approximately 20 and 30 mol%, changes most strongly around 30–35 mol%, and enters a high-response region above approximately 35–40 mol%.</p>
+        <p>The chart must not be interpreted as an experimentally measured fractional occupancy. The operational $B$ value summarizes agreement among related assays and is most useful for comparing concentration ranges.</p>
+
+        <h3>3.2 Comparison with Downstream Membrane Disruption</h3>
+        <p>How the chart was created:</p>
+        <ol>
+          <li>The operational Bind-state curve from the previous chart was retained without refitting.</li>
+          <li>Ruan's approximate membrane-destruction velocities at 0, 10, 20, and 40 mol% cholesterol were divided by the maximum reported value, producing a normalized 0–1 downstream-response series.</li>
+          <li>PCHIP interpolation connected the Ruan points only within the measured 0–40 mol% range.</li>
+          <li>The normalized Ruan curve was plotted beside the Bavdek-derived operational Bind state. The two curves were not pooled into a single fit because they describe different physical outputs.</li>
+        </ol>
+
+        <figure style="text-align: center; margin: var(--sp-lg) 0;">
+          <img src="images/Dry_Bind%20State%20vs.%20Membrane%20Destruction.png" alt="Bind State vs. Membrane Destruction" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+          <figcaption style="margin-top: var(--sp-sm); color: var(--on-canvas-mute); font-size: 0.9rem;">Figure 5: Operational Bind-state curve (Bavdek-derived) compared with normalized downstream membrane-destruction rates (Ruan-derived).</figcaption>
+        </figure>
+
+        <p>What the chart represents: The comparison emphasizes that membrane destruction and stable bulk membrane association are related but not identical. At 10 mol% cholesterol, Ruan observed edge-mediated damage even though typical arc formation was absent. At 20 mol%, oligomerization and insertion became observable. At 40 mol%, both productive association and downstream destruction were strong.<sup>[3]</sup></p>
+        <p>The result supports a staged interpretation: initial association → retention and oligomerization → insertion → pore or edge-mediated damage. It also explains why a low-to-moderate Bind state can still produce a measurable wet-lab response when the assay is sensitive to membrane defects.</p>
+
+        <h3>3.3 Recommended Cholesterol Ranges</h3>
+        <figure style="text-align: center; margin: var(--sp-lg) 0;">
+          <img src="images/Dry_Recommended%20Cholesterol%20Ranges.png" alt="Recommended Cholesterol Ranges" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">
+          <figcaption style="margin-top: var(--sp-sm); color: var(--on-canvas-mute); font-size: 0.9rem;">Figure 6: Recommended cholesterol concentration ranges and their operational Bind-state interpretation.</figcaption>
+        </figure>
+
+        <p>What the chart represents:</p>
+        <ul>
+          <li><strong>0–10 mol%:</strong> very low productive Bind state. Cholesterol-free membranes provide a negative control, although 10 mol% may permit some edge-associated damage under favorable acidic conditions.</li>
+          <li><strong>10–20 mol%:</strong> low Bind state. Initial or transient membrane interactions may occur, but typical oligomerization and stable insertion are restricted.</li>
+          <li><strong>20–30 mol%:</strong> low-to-moderate Bind state. Association and activity become detectable but remain strongly dependent on pH, temperature, LLO concentration, membrane geometry, and assay endpoint.</li>
+          <li><strong>30–35 mol%:</strong> transition region. Stable association and downstream competence increase rapidly. This is the most informative range for studying cholesterol dependence.</li>
+          <li><strong>35–40 mol%:</strong> high productive Bind state. Stable association, oligomerization, membrane insertion, and functional permeabilization are increasingly likely.</li>
+          <li><strong>40–50 mol%:</strong> very high response. This range is suitable for strong positive controls and robust pore-forming or membrane-damaging conditions, although benefits beyond 40 mol% may depend on the endpoint.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 4. Recommended Cholesterol Concentrations ===== -->
+  <section class="product-tile tile-canvas" id="sec-rc-rec">
+    <div class="tile-inner">
+      <h2 class="tile-headline">4. Recommended Cholesterol Concentrations</h2>
+      <div class="tile-body">
+        <h3>4.1 Recommended Range for Routine Productive Binding</h3>
+        <p>For experiments requiring robust LLO membrane association and downstream activity, the recommended cholesterol concentration is <strong>35–40 mol%</strong>. This range lies beyond the main transition observed in Bavdek 2007 and is consistent with the strong oligomerization and membrane destruction observed by Ruan at 40 mol%.<sup>[1,3]</sup></p>
+
+        <h3>4.2 Recommended Range for Resolving the Cholesterol Transition</h3>
+        <p>For experiments intended to characterize cholesterol concentration dependence, the recommended range is <strong>20–40 mol%</strong>. Recommended individual cholesterol levels are 20, 25, 30, 35, and 40 mol%. This design samples the low-to-moderate Bind state, the main transition region, and the high-response state without requiring unsupported extrapolation.</p>
+
+        <h3>4.3 Recommended Positive and Negative Controls</h3>
+        <div class="table-caption">Table 9: Recommended positive and negative controls.</div>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr><th>Control</th><th>Cholesterol concentration</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Negative control</td><td>0 mol%</td></tr>
+              <tr><td>Low-response control</td><td>10–20 mol%</td></tr>
+              <tr><td>Transition control</td><td>30–35 mol%</td></tr>
+              <tr><td>High-response positive control</td><td>40 mol%</td></tr>
+              <tr><td>Optional near-maximal condition</td><td>45–50 mol%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3>4.4 Conditions That Must Be Reported Alongside Cholesterol</h3>
+        <p>Every cholesterol recommendation should be accompanied by:</p>
+        <ul>
+          <li>lipid composition and vesicle or membrane geometry;</li>
+          <li>pH during LLO preincubation and during measurement;</li>
+          <li>temperature and preincubation duration;</li>
+          <li>total and, where possible, active LLO concentration;</li>
+          <li>assay endpoint, such as SPR binding, insertion, cargo release, pore events, or structural membrane loss;</li>
+          <li>observation time and normalization procedure.</li>
+        </ul>
+        <p>Without these variables, the same cholesterol concentration may correspond to different apparent Bind states.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 5. Review of the Initial Binding Model ===== -->
+  <section class="product-tile tile-soft" id="sec-rc-review">
+    <div class="tile-inner">
+      <h2 class="tile-headline">5. Review of the Initial Binding Model</h2>
+      <div class="tile-body">
+        <p>The initial Poreglow binding model represents a single apparent membrane-bound state:</p>
+
+        <div class="formula-block">
+          <p>$$\frac{dB}{dt} = k_{\text{on}} \, G_{\text{chol}} \, G_{\text{pH}} \, [\text{LLO}] \, (1 - B) - k_{\text{off}} \, B$$</p>
+        </div>
+
+        <p>Under a rapid-equilibrium approximation:</p>
+
+        <div class="formula-block">
+          <p>$$B_{\text{eq}} = \frac{G_{\text{chol}} \, G_{\text{pH}} \, [\text{LLO}]}{K_D + G_{\text{chol}} \, G_{\text{pH}} \, [\text{LLO}]}, \qquad K_D = \frac{k_{\text{off}}}{k_{\text{on}}}$$</p>
+        </div>
+
+        <p>This formulation is useful because it is compact, interpretable, and suitable for exploratory dry-lab simulations. However, the literature review shows that a single state cannot separately represent initial attachment, retention, oligomerization, prepore formation, insertion, functional pores, and membrane destruction.<sup>[1–3]</sup> The present cholesterol analysis therefore contributes a more cautious interpretation of $G_{\text{chol}}$ and $B$:</p>
+        <ul>
+          <li>$G_{\text{chol}}$ should be viewed as an empirical mapping from physical cholesterol mol% to productive membrane permissiveness.</li>
+          <li>$B$ should be described as a simplified apparent Bind state, not as the fraction of complete pores or ruptured membranes.</li>
+          <li>A slower apparent $k_{\text{off}}$ at higher cholesterol provides the kinetic link between cholesterol concentration and greater stable association.</li>
+          <li>Ruan's observations support adding explicit downstream states in future versions of the model.</li>
+        </ul>
+        <p>A natural future extension is:</p>
+
+        <div class="formula-block">
+          <p>$$\text{LLO}_{\text{soluble}} \rightarrow \text{LLO}_{\text{bound}} \rightarrow \text{Oligomer/Prepore} \rightarrow \text{Inserted pore} \rightarrow \text{Membrane endpoint}$$</p>
+        </div>
+
+        <p>with an additional solution-phase inactivation route governed by pH, temperature, and time.<sup>[2]</sup></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. Final Recommendations ===== -->
+  <section class="product-tile tile-canvas" id="sec-rc-final">
+    <div class="tile-inner">
+      <h2 class="tile-headline">6. Final Recommendations</h2>
+      <div class="tile-body">
+        <ol>
+          <li>Use 35–40 mol% cholesterol for robust productive LLO binding and membrane activity.</li>
+          <li>Use 20–40 mol% to characterize the cholesterol dependence, with denser sampling at 25, 30, and 35 mol%.</li>
+          <li>Use 0 mol% as a negative control and 40 mol% as the principal positive control.</li>
+          <li>Treat 10–20 mol% as a low-Bind but not necessarily zero-activity condition, because edge-mediated damage may occur under favorable conditions.</li>
+          <li>Interpret 30–35 mol% as the key transition range, not as a universal molecular threshold.</li>
+          <li>Report pH, temperature, LLO concentration, membrane composition, and endpoint together with cholesterol concentration.</li>
+          <li>Retain the initial binding model as a simplified dry-lab layer, but avoid equating $B$ with pore number, GFP release, or membrane rupture.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== References ===== -->
+  <section class="product-tile tile-soft" id="sec-rc-refs">
+    <div class="tile-inner">
+      <h2 class="tile-headline">References</h2>
+      <div class="tile-body">
+        <ol>
+          <li>Bavdek, A., Gekara, N. O., Priselac, D., Gutiérrez Aguirre, I., Darji, A., Chakraborty, T., Macek, P., Lakey, J. H., Weiss, S., &amp; Anderluh, G. (2007). Sterol and pH interdependence in the binding, oligomerization, and pore formation of listeriolysin O. <em>Biochemistry</em>, 46(14), 4425–4437. <a href="https://doi.org/10.1021/bi602497g" target="_blank" rel="noopener">https://doi.org/10.1021/bi602497g</a></li>
+          <li>Bavdek, A., Kostanjšek, R., Antonini, V., Lakey, J. H., Dalla Serra, M., Gilbert, R. J. C., &amp; Anderluh, G. (2012). pH dependence of listeriolysin O aggregation and pore-forming ability. <em>The FEBS Journal</em>, 279(1), 126–141. <a href="https://doi.org/10.1111/j.1742-4658.2011.08405.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1742-4658.2011.08405.x</a></li>
+          <li>Ruan, Y., Rezelj, S., Bedina Zavec, A., Anderluh, G., &amp; Scheuring, S. (2016). Listeriolysin O membrane damaging activity involves arc formation and lineaction: Implication for <em>Listeria monocytogenes</em> escape from phagocytic vacuole. <em>PLoS Pathogens</em>, 12(4), e1005597. <a href="https://doi.org/10.1371/journal.ppat.1005597" target="_blank" rel="noopener">https://doi.org/10.1371/journal.ppat.1005597</a></li>
+        </ol>
+      </div>
     </div>
   </section>
 

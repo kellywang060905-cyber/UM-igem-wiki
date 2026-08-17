@@ -69,14 +69,372 @@
     </div>
   </section>
 
-  <section class="product-tile tile-soft">
-    <div class="tile-inner" style="max-width: var(--content-max);">
-      <h2 class="tile-headline">Protocol</h2>
-      <div class="tile-body">
-        <p>还没有开始填写，先占个位置~=ᗜωᗜ=</p>
-      </div>
-    </div>
-  </section>
+  <!-- ===== Sidebar + Content Layout ===== -->
+  <div class="page-with-sidebar">
+
+    <!-- === Sidebar === -->
+    <aside class="sidebar-nav">
+      <ul class="sidebar-links">
+        <li><a href="#sec-proto-wb" class="sidebar-model active">Western Blot</a></li>
+        <li><a href="#sec-proto-extract" class="sidebar-model">Protein Extraction Using RIPA Lysis Buffer</a></li>
+        <li><a href="#sec-proto-purify" class="sidebar-model">Protein Purification via Ni-NTA Affinity Chromatography</a></li>
+      </ul>
+    </aside>
+
+    <!-- === Content === -->
+    <main class="page-content">
+
+      <!-- ===== 1. Western Blot ===== -->
+      <section class="product-tile tile-section-header tile-canvas" id="sec-proto-wb">
+        <div class="tile-inner">
+          <h2 class="tile-headline">Western Blot</h2>
+          <div class="tile-body">
+            <h3>1. Basic Information &amp; Objective</h3>
+            <ul>
+              <li><strong>Experiment Title:</strong> SDS-PAGE and Western Blot Detection</li>
+              <li><strong>Purpose:</strong> To separate protein samples by SDS-PAGE, transfer proteins onto a PVDF/NC membrane by wet transfer, and detect target proteins (His tag or GST tag) through specific antigen–antibody interactions.</li>
+              <li><strong>Applicable Samples:</strong> Recombinant proteins carrying either a His tag or a GST tag.</li>
+              <li><strong>Key Distinctions:</strong>
+                <ul>
+                  <li>His tag system: Use Yeasen WJ103 prestained protein marker; secondary antibody = Anti-Mouse IgG.</li>
+                  <li>GST tag system: Use Bio-Rad Precision Plus Protein Dual Color Standards (#1610374); secondary antibody = Anti-Rabbit IgG.</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h3>2. Materials</h3>
+            <p><strong>Reagents and Consumables</strong></p>
+            <ul>
+              <li>Gel casting reagents (30% acrylamide, 1.5 M Tris-HCl pH 8.8, 1.0 M Tris-HCl pH 6.8, 10% SDS, 10% APS, TEMED)</li>
+              <li>Running buffer, transfer buffer, TBST wash buffer</li>
+              <li>Blocking buffer (5% non-fat dry milk or BSA in TBST)</li>
+              <li>PVDF membrane (or nitrocellulose membrane), filter paper, sponges</li>
+              <li>Prestained protein markers:
+                <ul>
+                  <li>For His-tag: Yeasen WJ103</li>
+                  <li>For GST-tag: Bio-Rad #1610374</li>
+                </ul>
+              </li>
+              <li>Primary antibody</li>
+              <li>HRP-conjugated secondary antibodies:
+                <ul>
+                  <li>For His-tag: Anti-Mouse IgG</li>
+                  <li>For GST-tag: Anti-Rabbit IgG</li>
+                </ul>
+              </li>
+              <li>ECL chemiluminescent substrate</li>
+            </ul>
+            <p><strong>Equipment</strong></p>
+            <ul>
+              <li>Vertical electrophoresis cell and power supply, wet transfer tank, shaker, chemiluminescence imaging system, 4 °C refrigerator</li>
+            </ul>
+
+            <h3>3. Procedure</h3>
+            <h4>3.1 Gel Casting (12.5% SDS-PAGE Gel)</h4>
+            <p><strong>3.1.1 Prepare resolving gel (12.5% bottom layer):</strong></p>
+            <ul>
+              <li>According to the kit instructions (typically mix Solution A and B at 1:1), or prepare a standard 12.5% resolving gel formulation.</li>
+              <li>Add 1% of total volume of coagulant (e.g., 10% APS) and 1% TEMED (i.e., 1:100 ratio), mix quickly.</li>
+              <li>Pour the resolving gel between the glass plates, leaving space for the stacking gel (about 1.5 cm). Overlay with isopropanol or ethanol to flatten the surface.</li>
+              <li>Allow to polymerize at room temperature for about 1 hour.</li>
+            </ul>
+            <p><strong>3.1.2 Prepare stacking gel (5% top layer):</strong></p>
+            <ul>
+              <li>Prepare the stacking gel mixture according to kit instructions (A:B = 1:1) or standard recipe.</li>
+              <li>Add 1% coagulant (1:100 ratio), mix well.</li>
+              <li>Pour off the overlay, insert the comb immediately (avoid trapping air bubbles).</li>
+              <li>Let polymerize at room temperature for 30–45 minutes.</li>
+            </ul>
+            <p><strong>3.1.3 Storage (if not used immediately):</strong></p>
+            <ul>
+              <li>Cover the gel with a wet tissue (soaked in Milli-Q water) and store at 4 °C wrapped in plastic film.</li>
+            </ul>
+
+            <h4>3.2 SDS-PAGE Electrophoresis</h4>
+            <p><strong>3.2.1 Assemble the electrophoresis apparatus:</strong></p>
+            <ul>
+              <li>Place the gel (with glass plates) into the inner chamber, with the shorter plate facing inward.</li>
+              <li>Fill the inner chamber completely with fresh running buffer and wait 2 minutes to check for leaks. After confirming no leakage, add running buffer to the outer chamber until it covers the bottom of the glass plates.</li>
+            </ul>
+            <p><strong>3.2.2 Sample loading:</strong></p>
+            <ul>
+              <li>Carefully remove the comb and rinse the wells with running buffer to remove any residual acrylamide.</li>
+              <li>Loading volumes:
+                <ul>
+                  <li>Marker well: load 5 µL of the appropriate marker (Yeasen WJ103 for His-tag, Bio-Rad for GST-tag).</li>
+                  <li>Sample wells: load 20 µL of each protein sample. Ensure equal volumes in all wells – if necessary, top up with 1× sample buffer to reach 20 µL.</li>
+                </ul>
+              </li>
+            </ul>
+            <p><strong>3.2.3 Run the gel:</strong></p>
+            <ul>
+              <li>Close the lid, paying attention to electrode polarity (black to black, red to red), and connect to the power supply.</li>
+              <li>First stage (stacking gel): constant voltage 80 V until the dye front compresses into a sharp line and enters the resolving gel (about 20–30 min).</li>
+              <li>Second stage (resolving gel): increase to 100 V and continue until the dye front reaches the blue line at the bottom of the gel (or about 1 cm from the bottom).</li>
+              <li><strong>Important:</strong> If the inner chamber buffer leaks during the run, pause immediately, replenish buffer, and resume.</li>
+            </ul>
+
+            <h4>3.3 Wet Transfer</h4>
+            <p><strong>3.3.1</strong> Prepare transfer materials: Cut a piece of PVDF membrane (activate in methanol for 1 minute) and filter paper to the gel size; equilibrate all in pre-chilled transfer buffer.</p>
+            <p><strong>3.3.2</strong> Assemble the "sandwich" (perform under transfer buffer to eliminate air bubbles):</p>
+            <ul>
+              <li>Black side (cathode) → sponge → filter paper → gel (gel facing the cathode) → membrane (membrane facing the anode) → filter paper → sponge → White side (anode).</li>
+              <li>Gently roll a small roller over the sandwich to completely remove any trapped bubbles between the gel and membrane (bubbles cause uneven transfer).</li>
+            </ul>
+            <p><strong>3.3.3</strong> Transfer conditions:</p>
+            <ul>
+              <li>Place the cassette into the transfer tank (ensure gel is on the cathode side, membrane on the anode side) and fill with pre-chilled transfer buffer.</li>
+              <li>Run at constant current 400 mA; transfer time depends on protein size (typically 60–90 min).</li>
+            </ul>
+            <p><strong>3.3.4</strong> Check transfer efficiency:</p>
+            <ul>
+              <li>After transfer, open the cassette and observe the marker bands on the membrane. If the marker is clearly visible on the membrane (and no colour remains on the gel), transfer was successful.</li>
+            </ul>
+
+            <h4>3.4 Blocking and Antibody Incubation</h4>
+            <p><strong>3.4.1 Blocking:</strong></p>
+            <ul>
+              <li>Place the membrane in blocking buffer (5% non-fat milk or BSA in TBST).</li>
+              <li>Incubate at room temperature on a shaker for 1 hour to block non-specific binding sites.</li>
+            </ul>
+            <p><strong>3.4.2 Primary antibody incubation:</strong></p>
+            <ul>
+              <li>Dilute primary antibody 1:1000.</li>
+              <li>Discard the blocking solution, add the diluted primary antibody (ensure complete coverage of the membrane).</li>
+              <li>Incubate overnight at 4 °C on a shaking platform.</li>
+            </ul>
+
+            <h4>3.5 Secondary Antibody Incubation and ECL Development</h4>
+            <p><strong>3.5.1 Wash after primary antibody:</strong></p>
+            <ul>
+              <li>Recover the primary antibody (can be stored for re-use).</li>
+              <li>Wash the membrane with TBST for 10 minutes each, three times at room temperature on an orbital shaker.</li>
+            </ul>
+            <p><strong>3.5.2 Secondary antibody incubation:</strong></p>
+            <ul>
+              <li>Choose the corresponding secondary antibody:
+                <ul>
+                  <li>For His-tag (mouse primary): use Anti-Mouse secondary.</li>
+                  <li>For GST-tag (rabbit primary): use Anti-Rabbit secondary.</li>
+                </ul>
+              </li>
+              <li>Dilute the secondary antibody 1:10,000 in TBST.</li>
+              <li>Incubate the membrane with the diluted secondary antibody for 1 hour at room temperature.</li>
+            </ul>
+            <p><strong>3.5.3 Wash after secondary antibody:</strong></p>
+            <ul>
+              <li>Discard the secondary solution.</li>
+              <li>Wash with TBST for 10 minutes each, three times (thorough washing is essential to reduce background).</li>
+            </ul>
+            <p><strong>3.5.4 ECL chemiluminescent detection:</strong></p>
+            <ul>
+              <li>Mix ECL substrate Solution A and B in a 1:1 ratio (prepare fresh, protect from light).</li>
+              <li>Place the membrane (protein side up) on a clean surface, add sufficient mixed ECL reagent to cover the entire membrane.</li>
+            </ul>
+            <p><strong>3.5.5 Imaging and data storage:</strong></p>
+            <ul>
+              <li>Place the membrane in a chemiluminescence imaging system.</li>
+              <li>Start with an exposure time of 1 second and adjust as needed for optimal signal.</li>
+              <li>Save the original images (TIF format) for subsequent analysis.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 2. Protein Extraction Using RIPA Lysis Buffer ===== -->
+      <section class="product-tile tile-section-header tile-soft" id="sec-proto-extract">
+        <div class="tile-inner">
+          <h2 class="tile-headline">Protein Extraction Using RIPA Lysis Buffer</h2>
+          <div class="tile-body">
+            <h3>1. Brief Introduction</h3>
+            <p>This protocol describes the complete workflow for preparing crude protein samples from bacterial cultures. The procedure includes preparation of RIPA buffer supplemented with protease inhibitor, bacterial growth to the target optical density, IPTG-mediated protein induction over two separate time courses (4-hour and overnight incubation), harvest of bacterial pellets, cell lysis, and storage of recovered protein samples. The resulting supernatant containing crude protein is available for subsequent protein quantification assays (BCA assay quantification, western blot analysis, etc.).</p>
+
+            <h3>2. Materials</h3>
+            <p><strong>2.1 Reagents</strong></p>
+            <ul>
+              <li>RIPA lysis buffer</li>
+              <li>Protease inhibitor cocktail (HY-K0010, HY-K0021, HY-K0022)</li>
+              <li>Luria-Bertani (LB) broth</li>
+              <li>Ampicillin (Amp)</li>
+              <li>BL21 competent <em>E. coli</em></li>
+              <li>50% (v/v) glycerol</li>
+              <li>0.5 M IPTG stock solution</li>
+              <li>Phosphate-buffered saline (PBS)</li>
+            </ul>
+            <p><strong>2.2 Consumables</strong></p>
+            <ul>
+              <li>15 mL centrifuge tubes, 1.5 mL microcentrifuge tubes, bacterial culture tubes, agar transformation plates, variable-volume pipette tips</li>
+            </ul>
+            <p><strong>2.3 Equipment</strong></p>
+            <ul>
+              <li>Orbital shaker incubator, spectrophotometer (OD<sub>600</sub> measurement), micropipettes, refrigerated benchtop centrifuge, −20 °C freezer, −80 °C freezer, ice bath</li>
+            </ul>
+
+            <h3>3. Procedure</h3>
+            <h4>3.1 RIPA + Inhibitors Preparation</h4>
+            <p><em>*The whole procedure shall be performed on ice.</em></p>
+            <ol>
+              <li>Transfer 9.7 mL of RIPA buffer into a 15 mL centrifuge tube. (RIPA buffer is stored at 4 °C.)</li>
+              <li>Add 100 µL of each inhibitor (three stocks: HY-K0010, HY-K0021 and HY-K0022) to the RIPA buffer.</li>
+              <li>Mix thoroughly, and store the prepared buffer at 4 °C.</li>
+            </ol>
+
+            <h4>3.2 Bacteria Culture</h4>
+            <ol>
+              <li>Pick a single colony from the transformation plates prepared in the previous week, inoculate it into 3 mL of LB medium supplemented with ampicillin in a culture tube.</li>
+              <li>Incubate the culture with shaking at 37 °C overnight.</li>
+            </ol>
+            <p><strong>Control group (untransformed BL21):</strong></p>
+            <ol>
+              <li>Inoculate 100 µL of BL21 competent cells into 5 mL of antibiotic-free LB medium.</li>
+              <li>Incubate the culture with shaking at 37 °C overnight.</li>
+            </ol>
+
+            <h4>3.3 Protein Extraction (Day 1)</h4>
+            <p><strong>1) Glycerol Stock Preparation</strong></p>
+            <ol>
+              <li>Combine 500 µL of the overnight bacterial culture and 500 µL of 50% glycerol in a 1.5 mL microcentrifuge tube.</li>
+              <li>Store the glycerol stock at −80 °C.</li>
+            </ol>
+            <p><strong>2) Protein Extraction (IPTG Induction)</strong></p>
+            <p><strong>4-hour induction group</strong></p>
+            <ol>
+              <li>Inoculate 500 µL of overnight bacterial culture into 5 mL of ampicillin-supplemented LB broth within a culture tube.</li>
+              <li>Measure the OD<sub>600</sub> value every 30 min. Allow cultures to reach an OD<sub>600</sub> of approximately 0.6 within two hours.</li>
+              <li>Add 5 µL of 0.5 M IPTG to each tube to induce protein expression at 37 °C for 4 h.</li>
+              <li>Transfer 1 mL of induced bacterial culture into individual 1.5 mL microcentrifuge tubes (five tubes in total).</li>
+              <li>Centrifuge the aliquots at 5000 rpm for 10 min.</li>
+              <li>Discard the supernatant, resuspend each bacterial pellet in 100 µL of PBS.</li>
+              <li>Store the resuspended pellets at −20 °C.</li>
+            </ol>
+            <p><strong>Overnight induction group</strong></p>
+            <ol>
+              <li>Prepare cultures as described in Step 1, grow them until an OD<sub>600</sub> of 0.6 is reached.</li>
+              <li>Add 5 µL of 0.5 M IPTG to each tube to induce protein expression at 30 °C overnight.</li>
+            </ol>
+
+            <h4>3.4 Protein Extraction (Day 2)</h4>
+            <p><strong>1) Collection of 4-hour-induced and overnight-induced protein samples</strong></p>
+            <p><em>*Samples from the 4-hour induction group start from Step 4.</em></p>
+            <ol>
+              <li>Transfer 1 mL of overnight-induced bacterial culture into each 1.5 mL microcentrifuge tube.</li>
+              <li>Centrifuge the tubes at 5000 rpm for 10 min.</li>
+              <li>Discard the supernatant, resuspend each pellet in 100 µL of PBS. Combine pellets from 2 mL of starting culture into a single tube after resuspension.</li>
+              <li>Perform a second centrifugation at 5000 rpm for 2–3 min.</li>
+              <li>Remove the supernatant. Add 250 µL of inhibitor-supplemented RIPA buffer per 5 mL of initial bacterial culture.</li>
+              <li>Keep the samples on ice for 60 min.</li>
+              <li>Centrifuge the lysate at 16,000 rcf, 4 °C for 20 min.</li>
+              <li>The resulting supernatant contains the target protein and can be used for downstream quantification assays.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== 3. Protein Purification via Ni-NTA Affinity Chromatography ===== -->
+      <section class="product-tile tile-section-header tile-canvas" id="sec-proto-purify">
+        <div class="tile-inner">
+          <h2 class="tile-headline">Protein Purification via Ni-NTA Affinity Chromatography</h2>
+          <div class="tile-body">
+            <h3>1. Basic Information &amp; Objectives</h3>
+            <p><strong>Estimated Duration:</strong> Approx. 8–9 hours&nbsp;&nbsp;|&nbsp;&nbsp;<strong>Target Proteins:</strong> sfGFP, TEV, sfGFPa, LLO</p>
+            <p><strong>Objective:</strong> To purify recombinant sfGFP, sfGFPa, LLO, and TEV proteins from <em>Escherichia coli</em> lysate supernatant using gravity flow chromatography, capitalizing on the high affinity between recombinant His-tags and Ni-NTA resin. Buffer exchange is subsequently performed via ultrafiltration, followed by resin cleaning and regeneration.</p>
+            <p><strong>Core Principle:</strong> To prevent protein degradation or aggregation/precipitation, all steps—including column loading, washing, elution, and concentration—must be carried out under pre-cooled conditions at 4 °C or on ice.</p>
+
+            <h3>2. Reagents, Buffers &amp; Equipment</h3>
+            <h4>2.1 Buffer Formulations</h4>
+            <figure style="margin: var(--sp-sm) 0 var(--sp-lg) 0; text-align: center;">
+              <img src="images/Wet_Ni-NTA_table1.png" alt="Buffer Formulations" style="max-width: 100%; border-radius: var(--r-sm);">
+            </figure>
+            <h4>2.2 Key Reagents &amp; Equipment</h4>
+            <p><strong>Instruments &amp; Equipment:</strong></p>
+            <ul>
+              <li>High-speed refrigerated centrifuge</li>
+              <li>Ultrasonic cell disruptor/sonicator</li>
+              <li>Amicon Ultra Centrifugal Filter Units (10 kDa MWCO)</li>
+              <li>Electrophoresis power supply &amp; gel imaging system</li>
+            </ul>
+            <p><strong>Reagents &amp; Consumables:</strong></p>
+            <ul>
+              <li>Ni-NTA Agarose resin (3–4 mL)</li>
+              <li>Gravity flow chromatography columns</li>
+              <li>PBS buffer</li>
+              <li>100 mM EDTA (pH 8.0)</li>
+              <li>0.5 M NaOH</li>
+              <li>100 mM NiSO<sub>4</sub></li>
+              <li>20% Ethanol</li>
+            </ul>
+
+            <h3>3. Pre-Experimental Preparation</h3>
+            <ul>
+              <li>Turn on the refrigerated centrifuge 40 minutes in advance and pre-cool to 4 °C.</li>
+              <li>Place all required buffers at their designated appropriate temperatures ahead of time.</li>
+              <li>Prepare ice buckets and microcentrifuge (EP) tubes (pre-labeled with sample names).</li>
+            </ul>
+
+            <h3>4. Detailed Operating Procedure</h3>
+            <h4>Phase 1: Cell Disruption &amp; Lysate Supernatant Preparation (4 °C / On Ice)</h4>
+            <p><strong>Step 1 (Cell Resuspension):</strong> Discard the supernatant from the harvested bacterial cell pellet (centrifuged at 4,000 × g, 4 °C for 15 min). Add Lysis Buffer to resuspend the pellet, adjusting the total volume to approximately 100 mL. Mix thoroughly until no visible cell clumps remain.</p>
+            <p><strong>Step 2 (Ultrasonic Lysis):</strong> Place the sample vessel in an ice-water bath. Set the sonicator parameters (75% amplitude, 1 min sonication). Gently swirl and mix the tube for 1 min after each cycle. Repeat for a total of 4 cycles (total sonication time: 4 min).</p>
+            <p><strong>Step 3 (Clarification):</strong> Transfer the lysate into high-speed centrifuge tubes and clarify by centrifugation at 30,000 × g, 4 °C for 20 min. Carefully transfer the clarified supernatant into a new beaker/tube.</p>
+            <figure style="margin: var(--sp-sm) 0 var(--sp-lg) 0; text-align: center;">
+              <img src="images/Wet_Sampling_Protocol1.png" alt="Sampling Protocol 1" style="max-width: 100%; border-radius: var(--r-sm);">
+            </figure>
+
+            <h4>Phase 2: Ni-NTA Resin Pretreatment &amp; Batch Binding (4 °C Shaker)</h4>
+            <p><strong>Step 4 (Resin Pretreatment):</strong> Rinse the gravity column with Loading Buffer to wet the bottom frit. Pipette 3–4 mL of Ni-NTA agarose resin slurry, add an appropriate volume of Loading Buffer, and mix gently. Allow the resin to settle naturally at 4 °C, then discard the supernatant. Repeat this wash 2 times.</p>
+            <p><strong>Step 5 (Batch Binding):</strong> Combine the clarified lysate supernatant with the pre-washed Ni-NTA resin and Loading Buffer. Incubate on a rotary shaker at 4 °C with gentle tumbling for at least 1 hour to allow complete protein binding.</p>
+            <p><strong>Step 6 (Column Packing &amp; Flow-Through Collection):</strong> Transfer the mixture into the gravity column and collect the flow-through liquid.</p>
+            <figure style="margin: var(--sp-sm) 0 var(--sp-lg) 0; text-align: center;">
+              <img src="images/Wet_Sampling_Protocol2.png" alt="Sampling Protocol 2" style="max-width: 100%; border-radius: var(--r-sm);">
+            </figure>
+
+            <h4>Phase 3: Contaminant Washing &amp; Target Protein Elution (4 °C)</h4>
+            <p><strong>Step 7 (Column Wash):</strong></p>
+            <ul>
+              <li>Wash with Wash Buffer 1 (4 times): Thoroughly resuspend and pipette the resin upon adding buffer each time. Collect the 1st wash fraction (W1-1) and the 4th wash fraction (W1-2).</li>
+              <li>Wash with Wash Buffer 2 (4 times): Collect the 1st wash fraction (W2-1) and the 4th wash fraction (W2-2).</li>
+            </ul>
+            <p><strong>Step 8 (Gradient Elution):</strong> Insert the bottom cap into the column. Add 4 mL of Elution Buffer, gently resuspend the resin by pipetting, and let it stand for 1 minute. Remove the bottom cap and collect the entire eluate. Repeat this process 4 times, sequentially collecting and labeling elution fractions E1, E2, E3, and E4.</p>
+            <figure style="margin: var(--sp-sm) 0 var(--sp-lg) 0; text-align: center;">
+              <img src="images/Wet_Sampling_Protocol3.png" alt="Sampling Protocol 3" style="max-width: 100%; border-radius: var(--r-sm);">
+            </figure>
+
+            <h4>Phase 4: Ultrafiltration Concentration &amp; Buffer Exchange</h4>
+            <p><strong>Step 9 (Pooling &amp; Primary Concentration):</strong> Based on SDS-PAGE preliminary inspection, pool the elution fractions containing the highest target protein purity (typically E1 and E2). Transfer the pooled fraction into a 10 kDa MWCO Amicon Ultra centrifugal filter unit. Centrifuge at 4,000 × g, 4 °C to concentrate the volume down to approx. 1–2 mL.</p>
+            <p><strong>Step 10 (Imidazole Removal &amp; Buffer Exchange):</strong> Top up the centrifugal filter unit with Storage Buffer up to the 15 mL mark, then centrifuge again at 4,000 × g to concentrate back to 1–2 mL. Repeat this buffer exchange step 2–3 times to thoroughly remove residual imidazole. Collect the final concentrated protein.</p>
+
+            <h4>Phase 5: Quality Control &amp; Purity Assessment (SDS-PAGE &amp; Coomassie Staining)</h4>
+            <p><strong>Step 11 (Protein Electrophoresis):</strong> Collect all saved samples (12 tubes in total), add 5× SDS Loading Buffer, denature by heating, and load into gel wells according to the following order:</p>
+            <p>1. Pellet&nbsp;&nbsp;|&nbsp;&nbsp;2. Supernatant&nbsp;&nbsp;|&nbsp;&nbsp;3. FT&nbsp;&nbsp;|&nbsp;&nbsp;4. Bound Resin&nbsp;&nbsp;|&nbsp;&nbsp;5. W1-1&nbsp;&nbsp;|&nbsp;&nbsp;6. W1-2<br>
+               7. W2-1&nbsp;&nbsp;|&nbsp;&nbsp;8. W2-2&nbsp;&nbsp;|&nbsp;&nbsp;9. E1&nbsp;&nbsp;|&nbsp;&nbsp;10. E2&nbsp;&nbsp;|&nbsp;&nbsp;11. E3&nbsp;&nbsp;|&nbsp;&nbsp;12. E4</p>
+            <p>Run condition: Constant voltage at 250 V for 45 minutes. After electrophoresis, stain with Coomassie Brilliant Blue and destain to visualize protein purity.</p>
+
+            <h4>Phase 6: Ni-NTA Resin Regeneration &amp; Storage</h4>
+            <ol>
+              <li><strong>Water Wash:</strong> Wash with 5 column volumes (CV) of deionized water (ddH<sub>2</sub>O).</li>
+              <li><strong>Stripping:</strong> Strip nickel ions using 5 CV of 100 mM EDTA (pH 8.0) until the resin turns from blue to white.</li>
+              <li><strong>Water Wash:</strong> Rinse with 10 CV of ddH<sub>2</sub>O to completely remove residual EDTA.</li>
+              <li><strong>Alkaline Wash / Stripping:</strong> Wash with 5 CV of 0.5 M NaOH and allow to soak/incubate in the column for 10–15 minutes.</li>
+              <li><strong>Neutralization Wash:</strong> Rinse with 10 CV of ddH<sub>2</sub>O until the effluent pH reaches neutral (~7.0).</li>
+              <li><strong>Re-charging:</strong> Re-charge with 3–5 CV of 100 mM NiSO<sub>4</sub> solution until the resin restores its sky-blue color.</li>
+              <li><strong>Final Wash &amp; Storage:</strong> Rinse with 10 CV of ddH<sub>2</sub>O to remove unbound nickel ions. Regenerated resin can be used immediately or suspended in 20% ethanol and stored at 4 °C.</li>
+            </ol>
+
+            <h3>5. Troubleshooting Guide</h3>
+            <figure style="margin: var(--sp-sm) 0 var(--sp-lg) 0; text-align: center;">
+              <img src="images/Wet_Ni-NTA_table2.png" alt="Troubleshooting Guide" style="max-width: 100%; border-radius: var(--r-sm);">
+            </figure>
+
+            <h3>6. Appendix: Sampling QC Checklist</h3>
+            <figure style="margin: var(--sp-sm) 0 var(--sp-lg) 0; text-align: center;">
+              <img src="images/Wet_Ni-NTA_table3.png" alt="Sampling QC Checklist" style="max-width: 100%; border-radius: var(--r-sm);">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
 
   <footer class="site-footer">
   </footer>
